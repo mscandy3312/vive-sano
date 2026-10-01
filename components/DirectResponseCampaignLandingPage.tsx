@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
 export interface DirectResponseCampaignLandingPageProps {
@@ -16,12 +16,22 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
-  const [showEmailTemplate, setShowEmailTemplate] = useState(false);
   const [selectedHeadline, setSelectedHeadline] = useState(0);
+
+  // Timed form reveal state: first image is shown for a few seconds, then form appears
+  const [isFormVisible, setIsFormVisible] = useState(false);
 
   const formRef = useRef<HTMLDivElement>(null);
 
-  // Headlines test variants (Item 2 of Prompt: 3 variants to choose/test)
+  // Automatic timer: reveal form after 2.5 seconds of admiring the hero image
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsFormVisible(true);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Headlines test variants for CRO testing
   const headlines = [
     'Tu digestión puede cambiar cuando empiezas a escuchar lo que tu cuerpo necesita.',
     'Descubre cómo aliviar la pesadez digestiva con pequeños cambios cotidianos.',
@@ -29,6 +39,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
   ];
 
   const scrollToForm = () => {
+    setIsFormVisible(true);
     if (formRef.current) {
       formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
       const input = document.getElementById('hero-lead-name');
@@ -39,7 +50,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    // Analytics Triggers ([META_PIXEL_ID], [GOOGLE_ANALYTICS_ID], [EVENTO_LEAD])
+    // Analytics Triggers
     if (typeof window !== 'undefined') {
       if ((window as any).fbq) {
         (window as any).fbq('track', 'Lead');
@@ -138,137 +149,182 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
 
           </div>
 
-          {/* RIGHT COLUMN: ELEVATED HERO FORM CARD */}
-          <div className="lg:col-span-6" ref={formRef} id="formulario-registro">
-            <div className="bg-white rounded-3xl border border-[#D5E8DC] shadow-2xl p-6 sm:p-8 relative overflow-hidden transition-all duration-300">
-              
-              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#123C32] via-[#1F6B50] to-[#5E9F78]"></div>
+          {/* RIGHT COLUMN: HERO FORM CARD (SHOWN AFTER IMAGE FEW SECONDS OR IMMEDIATELY ON ACTION) */}
+          <div className="lg:col-span-6 min-h-[420px] flex items-center" ref={formRef} id="formulario-registro">
+            {!isFormVisible ? (
+              /* INITIAL VISUAL STATE: SHOW IMAGE & TEASER UNTIL TIMER EXPIRES */
+              <div
+                onClick={() => setIsFormVisible(true)}
+                className="w-full bg-white rounded-3xl border border-[#D5E8DC] shadow-2xl p-6 sm:p-8 text-center space-y-5 cursor-pointer transform hover:scale-[1.01] transition-all duration-500 animate-fadeIn relative overflow-hidden group"
+              >
+                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#123C32] via-[#1F6B50] to-[#5E9F78]"></div>
 
-              {isSubmitted ? (
-                /* POST-REGISTRATION SUCCESS STATE */
-                <div className="space-y-5 text-center py-6 animate-fadeIn">
-                  <div className="w-16 h-16 rounded-full bg-[#EEF7F0] text-[#1F6B50] flex items-center justify-center mx-auto text-3xl border border-[#B8D8C2] shadow-inner">
-                    🌿
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-[#D5E8DC]">
+                  <Image
+                    src="/images/lead-magnet-mockup.jpg"
+                    alt="Vista previa de la Guía de Salud Digestiva"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 450px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#123C32]/80 via-transparent to-transparent flex items-end justify-center p-4">
+                    <span className="text-white text-xs font-bold bg-[#1F6B50] px-4 py-2 rounded-full shadow-lg border border-white/20">
+                      📖 Guía Práctica Digital PDF
+                    </span>
                   </div>
-
-                  <div className="space-y-2">
-                    <h2 className="font-serif text-2xl font-bold text-[#123C32]">
-                      ¡Excelente! Tu guía está lista
-                    </h2>
-                    <p className="text-xs sm:text-sm text-[#4A6B60] leading-relaxed max-w-sm mx-auto">
-                      Hemos enviado el enlace directo a tu correo electrónico. Por favor revisa tu bandeja de entrada o la carpeta de promociones.
-                    </p>
-                  </div>
-
-                  <div className="p-4 rounded-2xl bg-[#EEF7F0] border border-[#B8D8C2] text-xs text-[#123C32] text-left space-y-1.5">
-                    <p className="font-bold flex items-center gap-2">
-                      <span>📧</span> Remitente: <strong>Salud Digestiva & Bienestar</strong>
-                    </p>
-                    <p className="text-[#4A6B60]">
-                      Asunto: <em>"Aquí tienes tu guía de salud digestiva 🌿"</em>
-                    </p>
-                  </div>
-
-                  {leadMagnetPdfUrl !== '#' && (
-                    <a
-                      href={leadMagnetPdfUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 w-full py-4 px-6 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl hover:shadow-2xl"
-                    >
-                      <span>⬇️ DESCARGAR GUÍA EN PDF INMEDIATAMENTE</span>
-                    </a>
-                  )}
                 </div>
-              ) : (
-                /* HIGH-CONVERSION ELEVATED FORM */
-                <div className="space-y-5 text-left">
-                  <div className="space-y-1.5">
-                    <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#123C32]">
-                      Obtén tu guía GRATIS
-                    </h2>
-                    <p className="text-xs sm:text-sm text-[#4A6B60]">
-                      Ingresa tu nombre y correo para recibir tu acceso inmediato.
-                    </p>
-                  </div>
 
-                  <form
-                    action={systemeActionUrl || '#'}
-                    method="POST"
-                    onSubmit={handleSubmit}
-                    className="space-y-4"
-                  >
-                    {/* SYSTEME.IO TAG HIDDEN INPUT */}
-                    <input type="hidden" name="tag" value="Lead - Salud Digestiva" />
-                    <input type="hidden" name="source" value="Landing Salud Digestiva" />
+                <div className="space-y-2">
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#123C32]">
+                    Tu regalo de bienestar digestivo
+                  </h3>
+                  <p className="text-xs text-[#4A6B60]">
+                    Desbloqueando formulario de registro... o toca aquí para acceder ahora mismo.
+                  </p>
+                </div>
 
-                    {/* CAMPO NOMBRE */}
-                    <div className="space-y-1">
-                      <label htmlFor="hero-lead-name" className="block text-xs font-bold text-[#123C32] uppercase tracking-wider">
-                        Nombre
-                      </label>
-                      <input
-                        type="text"
-                        id="hero-lead-name"
-                        name="name"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Ej. María García"
-                        className="w-full px-4 py-3.5 rounded-xl border border-[#D5E8DC] bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all"
-                      />
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsFormVisible(true);
+                  }}
+                  className="w-full py-3.5 px-6 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-sm uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span>OBTENER MI GUÍA GRATIS AHORA →</span>
+                </button>
+              </div>
+            ) : (
+              /* ELEVATED FORM CARD (SLIDES IN BEAUTIFULLY) */
+              <div className="w-full bg-white rounded-3xl border border-[#D5E8DC] shadow-2xl p-6 sm:p-8 relative overflow-hidden transition-all duration-500 animate-slideUp">
+                
+                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#123C32] via-[#1F6B50] to-[#5E9F78]"></div>
+
+                {isSubmitted ? (
+                  /* POST-REGISTRATION SUCCESS STATE */
+                  <div className="space-y-5 text-center py-6 animate-fadeIn">
+                    <div className="w-16 h-16 rounded-full bg-[#EEF7F0] text-[#1F6B50] flex items-center justify-center mx-auto text-3xl border border-[#B8D8C2] shadow-inner">
+                      🌿
                     </div>
 
-                    {/* CAMPO CORREO */}
-                    <div className="space-y-1">
-                      <label htmlFor="hero-lead-email" className="block text-xs font-bold text-[#123C32] uppercase tracking-wider">
-                        Correo electrónico
-                      </label>
-                      <input
-                        type="email"
-                        id="hero-lead-email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="tu@email.com"
-                        className="w-full px-4 py-3.5 rounded-xl border border-[#D5E8DC] bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all"
-                      />
-                    </div>
-
-                    {/* CTA BOTÓN PRINCIPAL */}
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-4 px-6 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-base transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 uppercase tracking-wide transform hover:-translate-y-0.5 active:translate-y-0"
-                    >
-                      {isSubmitting ? (
-                        <span>PROCESANDO REGISTRO...</span>
-                      ) : (
-                        <>
-                          <span>QUIERO MI GUÍA GRATIS →</span>
-                        </>
-                      )}
-                    </button>
-
-                    <div className="text-center pt-1 space-y-1">
-                      <p className="text-xs text-[#1F6B50] font-semibold flex items-center justify-center gap-1.5">
-                        <span>🔒</span> Tus datos están protegidos.
-                      </p>
-                      <p className="text-[11px] text-[#4A6B60]">
-                        Al registrarte recibirás la guía en tu correo.
+                    <div className="space-y-2">
+                      <h2 className="font-serif text-2xl font-bold text-[#123C32]">
+                        ¡Excelente! Tu guía está lista
+                      </h2>
+                      <p className="text-xs sm:text-sm text-[#4A6B60] leading-relaxed max-w-sm mx-auto">
+                        Hemos enviado el enlace directo a tu correo electrónico. Por favor revisa tu bandeja de entrada o la carpeta de promociones.
                       </p>
                     </div>
-                  </form>
-                </div>
-              )}
-            </div>
+
+                    <div className="p-4 rounded-2xl bg-[#EEF7F0] border border-[#B8D8C2] text-xs text-[#123C32] text-left space-y-1.5">
+                      <p className="font-bold flex items-center gap-2">
+                        <span>📧</span> Remitente: <strong>Salud Digestiva & Bienestar</strong>
+                      </p>
+                      <p className="text-[#4A6B60]">
+                        Asunto: <em>"Aquí tienes tu guía de salud digestiva 🌿"</em>
+                      </p>
+                    </div>
+
+                    {leadMagnetPdfUrl !== '#' && (
+                      <a
+                        href={leadMagnetPdfUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center justify-center gap-2 w-full py-4 px-6 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl hover:shadow-2xl"
+                      >
+                        <span>⬇️ DESCARGAR GUÍA EN PDF INMEDIATAMENTE</span>
+                      </a>
+                    )}
+                  </div>
+                ) : (
+                  /* HIGH-CONVERSION ELEVATED FORM */
+                  <div className="space-y-5 text-left">
+                    <div className="space-y-1.5">
+                      <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#123C32]">
+                        Obtén tu guía GRATIS
+                      </h2>
+                      <p className="text-xs sm:text-sm text-[#4A6B60]">
+                        Ingresa tu nombre y correo para recibir tu acceso inmediato.
+                      </p>
+                    </div>
+
+                    <form
+                      action={systemeActionUrl || '#'}
+                      method="POST"
+                      onSubmit={handleSubmit}
+                      className="space-y-4"
+                    >
+                      {/* SYSTEME.IO TAG HIDDEN INPUT */}
+                      <input type="hidden" name="tag" value="Lead - Salud Digestiva" />
+                      <input type="hidden" name="source" value="Landing Salud Digestiva" />
+
+                      {/* CAMPO NOMBRE */}
+                      <div className="space-y-1">
+                        <label htmlFor="hero-lead-name" className="block text-xs font-bold text-[#123C32] uppercase tracking-wider">
+                          Nombre
+                        </label>
+                        <input
+                          type="text"
+                          id="hero-lead-name"
+                          name="name"
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          placeholder="Ej. María García"
+                          className="w-full px-4 py-3.5 rounded-xl border border-[#D5E8DC] bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all"
+                        />
+                      </div>
+
+                      {/* CAMPO CORREO */}
+                      <div className="space-y-1">
+                        <label htmlFor="hero-lead-email" className="block text-xs font-bold text-[#123C32] uppercase tracking-wider">
+                          Correo electrónico
+                        </label>
+                        <input
+                          type="email"
+                          id="hero-lead-email"
+                          name="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder="tu@email.com"
+                          className="w-full px-4 py-3.5 rounded-xl border border-[#D5E8DC] bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all"
+                        />
+                      </div>
+
+                      {/* CTA BOTÓN PRINCIPAL */}
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full py-4 px-6 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-base transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 uppercase tracking-wide transform hover:-translate-y-0.5 active:translate-y-0"
+                      >
+                        {isSubmitting ? (
+                          <span>PROCESANDO REGISTRO...</span>
+                        ) : (
+                          <>
+                            <span>QUIERO MI GUÍA GRATIS →</span>
+                          </>
+                        )}
+                      </button>
+
+                      <div className="text-center pt-1 space-y-1">
+                        <p className="text-xs text-[#1F6B50] font-semibold flex items-center justify-center gap-1.5">
+                          <span>🔒</span> Tus datos están protegidos.
+                        </p>
+                        <p className="text-[11px] text-[#4A6B60]">
+                          Al registrarte recibirás la guía en tu correo.
+                        </p>
+                      </div>
+                    </form>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
         </div>
       </section>
 
-      {/* 5. BLOQUE DE BENEFICIOS (FONDO VERDE MUY CLARO #EEF7F0) */}
+      {/* 3. BLOQUE DE BENEFICIOS (FONDO VERDE MUY CLARO #EEF7F0) */}
       <section className="py-14 sm:py-20 bg-[#EEF7F0] border-y border-[#D5E8DC]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-12 text-center">
           
@@ -337,7 +393,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 6. SECCIÓN DEL PROBLEMA (EMOTIONAL CONNECTION CARDS) */}
+      {/* 4. SECCIÓN DEL PROBLEMA (EMOTIONAL CONNECTION CARDS) */}
       <section className="py-14 sm:py-20 px-4 sm:px-6 max-w-5xl mx-auto w-full">
         <div className="space-y-10 text-center">
           
@@ -396,7 +452,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 7. TRANSICIÓN VISUAL BANNER */}
+      {/* 5. TRANSICIÓN VISUAL BANNER */}
       <section className="py-12 bg-[#B8D8C2]/30 border-y border-[#B8D8C2] px-4 text-center">
         <div className="max-w-3xl mx-auto space-y-3">
           <h2 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#123C32]">
@@ -408,7 +464,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 8. PRESENTACIÓN DEL LEAD MAGNET (PRODUCTO DIGITAL 3D) */}
+      {/* 6. PRESENTACIÓN DEL LEAD MAGNET (PRODUCTO DIGITAL 3D) */}
       <section className="py-14 sm:py-20 px-4 sm:px-6 max-w-5xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
@@ -450,7 +506,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 9. QUÉ INCLUYE (4-6 ELEMENTOS VISUALES) */}
+      {/* 7. QUÉ INCLUYE (4-6 ELEMENTOS VISUALES) */}
       <section className="py-12 bg-[#EEF7F0] border-y border-[#D5E8DC] px-4">
         <div className="max-w-4xl mx-auto space-y-8 text-center">
           
@@ -486,7 +542,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 10. PARA QUIÉN ES (5 ELEMENTOS VISUALES) */}
+      {/* 8. PARA QUIÉN ES (5 ELEMENTOS VISUALES) */}
       <section className="py-14 px-4 max-w-4xl mx-auto w-full">
         <div className="space-y-8 text-center">
           
@@ -514,7 +570,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 11. CTA FINAL (FONDO VERDE PROFUNDO #123C32) */}
+      {/* 9. CTA FINAL (FONDO VERDE PROFUNDO #123C32) */}
       <section className="py-16 bg-[#123C32] text-white px-4 sm:px-6 text-center">
         <div className="max-w-3xl mx-auto space-y-6">
           <div className="space-y-3">
@@ -535,90 +591,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 13, 14, 15 & 25. INTEGRACIÓN SYSTEME.IO & CHECKLIST PENDIENTE */}
-      <section className="py-10 bg-[#FAF8F1] border-t border-[#D5E8DC] px-4">
-        <div className="max-w-4xl mx-auto bg-white p-6 sm:p-8 rounded-3xl border border-[#D5E8DC] shadow-sm space-y-6">
-          
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#D5E8DC] pb-4 gap-2">
-            <h3 className="font-serif text-lg font-bold text-[#123C32] flex items-center gap-2">
-              <span>⚙️</span> CONFIGURACIÓN PENDIENTE EN SYSTEME.IO
-            </h3>
-            <button
-              onClick={() => setShowEmailTemplate(!showEmailTemplate)}
-              className="text-xs font-bold text-[#1F6B50] hover:underline cursor-pointer text-left sm:text-right"
-            >
-              {showEmailTemplate ? 'Ocultar plantilla de email ▲' : 'Ver plantilla de email de entrega ▼'}
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-[#123C32]">
-            <div className="space-y-2 p-4 rounded-xl bg-[#EEF7F0] border border-[#B8D8C2]">
-              <p className="font-bold text-[#1F6B50]">1. Conectar Formulario</p>
-              <p className="text-[#4A6B60]">
-                Asigna la <code>Action URL</code> de tu formulario en Systeme.io en la variable de entorno <code>NEXT_PUBLIC_SYSTEME_FORM_ACTION</code>.
-              </p>
-            </div>
-
-            <div className="space-y-2 p-4 rounded-xl bg-[#EEF7F0] border border-[#B8D8C2]">
-              <p className="font-bold text-[#1F6B50]">2. Crear Tag</p>
-              <p className="text-[#4A6B60]">
-                Crea exactamente la etiqueta: <code>Lead - Salud Digestiva</code>.
-              </p>
-            </div>
-
-            <div className="space-y-2 p-4 rounded-xl bg-[#EEF7F0] border border-[#B8D8C2]">
-              <p className="font-bold text-[#1F6B50]">3. Crear Automatización</p>
-              <p className="text-[#4A6B60]">
-                <strong>TRIGGER:</strong> Registro en formulario → <strong>ACTION 1:</strong> Añadir tag `Lead - Salud Digestiva` → <strong>ACTION 2:</strong> Enviar Email de entrega.
-              </p>
-            </div>
-
-            <div className="space-y-2 p-4 rounded-xl bg-[#EEF7F0] border border-[#B8D8C2]">
-              <p className="font-bold text-[#1F6B50]">4. Colocar URL del Lead Magnet</p>
-              <p className="text-[#4A6B60]">
-                Sube tu PDF a Systeme.io y coloca la URL en <code>NEXT_PUBLIC_LEAD_MAGNET_PDF_URL</code>.
-              </p>
-            </div>
-          </div>
-
-          {/* EMAIL TEMPLATE PREVIEW (ITEM 15 OF PROMPT) */}
-          {showEmailTemplate && (
-            <div className="p-5 rounded-2xl bg-[#123C32] text-white space-y-3 animate-fadeIn text-xs">
-              <div className="border-b border-white/20 pb-2 flex items-center justify-between">
-                <p className="font-bold text-[#B8D8C2]">
-                  📧 Plantilla de Email Automatizado (Systeme.io)
-                </p>
-                <span className="text-[10px] bg-[#1F6B50] px-2 py-0.5 rounded">Asunto Exacto</span>
-              </div>
-              <p className="font-bold text-sm text-white">
-                Asunto: Aquí tienes tu guía de salud digestiva 🌿
-              </p>
-              <div className="space-y-2 text-[#E2F1E8] font-mono leading-relaxed bg-black/20 p-4 rounded-xl">
-                <p>¡Hola [Nombre]!</p>
-                <p>
-                  Bienvenido/a. Muchas gracias por dar este paso para cuidar tu bienestar digestivo.
-                </p>
-                <p>
-                  Tal como prometimos, aquí tienes el enlace para descargar tu archivo en formato PDF:
-                </p>
-                <p className="text-[#B8D8C2] font-bold underline">
-                  [URL_DEL_LEAD_MAGNET]
-                </p>
-                <p>
-                  En esta guía encontrarás recomendaciones sencillas y hábitos prácticos que podrás incorporar progresivamente en tu rutina diaria.
-                </p>
-                <p>
-                  Con cariño,<br />
-                  El equipo de Salud Digestiva & Bienestar
-                </p>
-              </div>
-            </div>
-          )}
-
-        </div>
-      </section>
-
-      {/* 16. DISCLAIMER DE SALUD & 17. FOOTER MINIMALISTA */}
+      {/* 10. DISCLAIMER DE SALUD & FOOTER MINIMALISTA */}
       <footer className="py-8 bg-white border-t border-[#D5E8DC] text-center px-4">
         <div className="max-w-3xl mx-auto space-y-4">
           
