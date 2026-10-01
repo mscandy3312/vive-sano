@@ -16,6 +16,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
   // Form State
   const [formData, setFormData] = useState({ name: '', email: '', acceptTerms: true });
   const [formState, setFormState] = useState<'IDLE' | 'LOADING' | 'SUCCESS' | 'ERROR'>('IDLE');
+  const [isFormVisible, setIsFormVisible] = useState(false);
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   
   // Lightbox Modal for Guide Preview
@@ -26,6 +27,14 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
 
   const formRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLDivElement>(null);
+
+  // Timer to automatically show the form after displaying the guide image for a few seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsFormVisible(true);
+    }, 3500);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Handle Scroll for Sticky Mobile CTA
   useEffect(() => {
@@ -42,6 +51,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
   }, []);
 
   const scrollToForm = () => {
+    setIsFormVisible(true);
     if (formRef.current) {
       formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
       const input = document.getElementById('lead-name-input');
@@ -219,9 +229,55 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
                     </a>
                   )}
                 </div>
+              ) : !isFormVisible ? (
+                /* ESTADO INICIAL: VISTA PREVIA DE LA GUÍA CON TRANSICIÓN AUTOMÁTICA O POR CLIC */
+                <div 
+                  onClick={() => setIsFormVisible(true)}
+                  className="space-y-4 text-center cursor-pointer group animate-fadeIn py-2"
+                >
+                  <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEF7F0] border border-[#B8D8C2] text-[#1F6B50] text-xs font-bold uppercase tracking-wider shadow-sm">
+                    <span>📖</span> GUÍA DIGITAL VIVE SANO
+                  </div>
+
+                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-[#D5E8DC] bg-[#FAF8F1] transition-transform duration-500 group-hover:scale-[1.02]">
+                    <Image
+                      src={guide.mockupImageSrc}
+                      alt={guide.mockupImageAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 550px"
+                      priority
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center p-4">
+                      <span className="text-white text-xs font-bold bg-[#1F6B50] px-4 py-2 rounded-xl shadow-lg border border-white/20">
+                        ⚡ Clic aquí para completar registro →
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <p className="text-xs font-bold text-[#123C32]">
+                      Desbloqueando tu formulario de descarga gratuita...
+                    </p>
+                    <div className="w-full bg-[#EEF7F0] h-2 rounded-full overflow-hidden border border-[#D5E8DC]">
+                      <div className="bg-[#1F6B50] h-full rounded-full animate-pulse w-full"></div>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setIsFormVisible(true);
+                    }}
+                    className="w-full py-3.5 px-5 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-xl flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <span>DESCARGAR GUÍA GRATUITA AHORA →</span>
+                  </button>
+                </div>
               ) : (
                 /* FORMULARIO DE REGISTRO COMPLETO */
-                <div className="space-y-5 text-left">
+                <div className="space-y-5 text-left animate-fadeIn">
                   <div className="space-y-1.5">
                     <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#123C32]">
                       {form.title}
