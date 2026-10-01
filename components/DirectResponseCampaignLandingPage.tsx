@@ -31,11 +31,28 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
     return () => clearTimeout(timer);
   }, []);
 
-  // Headlines test variants for CRO testing
-  const headlines = [
-    'Tu digestión puede cambiar cuando empiezas a escuchar lo que tu cuerpo necesita.',
-    'Descubre cómo aliviar la pesadez digestiva con pequeños cambios cotidianos.',
-    'El camino hacia un bienestar digestivo consciente empieza con información clara.',
+  // Headlines test variants for CRO testing (sin mención de precios)
+  const headlineVariants = [
+    {
+      title: 'Ebook: Hábitos Conscientes para tu Inmunidad',
+      description: 'Un enfoque práctico para integrar cambios sostenibles con intención, claridad y constancia.',
+      badge: 'Incluido GRATIS',
+    },
+    {
+      title: 'Ebook: Mindreset: Hackea tus Patrones Emocionales',
+      description: 'Estrategias para liberar tu mente del ruido, recuperar enfoque y fortalecer tu disciplina mental en el camino del cambio.',
+      badge: 'Incluido GRATIS',
+    },
+    {
+      title: 'Test Personalizado del Sistema Inmunológico',
+      description: 'Evalúa el estado actual de tus defensas y obtén una hoja de ruta clara para comenzar.',
+      badge: 'Incluido GRATIS',
+    },
+    {
+      title: 'Módulo de Fundamentos del BIOHACKING',
+      description: 'Activa tu inmunidad interior y fortalece tus defensas comprendiendo la profunda conexión mente-cuerpo-emoción.',
+      badge: 'Incluido GRATIS',
+    },
   ];
 
   const scrollToForm = () => {
@@ -126,19 +143,24 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
           <div className="lg:col-span-6 space-y-6 text-left">
             
             <div className="space-y-4">
-              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEF7F0] border border-[#B8D8C2] text-[#1F6B50] text-xs font-bold uppercase tracking-wider">
-                🌱 GUÍA GRATUITA DE SALUD DIGESTIVA
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEF7F0] border border-[#B8D8C2] text-[#1F6B50] text-xs font-bold uppercase tracking-wider">
+                  🌱 SALUD DIGESTIVA & INMUNIDAD
+                </span>
+                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#1F6B50] text-white text-xs font-bold uppercase tracking-wider shadow-2xs">
+                  ✨ {headlineVariants[selectedHeadline].badge}
+                </span>
+              </div>
 
               {/* MAIN PUNCHY HEADLINE */}
               <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#123C32] leading-[1.14] tracking-tight">
-                {headlines[selectedHeadline]}
+                {headlineVariants[selectedHeadline].title}
               </h1>
 
               {/* CRO TEST SWITCHER (Subtle variant selector) */}
               <div className="flex items-center gap-2 pt-1 text-[11px] text-[#5E9F78]">
-                <span className="font-semibold text-[#1F6B50]">Variante de titular (CRO):</span>
-                {headlines.map((_, idx) => (
+                <span className="font-semibold text-[#1F6B50]">Variantes (CRO):</span>
+                {headlineVariants.map((_, idx) => (
                   <button
                     key={idx}
                     onClick={() => setSelectedHeadline(idx)}
@@ -154,7 +176,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
               </div>
 
               <p className="text-sm sm:text-base text-[#4A6B60] leading-relaxed font-normal">
-                Descubre hábitos sencillos y recomendaciones prácticas para comenzar a cuidar tu bienestar digestivo de una manera más consciente.
+                {headlineVariants[selectedHeadline].description}
               </p>
             </div>
 
