@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+:root {
+  /* Direct-Response Digestive Health Palette */
+  --green-deep: #123C32;     /* Titulares, fondos oscuros, elementos premium */
+  --green-forest: #1F6B50;   /* Botones, elementos destacados, iconos */
+  --green-natural: #5E9F78;  /* Detalles, elementos secundarios */
+  --green-sage: #B8D8C2;     /* Fondos suaves, tarjetas */
+  --green-light: #EEF7F0;    /* Secciones, fondos alternativos */
+  --cream: #FAF8F1;          /* Sensación cálida y orgánica */
+  --white: #FFFFFF;          /* Contraste y limpieza */
+
+  /* Standard Tokens mapped to green palette */
+  --primary: #1F6B50;
+  --primary-dark: #123C32;
+  --primary-light: #EEF7F0;
+  --secondary: #5E9F78;
+  --background: #FAF8F1;
+  --background-soft: #EEF7F0;
+  --surface: #FFFFFF;
+  --text: #123C32;
+  --text-muted: #4A6B60;
+  --border: #D5E8DC;
+}
+
+@theme {
+  --color-green-deep: var(--green-deep);
+  --color-green-forest: var(--green-forest);
+  --color-green-natural: var(--green-natural);
+  --color-green-sage: var(--green-sage);
+  --color-green-light: var(--green-light);
+  --color-cream: var(--cream);
+  --color-white: var(--white);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
+  --color-background: var(--background);
+  --color-background-soft: var(--background-soft);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--green-deep);
+  font-family: var(--font-jakarta), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Micro-Animations & Interactivity */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(31, 107, 80, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(31, 107, 80, 0.45);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
