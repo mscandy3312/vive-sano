@@ -31,27 +31,27 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
     return () => clearTimeout(timer);
   }, []);
 
-  // Headlines test variants for CRO testing (sin mención de precios)
+  // Headlines test variants for CRO testing
   const headlineVariants = [
     {
-      title: 'Ebook: Hábitos Conscientes para tu Inmunidad',
-      description: 'Un enfoque práctico para integrar cambios sostenibles con intención, claridad y constancia.',
-      badge: 'Incluido GRATIS',
+      title: '💪 Fortaleces tu Sistema Inmunológico desde adentro',
+      description: 'Aprenderás cómo activar tus defensas naturales con hábitos concretos: desde la alimentación y el descanso, hasta el entorno que te rodea. Verás cómo pequeñas acciones diarias tienen un gran impacto en tu salud inmunológica.',
+      badge: 'Guía Gratuita',
     },
     {
-      title: 'Ebook: Mindreset: Hackea tus Patrones Emocionales',
-      description: 'Estrategias para liberar tu mente del ruido, recuperar enfoque y fortalecer tu disciplina mental en el camino del cambio.',
-      badge: 'Incluido GRATIS',
+      title: '✨ Transformas tu alimentación en medicina preventiva',
+      description: 'Diseñarás una despensa funcional, implementar un detox de alacena y aprovechar el poder de los superfoods, vitaminas, minerales y grasas esenciales para prevenir enfermedades y potenciar tu energía.',
+      badge: 'Recurso Gratuito',
     },
     {
-      title: 'Test Personalizado del Sistema Inmunológico',
-      description: 'Evalúa el estado actual de tus defensas y obtén una hoja de ruta clara para comenzar.',
-      badge: 'Incluido GRATIS',
+      title: '🌿 Detectas y reemplazas lo que debilita tus defensas',
+      description: 'Identificarás factores cotidianos como el azúcar, el sedentarismo y los ultraprocesados, y aprenderás estrategias prácticas para eliminarlos sin restricciones, culpa ni castigos.',
+      badge: 'Acceso Gratuito',
     },
     {
-      title: 'Módulo de Fundamentos del BIOHACKING',
-      description: 'Activa tu inmunidad interior y fortalece tus defensas comprendiendo la profunda conexión mente-cuerpo-emoción.',
-      badge: 'Incluido GRATIS',
+      title: '💧 Creas un cambio sostenible con respaldo científico',
+      description: 'Implementa nuevos hábitos con una metodología clara y realista, basada en la ciencia y en la motivación, para que te duren toda la vida. Todo el contenido está basado en evidencia científica y explicado de forma accesible, para que lo apliques de inmediato a tu vida diaria.',
+      badge: '100% Gratuito',
     },
   ];
 
