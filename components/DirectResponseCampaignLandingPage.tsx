@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
+import { contentData } from '@/data/content';
 
 export interface DirectResponseCampaignLandingPageProps {
   systemeActionUrl?: string;
@@ -12,179 +13,155 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
   systemeActionUrl = process.env.NEXT_PUBLIC_SYSTEME_FORM_ACTION || '',
   leadMagnetPdfUrl = process.env.NEXT_PUBLIC_LEAD_MAGNET_PDF_URL || '#',
 }) => {
-  const [formData, setFormData] = useState({ name: '', email: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  // Form State
+  const [formData, setFormData] = useState({ name: '', email: '', acceptTerms: true });
+  const [formState, setFormState] = useState<'IDLE' | 'LOADING' | 'SUCCESS' | 'ERROR'>('IDLE');
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
-  const [selectedHeadline, setSelectedHeadline] = useState(0);
+  
+  // Lightbox Modal for Guide Preview
+  const [activeLightboxImage, setActiveLightboxImage] = useState<string | null>(null);
 
-  // Timed form reveal state: first image is shown for a few seconds, then form appears
-  const [isFormVisible, setIsFormVisible] = useState(false);
+  // Sticky Mobile CTA Visibility
+  const [showStickyMobileCta, setShowStickyMobileCta] = useState(false);
 
   const formRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
 
-  // Automatic timer: reveal form after 2.5 seconds of admiring the hero image
+  // Handle Scroll for Sticky Mobile CTA
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsFormVisible(true);
-    }, 2500);
-    return () => clearTimeout(timer);
+    const handleScroll = () => {
+      if (typeof window !== 'undefined') {
+        const scrollPosition = window.scrollY;
+        // Show sticky CTA after scrolling past hero section (approx 400px)
+        setShowStickyMobileCta(scrollPosition > 450);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Headlines test variants for CRO testing
-  const headlineVariants = [
-    {
-      title: '💪 Fortaleces tu Sistema Inmunológico desde adentro',
-      description: 'Aprenderás cómo activar tus defensas naturales con hábitos concretos: desde la alimentación y el descanso, hasta el entorno que te rodea. Verás cómo pequeñas acciones diarias tienen un gran impacto en tu salud inmunológica.',
-      badge: 'Guía Gratuita',
-    },
-    {
-      title: '✨ Transformas tu alimentación en medicina preventiva',
-      description: 'Diseñarás una despensa funcional, implementar un detox de alacena y aprovechar el poder de los superfoods, vitaminas, minerales y grasas esenciales para prevenir enfermedades y potenciar tu energía.',
-      badge: 'Recurso Gratuito',
-    },
-    {
-      title: '🌿 Detectas y reemplazas lo que debilita tus defensas',
-      description: 'Identificarás factores cotidianos como el azúcar, el sedentarismo y los ultraprocesados, y aprenderás estrategias prácticas para eliminarlos sin restricciones, culpa ni castigos.',
-      badge: 'Acceso Gratuito',
-    },
-    {
-      title: '💧 Creas un cambio sostenible con respaldo científico',
-      description: 'Implementa nuevos hábitos con una metodología clara y realista, basada en la ciencia y en la motivación, para que te duren toda la vida. Todo el contenido está basado en evidencia científica y explicado de forma accesible, para que lo apliques de inmediato a tu vida diaria.',
-      badge: '100% Gratuito',
-    },
-  ];
-
   const scrollToForm = () => {
-    setIsFormVisible(true);
     if (formRef.current) {
       formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      const input = document.getElementById('hero-lead-name');
+      const input = document.getElementById('lead-name-input');
       if (input) {
-        setTimeout(() => input.focus(), 300);
+        setTimeout(() => input.focus(), 350);
       }
     }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    // Analytics Triggers
+    // Analytics Event Triggers
     if (typeof window !== 'undefined') {
       if ((window as any).fbq) {
         (window as any).fbq('track', 'Lead');
       }
       if ((window as any).gtag) {
         (window as any).gtag('event', 'generate_lead', {
-          event_category: 'SaludDigestiva',
+          event_category: 'ViveSano',
           event_label: 'GuiaGratuita',
         });
       }
     }
 
     if (systemeActionUrl && systemeActionUrl !== '#') {
-      // Form POSTs directly to Systeme.io endpoint
+      // Direct POST to Systeme.io endpoint if provided
       return;
     }
 
     e.preventDefault();
-    setIsSubmitting(true);
+    setFormState('LOADING');
 
     setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+      setFormState('SUCCESS');
       scrollToForm();
-    }, 450);
+    }, 600);
   };
+
+  const {
+    brand,
+    hero,
+    problem,
+    identification,
+    benefits,
+    guide,
+    guidePreview,
+    audience,
+    aboutGloria,
+    faq,
+    form,
+    cta,
+    finalCta,
+    footer,
+  } = contentData;
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F1] text-[#123C32] font-sans antialiased selection:bg-[#B8D8C2] selection:text-[#123C32]">
 
-      {/* 1. BARRA SUPERIOR (ANNOUNCEMENT BAR + REDES SOCIALES) */}
+      {/* 1. BARRA SUPERIOR ANUNCIO + NAVEGACIÓN & REDES */}
       <header className="bg-[#123C32] text-white py-2.5 px-4 text-center text-xs font-semibold tracking-wide border-b border-[#1F6B50]/40 shadow-sm sticky top-0 z-40">
-        <div className="max-w-5xl mx-auto flex items-center justify-between gap-2">
+        <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
+          
           <div className="flex items-center gap-2 mx-auto sm:mx-0">
             <span className="w-2 h-2 rounded-full bg-[#5E9F78] animate-pulse"></span>
-            <span>🌿 RECURSO GRATUITO · DESCUBRE CÓMO CUIDAR TU SALUD DIGESTIVA</span>
+            <span>🌿 RECURSO GRATUITO · DESCUBRE CÓMO CUIDAR TU BIENESTAR DIGESTIVO</span>
           </div>
 
-          {/* SOCIAL MEDIA QUICK BADGES */}
-          <div className="hidden sm:flex items-center gap-3 text-white/90">
+          {/* SOCIAL MEDIA BADGES */}
+          <div className="hidden md:flex items-center gap-4 text-white/90">
             <span className="text-[11px] font-normal text-[#B8D8C2]">Síguenos:</span>
-            <a
-              href="https://www.facebook.com/ViveSanom/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook Vive Sano"
-              className="hover:text-[#5E9F78] transition-colors p-1"
-            >
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
-            </a>
-            <a
-              href="https://www.instagram.com/vivesanom/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram Vive Sano"
-              className="hover:text-[#5E9F78] transition-colors p-1"
-            >
-              <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-              </svg>
-            </a>
+            {footer.socialLinks.map((social) => (
+              <a
+                key={social.platform}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Síguenos en ${social.platform}`}
+                className="hover:text-[#5E9F78] transition-colors p-1"
+              >
+                {social.platform === 'Facebook' ? (
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                ) : (
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                )}
+              </a>
+            ))}
           </div>
+
         </div>
       </header>
 
-      {/* 2. HERO PRINCIPAL (80%-100% VH SPLIT DESIGN) */}
-      <section className="relative py-8 sm:py-12 lg:py-16 px-4 sm:px-6 max-w-6xl mx-auto w-full flex flex-col justify-center min-h-[calc(100vh-42px)]">
+      {/* 2. HERO PRINCIPAL ULTRA POTENTE */}
+      <section id="inicio" ref={heroRef} className="relative py-8 sm:py-12 lg:py-16 px-4 sm:px-6 max-w-6xl mx-auto w-full min-h-[calc(100vh-42px)] flex flex-col justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* LEFT COLUMN: COPY + PROPOSED HEADLINE */}
+          {/* COLUMNA IZQUIERDA: COPY + IMAGEN LIFESTYLE */}
           <div className="lg:col-span-6 space-y-6 text-left">
             
             <div className="space-y-4">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEF7F0] border border-[#B8D8C2] text-[#1F6B50] text-xs font-bold uppercase tracking-wider">
-                  🌱 SALUD DIGESTIVA & INMUNIDAD
-                </span>
-                <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#1F6B50] text-white text-xs font-bold uppercase tracking-wider shadow-2xs">
-                  ✨ {headlineVariants[selectedHeadline].badge}
-                </span>
-              </div>
+              <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEF7F0] border border-[#B8D8C2] text-[#1F6B50] text-xs font-bold uppercase tracking-wider">
+                🌱 {hero.eyebrow}
+              </span>
 
-              {/* MAIN PUNCHY HEADLINE */}
               <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#123C32] leading-[1.14] tracking-tight">
-                {headlineVariants[selectedHeadline].title}
+                "{hero.headline}"
               </h1>
 
-              {/* CRO TEST SWITCHER (Subtle variant selector) */}
-              <div className="flex items-center gap-2 pt-1 text-[11px] text-[#5E9F78]">
-                <span className="font-semibold text-[#1F6B50]">Variantes (CRO):</span>
-                {headlineVariants.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setSelectedHeadline(idx)}
-                    className={`px-2 py-0.5 rounded border transition-all ${
-                      selectedHeadline === idx
-                        ? 'bg-[#1F6B50] text-white border-[#1F6B50] font-bold'
-                        : 'bg-white text-[#123C32] border-[#D5E8DC] hover:border-[#5E9F78]'
-                    }`}
-                  >
-                    V{idx + 1}
-                  </button>
-                ))}
-              </div>
-
               <p className="text-sm sm:text-base text-[#4A6B60] leading-relaxed font-normal">
-                {headlineVariants[selectedHeadline].description}
+                "{hero.subheadline}"
               </p>
             </div>
 
-            {/* HIGH QUALITY LIFESTYLE VISUAL CONTAINER */}
+            {/* FOTOGRAFÍA LIFESTYLE PREMIUM */}
             <div className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden shadow-2xl border border-[#D5E8DC] bg-white group">
               <Image
-                src="/images/hero-lifestyle.jpg"
-                alt="Fotografía de estilo de vida saludable, alimentación consciente y digestión natural"
+                src={hero.imageSrc}
+                alt={hero.imageAlt}
                 fill
                 sizes="(max-width: 768px) 100vw, 550px"
                 priority
@@ -200,301 +177,183 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
 
           </div>
 
-          {/* RIGHT COLUMN: HERO FORM CARD (SHOWN AFTER IMAGE FEW SECONDS OR IMMEDIATELY ON ACTION) */}
-          <div className="lg:col-span-6 min-h-[420px] flex items-center" ref={formRef} id="formulario-registro">
-            {!isFormVisible ? (
-              /* INITIAL VISUAL STATE: SHOW IMAGE & TEASER UNTIL TIMER EXPIRES */
-              <div
-                onClick={() => setIsFormVisible(true)}
-                className="w-full bg-white rounded-3xl border border-[#D5E8DC] shadow-2xl p-6 sm:p-8 text-center space-y-5 cursor-pointer transform hover:scale-[1.01] transition-all duration-500 animate-fadeIn relative overflow-hidden group"
-              >
-                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#123C32] via-[#1F6B50] to-[#5E9F78]"></div>
+          {/* COLUMNA DERECHA: FORMULARIO HERO TERMINADO (SIN TEXTOS DE ESPERA) */}
+          <div className="lg:col-span-6" ref={formRef} id="formulario">
+            <div className="w-full bg-white rounded-3xl border border-[#D5E8DC] shadow-2xl p-6 sm:p-8 relative overflow-hidden transition-all duration-300">
+              
+              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#123C32] via-[#1F6B50] to-[#5E9F78]"></div>
 
-                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-[#D5E8DC]">
-                  <Image
-                    src="/images/lead-magnet-mockup.jpg"
-                    alt="Vista previa de la Guía de Salud Digestiva"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 450px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#123C32]/80 via-transparent to-transparent flex items-end justify-center p-4">
-                    <span className="text-white text-xs font-bold bg-[#1F6B50] px-4 py-2 rounded-full shadow-lg border border-white/20">
-                      📖 Guía Práctica Digital PDF
-                    </span>
+              {formState === 'SUCCESS' ? (
+                /* ESTADO DE ÉXITO */
+                <div className="space-y-5 text-center py-6 animate-fadeIn">
+                  <div className="w-16 h-16 rounded-full bg-[#EEF7F0] text-[#1F6B50] flex items-center justify-center mx-auto text-3xl border border-[#B8D8C2] shadow-inner">
+                    🌿
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#123C32]">
-                    Tu regalo de bienestar digestivo
-                  </h3>
-                  <p className="text-xs text-[#4A6B60]">
-                    Desbloqueando formulario de registro... o toca aquí para acceder ahora mismo.
-                  </p>
-                </div>
-
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsFormVisible(true);
-                  }}
-                  className="w-full py-3.5 px-6 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-sm uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <span>OBTENER MI GUÍA GRATIS AHORA →</span>
-                </button>
-              </div>
-            ) : (
-              /* ELEVATED FORM CARD (SLIDES IN BEAUTIFULLY) */
-              <div className="w-full bg-white rounded-3xl border border-[#D5E8DC] shadow-2xl p-6 sm:p-8 relative overflow-hidden transition-all duration-500 animate-slideUp">
-                
-                <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#123C32] via-[#1F6B50] to-[#5E9F78]"></div>
-
-                {isSubmitted ? (
-                  /* POST-REGISTRATION SUCCESS STATE */
-                  <div className="space-y-5 text-center py-6 animate-fadeIn">
-                    <div className="w-16 h-16 rounded-full bg-[#EEF7F0] text-[#1F6B50] flex items-center justify-center mx-auto text-3xl border border-[#B8D8C2] shadow-inner">
-                      🌿
-                    </div>
-
-                    <div className="space-y-2">
-                      <h2 className="font-serif text-2xl font-bold text-[#123C32]">
-                        ¡Excelente! Tu guía está lista
-                      </h2>
-                      <p className="text-xs sm:text-sm text-[#4A6B60] leading-relaxed max-w-sm mx-auto">
-                        Hemos enviado el enlace directo a tu correo electrónico. Por favor revisa tu bandeja de entrada o la carpeta de promociones.
-                      </p>
-                    </div>
-
-                    <div className="p-4 rounded-2xl bg-[#EEF7F0] border border-[#B8D8C2] text-xs text-[#123C32] text-left space-y-1.5">
-                      <p className="font-bold flex items-center gap-2">
-                        <span>📧</span> Remitente: <strong>Salud Digestiva & Bienestar</strong>
-                      </p>
-                      <p className="text-[#4A6B60]">
-                        Asunto: <em>"Aquí tienes tu guía de salud digestiva 🌿"</em>
-                      </p>
-                    </div>
-
-                    {leadMagnetPdfUrl !== '#' && (
-                      <a
-                        href={leadMagnetPdfUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 w-full py-4 px-6 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl hover:shadow-2xl"
-                      >
-                        <span>⬇️ DESCARGAR GUÍA EN PDF INMEDIATAMENTE</span>
-                      </a>
-                    )}
+                  <div className="space-y-2">
+                    <h2 className="font-serif text-2xl font-bold text-[#123C32]">
+                      {form.successTitle}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-[#4A6B60] leading-relaxed max-w-sm mx-auto">
+                      {form.successMessage}
+                    </p>
                   </div>
-                ) : (
-                  /* HIGH-CONVERSION ELEVATED FORM */
-                  <div className="space-y-5 text-left">
-                    <div className="space-y-1.5">
-                      <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#123C32]">
-                        Obtén tu guía GRATIS
-                      </h2>
-                      <p className="text-xs sm:text-sm text-[#4A6B60]">
-                        Ingresa tu nombre y correo para recibir tu acceso inmediato.
-                      </p>
-                    </div>
 
-                    <form
-                      action={systemeActionUrl || '#'}
-                      method="POST"
-                      onSubmit={handleSubmit}
-                      className="space-y-4"
+                  <div className="p-4 rounded-2xl bg-[#EEF7F0] border border-[#B8D8C2] text-xs text-[#123C32] text-left space-y-1.5">
+                    <p className="font-bold flex items-center gap-2">
+                      <span>📧</span> Remitente: <strong>{brand.name}</strong>
+                    </p>
+                    <p className="text-[#4A6B60]">
+                      Asunto: <em>"Aquí tienes tu guía de Vive Sano 🌿"</em>
+                    </p>
+                  </div>
+
+                  {leadMagnetPdfUrl !== '#' && (
+                    <a
+                      href={leadMagnetPdfUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 w-full py-4 px-6 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-xs uppercase tracking-wider transition-all shadow-xl hover:shadow-2xl"
                     >
-                      {/* SYSTEME.IO TAG HIDDEN INPUT */}
-                      <input type="hidden" name="tag" value="Lead - Salud Digestiva" />
-                      <input type="hidden" name="source" value="Landing Salud Digestiva" />
-
-                      {/* CAMPO NOMBRE */}
-                      <div className="space-y-1">
-                        <label htmlFor="hero-lead-name" className="block text-xs font-bold text-[#123C32] uppercase tracking-wider">
-                          Nombre
-                        </label>
-                        <input
-                          type="text"
-                          id="hero-lead-name"
-                          name="name"
-                          required
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          placeholder="Ej. María García"
-                          className="w-full px-4 py-3.5 rounded-xl border border-[#D5E8DC] bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all"
-                        />
-                      </div>
-
-                      {/* CAMPO CORREO */}
-                      <div className="space-y-1">
-                        <label htmlFor="hero-lead-email" className="block text-xs font-bold text-[#123C32] uppercase tracking-wider">
-                          Correo electrónico
-                        </label>
-                        <input
-                          type="email"
-                          id="hero-lead-email"
-                          name="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          placeholder="tu@email.com"
-                          className="w-full px-4 py-3.5 rounded-xl border border-[#D5E8DC] bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all"
-                        />
-                      </div>
-
-                      {/* CTA BOTÓN PRINCIPAL */}
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full py-4 px-6 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-base transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 uppercase tracking-wide transform hover:-translate-y-0.5 active:translate-y-0"
-                      >
-                        {isSubmitting ? (
-                          <span>PROCESANDO REGISTRO...</span>
-                        ) : (
-                          <>
-                            <span>QUIERO MI GUÍA GRATIS →</span>
-                          </>
-                        )}
-                      </button>
-
-                      <div className="text-center pt-1 space-y-1">
-                        <p className="text-xs text-[#1F6B50] font-semibold flex items-center justify-center gap-1.5">
-                          <span>🔒</span> Tus datos están protegidos.
-                        </p>
-                        <p className="text-[11px] text-[#4A6B60]">
-                          Al registrarte recibirás la guía en tu correo.
-                        </p>
-                      </div>
-                    </form>
+                      <span>⬇️ DESCARGAR GUÍA EN PDF INMEDIATAMENTE</span>
+                    </a>
+                  )}
+                </div>
+              ) : (
+                /* FORMULARIO DE REGISTRO COMPLETO */
+                <div className="space-y-5 text-left">
+                  <div className="space-y-1.5">
+                    <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#123C32]">
+                      {form.title}
+                    </h2>
+                    <p className="text-xs sm:text-sm text-[#4A6B60]">
+                      {form.subtitle}
+                    </p>
                   </div>
-                )}
-              </div>
-            )}
+
+                  <form
+                    action={systemeActionUrl || '#'}
+                    method="POST"
+                    onSubmit={handleSubmit}
+                    className="space-y-4"
+                  >
+                    {/* CAMPO NOMBRE */}
+                    <div className="space-y-1">
+                      <label htmlFor="lead-name-input" className="block text-xs font-bold text-[#123C32] uppercase tracking-wider">
+                        {form.nameLabel}
+                      </label>
+                      <input
+                        type="text"
+                        id="lead-name-input"
+                        name="name"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder={form.namePlaceholder}
+                        className="w-full px-4 py-3.5 rounded-xl border border-[#D5E8DC] bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all"
+                      />
+                    </div>
+
+                    {/* CAMPO CORREO */}
+                    <div className="space-y-1">
+                      <label htmlFor="lead-email-input" className="block text-xs font-bold text-[#123C32] uppercase tracking-wider">
+                        {form.emailLabel}
+                      </label>
+                      <input
+                        type="email"
+                        id="lead-email-input"
+                        name="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder={form.emailPlaceholder}
+                        className="w-full px-4 py-3.5 rounded-xl border border-[#D5E8DC] bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all"
+                      />
+                    </div>
+
+                    {/* CHECKBOX DE ACEPTACIÓN */}
+                    <div className="flex items-start gap-2.5 pt-1">
+                      <input
+                        type="checkbox"
+                        id="accept-terms"
+                        required
+                        checked={formData.acceptTerms}
+                        onChange={(e) => setFormData({ ...formData, acceptTerms: e.target.checked })}
+                        className="mt-0.5 rounded border-[#D5E8DC] text-[#1F6B50] focus:ring-[#1F6B50] h-4 w-4 shrink-0"
+                      />
+                      <label htmlFor="accept-terms" className="text-xs text-[#4A6B60] leading-tight cursor-pointer">
+                        {form.checkboxText}
+                      </label>
+                    </div>
+
+                    {/* BOTÓN CTA */}
+                    <button
+                      type="submit"
+                      disabled={formState === 'LOADING'}
+                      className="w-full py-4 px-6 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-base transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 cursor-pointer disabled:opacity-75 uppercase tracking-wide transform hover:-translate-y-0.5 active:translate-y-0"
+                    >
+                      {formState === 'LOADING' ? (
+                        <span>{form.loadingText}</span>
+                      ) : (
+                        <>
+                          <span>{form.buttonText} →</span>
+                        </>
+                      )}
+                    </button>
+
+                    {/* MICROCOPY INFORMATIVO */}
+                    <div className="text-center pt-2 space-y-1">
+                      <p className="text-[11px] text-[#4A6B60] leading-relaxed">
+                        {form.microcopy}{' '}
+                        <button
+                          type="button"
+                          onClick={() => setShowPrivacyModal(true)}
+                          className="text-[#1F6B50] font-semibold hover:underline cursor-pointer"
+                        >
+                          {form.privacyLinkText}
+                        </button>
+                        .
+                      </p>
+                    </div>
+                  </form>
+                </div>
+              )}
+            </div>
           </div>
 
         </div>
       </section>
 
-      {/* 3. BLOQUE DE BENEFICIOS (FONDO VERDE MUY CLARO #EEF7F0) */}
-      <section className="py-14 sm:py-20 bg-[#EEF7F0] border-y border-[#D5E8DC]">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-12 text-center">
-          
-          <div className="space-y-2 max-w-xl mx-auto">
-            <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-white px-3.5 py-1 rounded-full border border-[#B8D8C2] shadow-xs">
-              BENEFICIOS PRINCIPALES
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#123C32]">
-              ¿Qué encontrarás en esta guía?
-            </h2>
-          </div>
-
-          {/* EXACTLY 3 MAIN BENEFITS */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-            
-            {/* BENEFICIO 01 */}
-            <div className="bg-white p-7 rounded-3xl border border-[#D5E8DC] shadow-sm space-y-4 relative overflow-hidden group hover:shadow-md transition-shadow">
-              <div className="flex items-center justify-between">
-                <span className="text-2xl font-black text-[#5E9F78]">01</span>
-                <div className="w-10 h-10 rounded-2xl bg-[#EEF7F0] text-[#1F6B50] flex items-center justify-center text-xl font-bold border border-[#B8D8C2]">
-                  🧠
-                </div>
-              </div>
-              <h3 className="font-serif font-bold text-lg text-[#123C32] leading-snug">
-                Comprende mejor tu digestión
-              </h3>
-              <p className="text-xs sm:text-sm text-[#4A6B60] leading-relaxed">
-                Conoce conceptos básicos para entender cómo tus hábitos pueden relacionarse con tu bienestar digestivo.
-              </p>
-            </div>
-
-            {/* BENEFICIO 02 */}
-            <div className="bg-white p-7 rounded-3xl border border-[#D5E8DC] shadow-sm space-y-4 relative overflow-hidden group hover:shadow-md transition-shadow">
-              <div className="flex items-center justify-between">
-                <span className="text-2xl font-black text-[#5E9F78]">02</span>
-                <div className="w-10 h-10 rounded-2xl bg-[#EEF7F0] text-[#1F6B50] flex items-center justify-center text-xl font-bold border border-[#B8D8C2]">
-                  🌿
-                </div>
-              </div>
-              <h3 className="font-serif font-bold text-lg text-[#123C32] leading-snug">
-                Descubre hábitos prácticos
-              </h3>
-              <p className="text-xs sm:text-sm text-[#4A6B60] leading-relaxed">
-                Ideas sencillas que puedes incorporar progresivamente a tu rutina cotidiana sin complicaciones.
-              </p>
-            </div>
-
-            {/* BENEFICIO 03 */}
-            <div className="bg-white p-7 rounded-3xl border border-[#D5E8DC] shadow-sm space-y-4 relative overflow-hidden group hover:shadow-md transition-shadow">
-              <div className="flex items-center justify-between">
-                <span className="text-2xl font-black text-[#5E9F78]">03</span>
-                <div className="w-10 h-10 rounded-2xl bg-[#EEF7F0] text-[#1F6B50] flex items-center justify-center text-xl font-bold border border-[#B8D8C2]">
-                  ✨
-                </div>
-              </div>
-              <h3 className="font-serif font-bold text-lg text-[#123C32] leading-snug">
-                Construye una relación más consciente con tu alimentación
-              </h3>
-              <p className="text-xs sm:text-sm text-[#4A6B60] leading-relaxed">
-                Aprende a observar tus hábitos y prestar atención a las señales de tu cuerpo de manera respetuosa.
-              </p>
-            </div>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* 4. SECCIÓN DEL PROBLEMA (EMOTIONAL CONNECTION CARDS) */}
-      <section className="py-14 sm:py-20 px-4 sm:px-6 max-w-5xl mx-auto w-full">
-        <div className="space-y-10 text-center">
+      {/* 3. SECCIÓN 1: "¿TE HA PASADO?" (PROBLEM IDENTIFICATION) */}
+      <section id="problema" className="py-14 sm:py-20 bg-white border-y border-[#D5E8DC] px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto space-y-10 text-center">
           
           <div className="space-y-2 max-w-2xl mx-auto">
-            <span className="text-xs font-bold text-[#5E9F78] uppercase tracking-widest bg-[#EEF7F0] px-3.5 py-1 rounded-full border border-[#B8D8C2]">
+            <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-[#EEF7F0] px-3.5 py-1 rounded-full border border-[#B8D8C2]">
               EMPATÍA Y CONEXIÓN
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#123C32]">
-              ¿Te resulta familiar alguno de estos puntos?
+              "{problem.title}"
             </h2>
+            <p className="text-sm sm:text-base text-[#4A6B60] max-w-xl mx-auto">
+              "{problem.subtitle}"
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
-            {[
-              {
-                icon: '⚖️',
-                title: 'Sensación de pesadez después de comer',
-                desc: 'Notar pesadez recurrente tras las comidas principales sin saber exactamente qué ingrediente la causa.',
-              },
-              {
-                icon: '🔄',
-                title: 'Hábitos alimenticios desordenados',
-                desc: 'Horarios irregulares, prisa constante al comer o dificultad para planificar comidas equilibradas.',
-              },
-              {
-                icon: '⏳',
-                title: 'Poco tiempo para cuidar la alimentación',
-                desc: 'Sentir que mantener un estilo de vida saludable requiere horas de cocina que no tienes.',
-              },
-              {
-                icon: '❓',
-                title: 'Confusión sobre qué recomendaciones seguir',
-                desc: 'Cansancio ante tanta información contradictoria y modas extremas en redes sociales.',
-              },
-              {
-                icon: '🌱',
-                title: 'Querer empezar a cuidarse pero no saber por dónde',
-                desc: 'Tener la intención de mejorar tu bienestar digestivo, pero necesitar una guía inicial clara y paso a paso.',
-              },
-            ].map((item, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-left">
+            {problem.items.map((item) => (
               <div
-                key={idx}
-                className="bg-white p-6 rounded-2xl border border-[#D5E8DC] shadow-xs space-y-3 hover:border-[#5E9F78] transition-colors"
+                key={item.id}
+                className="bg-[#FAF8F1] p-6 rounded-2xl border border-[#D5E8DC] space-y-3 hover:border-[#5E9F78] transition-all hover:shadow-sm"
               >
-                <div className="text-2xl">{item.icon}</div>
+                <div className="w-10 h-10 rounded-xl bg-white text-[#1F6B50] flex items-center justify-center font-bold text-xl border border-[#D5E8DC]">
+                  {item.icon}
+                </div>
                 <h3 className="font-serif font-bold text-base text-[#123C32]">
                   {item.title}
                 </h3>
                 <p className="text-xs text-[#4A6B60] leading-relaxed">
-                  {item.desc}
+                  {item.description}
                 </p>
               </div>
             ))}
@@ -503,87 +362,181 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 5. TRANSICIÓN VISUAL BANNER */}
-      <section className="py-12 bg-[#B8D8C2]/30 border-y border-[#B8D8C2] px-4 text-center">
-        <div className="max-w-3xl mx-auto space-y-3">
-          <h2 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#123C32]">
-            Tu bienestar digestivo comienza con pequeños cambios.
-          </h2>
-          <p className="text-sm sm:text-base text-[#123C32]/80 leading-relaxed max-w-xl mx-auto font-medium">
-            No necesitas cambiarlo todo de un día para otro. El primer paso es comprender qué hábitos puedes empezar a mejorar.
-          </p>
-        </div>
-      </section>
-
-      {/* 6. PRESENTACIÓN DEL LEAD MAGNET (PRODUCTO DIGITAL 3D) */}
+      {/* 4. SECCIÓN 2: IDENTIFICACIÓN (NO NECESITAS CAMBIARLO TODO) */}
       <section className="py-14 sm:py-20 px-4 sm:px-6 max-w-5xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* 3D MOCKUP PREVIEW */}
-          <div className="lg:col-span-6 relative">
-            <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-[#D5E8DC] bg-white group">
-              <Image
-                src="/images/lead-magnet-mockup.jpg"
-                alt="Mockup 3D de la Guía Práctica de Salud Digestiva y Bienestar"
-                fill
-                sizes="(max-width: 768px) 100vw, 500px"
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-            </div>
+          <div className="lg:col-span-6 relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border border-[#D5E8DC]">
+            <Image
+              src={identification.imageSrc}
+              alt={identification.imageAlt}
+              fill
+              sizes="(max-width: 768px) 100vw, 500px"
+              className="object-cover"
+            />
           </div>
 
-          {/* COPY & CTA */}
-          <div className="lg:col-span-6 space-y-6 text-left">
-            <div className="space-y-3">
-              <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-[#EEF7F0] px-3.5 py-1 rounded-full border border-[#B8D8C2]">
-                RECURSO DIGITAL 100% GRATUITO
-              </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-[#123C32]">
-                Descarga gratuitamente la guía
-              </h2>
-              <p className="text-sm sm:text-base text-[#4A6B60] leading-relaxed">
-                Un recurso práctico para comenzar a explorar hábitos relacionados con una mejor salud digestiva y bienestar general.
-              </p>
-            </div>
+          <div className="lg:col-span-6 space-y-5 text-left">
+            <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-[#EEF7F0] px-3.5 py-1 rounded-full border border-[#B8D8C2]">
+              UN CAMINO CLARO Y SOSTENIBLE
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#123C32] leading-tight">
+              "{identification.title}"
+            </h2>
+            <p className="text-sm sm:text-base text-[#4A6B60] leading-relaxed">
+              "{identification.copy}"
+            </p>
 
             <button
               onClick={scrollToForm}
-              className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-sm sm:text-base transition-all shadow-xl hover:shadow-2xl cursor-pointer uppercase tracking-wider flex items-center justify-center gap-2"
+              className="py-3.5 px-6 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all shadow-md inline-flex items-center gap-2 cursor-pointer"
             >
-              <span>QUIERO LA GUÍA GRATIS →</span>
+              <span>QUIERO MI GUÍA GRATIS →</span>
             </button>
           </div>
 
         </div>
       </section>
 
-      {/* 7. QUÉ INCLUYE (4-6 ELEMENTOS VISUALES) */}
-      <section className="py-12 bg-[#EEF7F0] border-y border-[#D5E8DC] px-4">
-        <div className="max-w-4xl mx-auto space-y-8 text-center">
+      {/* 5. SECCIÓN 3: BENEFICIOS ("¿QUÉ ENCONTRARÁS EN ESTA GUÍA?") */}
+      <section id="beneficios" className="py-14 sm:py-20 bg-[#EEF7F0] border-y border-[#D5E8DC] px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto space-y-12 text-center">
           
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#123C32]">
-            Dentro de la guía encontrarás:
-          </h2>
+          <div className="space-y-2 max-w-xl mx-auto">
+            <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-white px-3.5 py-1 rounded-full border border-[#B8D8C2] shadow-xs">
+              BENEFICIOS PRINCIPALES
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#123C32]">
+              {benefits.title}
+            </h2>
+            <p className="text-xs sm:text-sm text-[#4A6B60]">
+              {benefits.subtitle}
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
-            {[
-              { title: 'Fundamentos de salud digestiva', desc: 'Conceptos clave explicados de forma amigable.' },
-              { title: 'Hábitos cotidianos', desc: 'Pautas realizables para tu día a día.' },
-              { title: 'Alimentación consciente', desc: 'Aprende a escuchar a tu cuerpo.' },
-              { title: 'Recomendaciones prácticas', desc: 'Consejos sencillos sin complicaciones.' },
-              { title: 'Errores comunes', desc: 'Prácticas habituales que puedes corregir.' },
-              { title: 'Checklist para comenzar', desc: 'Una lista visual paso a paso.' },
-            ].map((item, idx) => (
-              <div key={idx} className="bg-white p-5 rounded-2xl border border-[#D5E8DC] shadow-xs flex items-start gap-3">
-                <span className="w-6 h-6 rounded-full bg-[#EEF7F0] text-[#1F6B50] font-bold text-sm flex items-center justify-center shrink-0 border border-[#B8D8C2]">
-                  ✓
-                </span>
-                <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+            {benefits.items.map((item) => (
+              <div
+                key={item.id}
+                className="bg-white p-7 rounded-3xl border border-[#D5E8DC] shadow-xs space-y-4 hover:shadow-md transition-all group"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="w-10 h-10 rounded-2xl bg-[#EEF7F0] text-[#1F6B50] flex items-center justify-center text-xl font-bold border border-[#B8D8C2]">
+                    {item.icon}
+                  </div>
+                  <span className="text-xs font-bold text-[#5E9F78] uppercase tracking-wider bg-[#FAF8F1] px-2.5 py-0.5 rounded-full border border-[#D5E8DC]">
+                    Guía
+                  </span>
+                </div>
+
+                <h3 className="font-serif font-bold text-lg text-[#123C32]">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#4A6B60] leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 6. SECCIÓN 4: DENTRO DE LA GUÍA (MOCKUP PROTAGONISTA + CARACTERÍSTICAS) */}
+      <section id="guia" className="py-14 sm:py-20 px-4 sm:px-6 max-w-5xl mx-auto w-full">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* MOCKUP 3D PROTAGONISTA */}
+          <div className="lg:col-span-6 relative">
+            <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-[#D5E8DC] bg-white group">
+              <Image
+                src={guide.mockupImageSrc}
+                alt={guide.mockupImageAlt}
+                fill
+                sizes="(max-width: 768px) 100vw, 500px"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-bold text-[#123C32] border border-[#D5E8DC]">
+                📖 Producto Digital PDF
+              </div>
+            </div>
+          </div>
+
+          {/* COPY Y CARACTERÍSTICAS */}
+          <div className="lg:col-span-6 space-y-6 text-left">
+            <div className="space-y-3">
+              <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-[#EEF7F0] px-3.5 py-1 rounded-full border border-[#B8D8C2]">
+                CONTENIDO DE LA GUÍA
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-[#123C32]">
+                "{guide.title}"
+              </h2>
+              <p className="text-sm text-[#4A6B60] leading-relaxed">
+                {guide.subtitle}
+              </p>
+            </div>
+
+            <div className="space-y-2.5">
+              {guide.features.map((feature, idx) => (
+                <div key={idx} className="flex items-center gap-3 text-xs sm:text-sm text-[#123C32] font-semibold bg-white p-3 rounded-xl border border-[#D5E8DC]">
+                  <span>{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            <button
+              onClick={scrollToForm}
+              className="w-full sm:w-auto py-4 px-8 rounded-2xl bg-[#1F6B50] hover:bg-[#123C32] text-white font-bold text-sm uppercase tracking-wider transition-all shadow-xl cursor-pointer"
+            >
+              <span>QUIERO MI GUÍA GRATIS →</span>
+            </button>
+          </div>
+
+        </div>
+      </section>
+
+      {/* 7. SECCIÓN 5: UNA MIRADA AL INTERIOR (GALERÍA INTERACTIVA LIGHTBOX) */}
+      <section className="py-14 sm:py-20 bg-[#EEF7F0] border-y border-[#D5E8DC] px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto space-y-10 text-center">
+          
+          <div className="space-y-2 max-w-xl mx-auto">
+            <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-white px-3.5 py-1 rounded-full border border-[#B8D8C2]">
+              PREVISUALIZACIÓN EDITORIAL
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#123C32]">
+              "{guidePreview.title}"
+            </h2>
+            <p className="text-xs sm:text-sm text-[#4A6B60]">
+              "{guidePreview.subtitle}"
+            </p>
+          </div>
+
+          {/* GALERÍA DE PÁGINAS INTERNAS */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
+            {guidePreview.items.map((page) => (
+              <div
+                key={page.id}
+                onClick={() => setActiveLightboxImage(page.imageSrc)}
+                className="bg-white rounded-2xl border border-[#D5E8DC] overflow-hidden shadow-xs hover:shadow-lg transition-all cursor-pointer group"
+              >
+                <div className="relative aspect-[4/3] bg-[#FAF8F1] overflow-hidden">
+                  <Image
+                    src={page.imageSrc}
+                    alt={page.imageAlt}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 350px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-xs gap-1.5 backdrop-blur-2xs">
+                    <span>🔍 Ampliar vista</span>
+                  </div>
+                </div>
+                <div className="p-4 space-y-1">
                   <h3 className="font-serif font-bold text-sm text-[#123C32]">
-                    {item.title}
+                    {page.title}
                   </h3>
-                  <p className="text-xs text-[#4A6B60] leading-snug">
-                    {item.desc}
+                  <p className="text-xs text-[#4A6B60]">
+                    {page.description}
                   </p>
                 </div>
               </div>
@@ -593,27 +546,26 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 8. PARA QUIÉN ES (5 ELEMENTOS VISUALES) */}
-      <section className="py-14 px-4 max-w-4xl mx-auto w-full">
-        <div className="space-y-8 text-center">
+      {/* 8. SECCIÓN 6: "¿PARA QUIÉN ES?" */}
+      <section className="py-14 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto w-full text-center">
+        <div className="space-y-8">
           
-          <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#123C32]">
-            Esta guía puede ser para ti si...
-          </h2>
+          <div className="space-y-2 max-w-xl mx-auto">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#123C32]">
+              "{audience.title}"
+            </h2>
+            <p className="text-xs sm:text-sm text-[#4A6B60]">
+              {audience.subtitle}
+            </p>
+          </div>
 
           <div className="space-y-3 max-w-2xl mx-auto text-left">
-            {[
-              'Quieres cuidar mejor tu bienestar digestivo.',
-              'Buscas información clara y sencilla.',
-              'Quieres mejorar progresivamente tus hábitos.',
-              'Prefieres empezar con pequeños cambios.',
-              'Quieres tener un recurso práctico para consultar.',
-            ].map((item, idx) => (
-              <div key={idx} className="p-4 rounded-2xl bg-white border border-[#D5E8DC] flex items-center gap-3.5 shadow-xs">
+            {audience.items.map((item) => (
+              <div key={item.id} className="p-4 rounded-2xl bg-white border border-[#D5E8DC] flex items-center gap-3.5 shadow-xs">
                 <span className="w-7 h-7 rounded-full bg-[#1F6B50] text-white font-bold text-xs flex items-center justify-center shrink-0">
                   ✓
                 </span>
-                <span className="text-sm text-[#123C32] font-semibold">{item}</span>
+                <span className="text-sm text-[#123C32] font-semibold">{item.text}</span>
               </div>
             ))}
           </div>
@@ -621,15 +573,123 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 9. CTA FINAL (FONDO VERDE PROFUNDO #123C32) */}
-      <section className="py-16 bg-[#123C32] text-white px-4 sm:px-6 text-center">
-        <div className="max-w-3xl mx-auto space-y-6">
+      {/* 9. SECCIÓN 7: SOBRE GLORIA MOLINA ("DETRÁS DE VIVE SANO") */}
+      <section id="sobre-gloria" className="py-14 sm:py-20 bg-white border-y border-[#D5E8DC] px-4 sm:px-6">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          {/* FOTOGRAFÍA O PLACEHOLDER DE GLORIA */}
+          <div className="lg:col-span-5 relative aspect-[4/5] rounded-3xl overflow-hidden border border-[#D5E8DC] bg-[#EEF7F0] flex flex-col items-center justify-center p-6 text-center shadow-lg">
+            {aboutGloria.isPlaceholder ? (
+              <div className="space-y-4 my-auto">
+                <div className="w-20 h-20 rounded-full bg-[#B8D8C2] text-[#123C32] flex items-center justify-center mx-auto text-3xl font-serif font-bold shadow-inner">
+                  GM
+                </div>
+                <div className="space-y-1">
+                  <p className="font-serif font-bold text-base text-[#123C32]">
+                    {aboutGloria.name}
+                  </p>
+                  <p className="text-xs text-[#1F6B50] font-semibold">
+                    {aboutGloria.role}
+                  </p>
+                </div>
+                <p className="text-[11px] text-[#4A6B60] italic bg-white/80 p-2.5 rounded-xl border border-[#B8D8C2]">
+                  📌 {aboutGloria.imagePlaceholderText}
+                </p>
+              </div>
+            ) : (
+              <Image
+                src={aboutGloria.imageSrc}
+                alt={aboutGloria.imageAlt}
+                fill
+                sizes="(max-width: 768px) 100vw, 400px"
+                className="object-cover"
+              />
+            )}
+          </div>
+
+          {/* COPY OFICIAL GLORIA MOLINA */}
+          <div className="lg:col-span-7 space-y-5 text-left">
+            <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-[#EEF7F0] px-3.5 py-1 rounded-full border border-[#B8D8C2]">
+              CONOCE A LA FUNDADORA
+            </span>
+            
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#123C32]">
+              "{aboutGloria.title}"
+            </h2>
+
+            <div className="space-y-3 text-sm text-[#4A6B60] leading-relaxed">
+              <p>
+                "{aboutGloria.copy}"
+              </p>
+              <p>
+                Nuestra misión es acompañarte a construir una relación más consciente con tu alimentación y tus rutinas diarias, sin extremos ni exigencias desmedidas.
+              </p>
+            </div>
+
+            {aboutGloria.knowMoreEnabled && (
+              <a
+                href={aboutGloria.knowMoreHref}
+                className="inline-flex items-center gap-2 text-xs font-bold text-[#1F6B50] hover:underline"
+              >
+                <span>{aboutGloria.knowMoreText} →</span>
+              </a>
+            )}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 10. PREGUNTAS FRECUENTES (FAQ) */}
+      <section id="faq" className="py-14 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto w-full">
+        <div className="space-y-10 text-center">
+          
+          <div className="space-y-2 max-w-xl mx-auto">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#123C32]">
+              {faq.title}
+            </h2>
+            <p className="text-xs sm:text-sm text-[#4A6B60]">
+              {faq.subtitle}
+            </p>
+          </div>
+
+          <div className="space-y-4 text-left">
+            {faq.items.map((item) => (
+              <div
+                key={item.id}
+                className="p-6 rounded-2xl bg-white border border-[#D5E8DC] shadow-2xs space-y-2"
+              >
+                <h3 className="font-serif font-bold text-base text-[#123C32]">
+                  {item.question}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#4A6B60] leading-relaxed">
+                  {item.answer}
+                </p>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* 11. CTA FINAL VISUAL BANNER */}
+      <section className="relative py-16 sm:py-20 bg-[#123C32] text-white px-4 sm:px-6 text-center overflow-hidden">
+        <div className="absolute inset-0 opacity-15">
+          <Image
+            src={finalCta.bgImageSrc}
+            alt="Fondo de bienestar Vive Sano"
+            fill
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+
+        <div className="relative max-w-3xl mx-auto space-y-6">
           <div className="space-y-3">
             <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-white leading-tight">
-              Empieza hoy a cuidar tu bienestar digestivo.
+              "{finalCta.title}"
             </h2>
             <p className="text-sm sm:text-base text-[#B8D8C2] max-w-xl mx-auto">
-              Descarga gratuitamente la guía y comienza con pequeños pasos.
+              "{finalCta.copy}"
             </p>
           </div>
 
@@ -637,68 +697,100 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
             onClick={scrollToForm}
             className="py-4 px-10 rounded-2xl bg-[#1F6B50] hover:bg-white hover:text-[#123C32] text-white font-bold text-base transition-all duration-300 shadow-2xl cursor-pointer uppercase tracking-wider inline-flex items-center gap-2 transform hover:-translate-y-0.5"
           >
-            <span>DESCARGAR MI GUÍA GRATIS →</span>
+            <span>{finalCta.buttonText} →</span>
           </button>
         </div>
       </section>
 
-      {/* 10. DISCLAIMER DE SALUD & FOOTER MINIMALISTA */}
+      {/* 12. FOOTER PROFESIONAL MINIMALISTA */}
       <footer className="py-10 bg-white border-t border-[#D5E8DC] text-center px-4">
-        <div className="max-w-3xl mx-auto space-y-5">
+        <div className="max-w-4xl mx-auto space-y-6">
           
-          {/* REDES SOCIALES OFICIALES */}
-          <div className="space-y-2">
-            <p className="text-xs font-bold text-[#123C32] uppercase tracking-wider">
-              Síguenos en nuestras redes oficiales
+          <div className="space-y-1">
+            <h3 className="font-serif text-xl font-bold text-[#123C32]">
+              {footer.brandName}
+            </h3>
+            <p className="text-xs text-[#4A6B60]">
+              {footer.tagline}
             </p>
-            <div className="flex items-center justify-center gap-3">
+          </div>
+
+          {/* ENLACES DE NAVEGACIÓN */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-[#123C32]">
+            {footer.links.map((link) => (
+              <a key={link.label} href={link.href} className="hover:text-[#1F6B50] transition-colors">
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          {/* REDES SOCIALES */}
+          <div className="flex items-center justify-center gap-3">
+            {footer.socialLinks.map((social) => (
               <a
-                href="https://www.facebook.com/ViveSanom/"
+                key={social.platform}
+                href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#EEF7F0] hover:bg-[#1F6B50] text-[#1F6B50] hover:text-white border border-[#B8D8C2] text-xs font-bold transition-all shadow-2xs"
               >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
-                <span>Facebook</span>
+                <span>{social.platform}</span>
               </a>
-
-              <a
-                href="https://www.instagram.com/vivesanom/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#EEF7F0] hover:bg-[#1F6B50] text-[#1F6B50] hover:text-white border border-[#B8D8C2] text-xs font-bold transition-all shadow-2xs"
-              >
-                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-                <span>Instagram</span>
-              </a>
-            </div>
+            ))}
           </div>
 
-          {/* DISCLAIMER DE SALUD (DISCRETO AL FINAL) */}
-          <p className="text-[11px] text-[#4A6B60] max-w-xl mx-auto leading-relaxed italic">
-            Este material tiene fines educativos y de bienestar general. No sustituye la valoración, diagnóstico ni tratamiento de un profesional de la salud.
-          </p>
-
-          <div className="flex items-center justify-center gap-4 text-xs font-medium text-[#123C32]">
-            <button onClick={() => setShowPrivacyModal(true)} className="hover:underline cursor-pointer">
-              Aviso de Privacidad
-            </button>
-            <span>•</span>
-            <button onClick={() => setShowPrivacyModal(true)} className="hover:underline cursor-pointer">
-              Términos de Uso
-            </button>
+          {/* DISCLAIMER LEGAL Y COPYRIGHT */}
+          <div className="pt-4 border-t border-[#D5E8DC] space-y-2 text-[11px] text-[#4A6B60]">
+            <p className="max-w-2xl mx-auto italic">
+              {brand.disclaimer}
+            </p>
+            <p className="font-semibold text-[#123C32]">
+              {footer.copyright}
+            </p>
           </div>
-
-          <p className="text-xs font-semibold text-[#123C32]">
-            © {new Date().getFullYear()} Vive Sano — Salud Digestiva. Todos los derechos reservados.
-          </p>
 
         </div>
       </footer>
+
+      {/* STICKY CTA MOBILE BOTTOM BANNER */}
+      {showStickyMobileCta && (
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#123C32]/95 backdrop-blur-md border-t border-white/20 p-3 flex items-center justify-between sm:hidden animate-slideUp">
+          <div className="text-left text-white px-2">
+            <p className="text-xs font-bold">Guía Digital Vive Sano</p>
+            <p className="text-[10px] text-[#B8D8C2]">100% Gratuita • PDF</p>
+          </div>
+          <button
+            onClick={scrollToForm}
+            className="py-2.5 px-4 rounded-xl bg-[#1F6B50] text-white font-bold text-xs uppercase tracking-wider shadow-lg cursor-pointer"
+          >
+            <span>DESCARGAR →</span>
+          </button>
+        </div>
+      )}
+
+      {/* LIGHTBOX MODAL DE PREVISUALIZACIÓN */}
+      {activeLightboxImage && (
+        <div
+          onClick={() => setActiveLightboxImage(null)}
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4 animate-fadeIn cursor-pointer"
+        >
+          <div className="relative max-w-3xl w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-black">
+            <Image
+              src={activeLightboxImage}
+              alt="Ampliación de la vista previa interna de la guía"
+              fill
+              sizes="100vw"
+              className="object-contain"
+            />
+            <button
+              onClick={() => setActiveLightboxImage(null)}
+              className="absolute top-4 right-4 bg-white/80 hover:bg-white text-[#123C32] rounded-full p-2 text-sm font-bold shadow-md cursor-pointer"
+            >
+              ✕ Cerrar
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* AVISO DE PRIVACIDAD MODAL */}
       {showPrivacyModal && (
@@ -717,7 +809,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
             </div>
             <div className="text-xs text-[#4A6B60] space-y-2.5 leading-relaxed max-h-60 overflow-y-auto">
               <p>
-                Sus datos personales (nombre y correo electrónico) son recabados con el único propósito de entregar la <em>Guía Gratuita de Salud Digestiva</em> y enviarle información relevante sobre bienestar intestinal y hábitos saludables.
+                Sus datos personales (nombre y correo electrónico) son recabados con el único propósito de entregar la <em>Guía Gratuita de Vive Sano</em> y enviarle información relevante sobre bienestar y hábitos saludables.
               </p>
               <p>
                 No vendemos ni transferimos sus datos a terceros. Puede darse de baja o solicitar la eliminación de sus datos en cualquier momento mediante el enlace ubicado al pie de cada correo electrónico enviado.

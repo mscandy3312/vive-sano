@@ -1,11 +1,11 @@
 /**
- * VIVE SANO — Centralized Data & Visual Content Store (Phase 2)
+ * VIVE SANO — Centralized Data & Visual Content Store
  * 
  * BRAND: Vive Sano
  * FOUNDER & RESPONSIBLE: Gloria Molina
  * 
- * Centralized content structure supporting complete visual assets, editable copy,
- * roadmap steps, community highlights, and bonus toggles.
+ * Single Source of Truth for editable copy, visual assets, FAQs,
+ * lead magnet features, and section flags across all components.
  */
 
 export interface NavItem {
@@ -16,6 +16,13 @@ export interface NavItem {
 export interface TrustItem {
   icon: string;
   text: string;
+}
+
+export interface ProblemItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
 }
 
 export interface ProblemCard {
@@ -56,6 +63,15 @@ export interface ModuleItem {
   imageSrc?: string;
 }
 
+export interface BenefitCardItem {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  imageSrc: string;
+  imageAlt: string;
+}
+
 export interface BenefitCard {
   id: string;
   title: string;
@@ -76,6 +92,25 @@ export interface BonusItem {
   coverColor?: 'emerald' | 'amber' | 'slate';
 }
 
+export interface GuidePreviewItem {
+  id: string;
+  title: string;
+  description: string;
+  imageSrc: string;
+  imageAlt: string;
+}
+
+export interface AudienceItem {
+  id: string;
+  text: string;
+}
+
+export interface FAQItem {
+  id: string;
+  question: string;
+  answer: string;
+}
+
 export interface TestimonialItem {
   id: string;
   name: string;
@@ -87,658 +122,627 @@ export interface TestimonialItem {
   isPlaceholder?: boolean;
 }
 
-export interface FAQItem {
-  id: string;
-  question: string;
-  answer: string;
-}
-
 export const contentData = {
   // Brand details
   brand: {
     name: 'Vive Sano',
-    tagline: 'Bienestar, Salud Digestiva e Inmunidad',
+    tagline: 'Bienestar, Nutrición Consciente y Hábitos',
     ownerName: 'Gloria Molina',
-    ownerRole: 'Fundadora & Especialista de Vive Sano',
+    ownerRole: 'Fundadora y Creadora de Vive Sano',
     programReferenceTitle: 'Construyendo tu Inmunidad',
-    communityStats: 'Más de 100 mujeres acompañadas',
+    communityStats: 'Comunidad de bienestar',
     copyright: '© 2026 Vive Sano — Gloria Molina. Todos los derechos reservados.',
-    disclaimer: 'La información presentada en esta página y en el programa Vive Sano tiene un carácter estrictamente educativo y de divulgación sobre hábitos, nutrición consciente y bienestar. No sustituye el diagnóstico, tratamiento ni recomendación de un profesional médico.',
+    disclaimer: 'El contenido de esta página y de la guía digital tiene un carácter estrictamente educativo y de bienestar general. No sustituye la valoración, diagnóstico ni tratamiento de un profesional de la salud.',
   },
 
-  // Centralized Image System Configuration
+  // Centralized Images
   images: {
-    hero: '/images/hero/hero-vive-sano.webp',
-    heroAlt: 'Fotografía lifestyle de bienestar, salud digestiva y hábitos saludables para Vive Sano',
-    problem: '/images/problem/problem-lifestyle.webp',
-    problemAlt: 'Mujer en momento de reflexión y tranquilidad en su cocina con su diario de hábitos',
-    identification: '/images/problem/problem-lifestyle.webp',
-    identificationAlt: 'Momento de bienestar consciente y nutrición amigable',
-    guide: '/images/guide/guide-mockup.webp',
-    guideAlt: 'Mockup editorial 3D de la Guía Digital Vive Sano por Gloria Molina',
-    gloria: '/images/gloria/gloria-molina-portrait.webp',
-    gloriaAlt: 'Fotografía oficial de Gloria Molina, fundadora de Vive Sano',
-    community: '/images/community/community-women.webp',
-    communityAlt: 'Comunidad de mujeres compartiendo hábitos saludables y alimentos reales',
+    hero: '/images/hero-lifestyle.jpg',
+    heroAlt: 'Fotografía lifestyle de bienestar y nutrición amigable para Vive Sano',
+    problem: '/images/problem/problem-lifestyle.jpg',
+    problemAlt: 'Fotografía de estilo de vida consciente y reflexión',
+    identification: '/images/problem/problem-lifestyle.jpg',
+    identificationAlt: 'Momento de calma con té orgánico',
+    guide: '/images/lead-magnet-mockup.jpg',
+    guideAlt: 'Mockup 3D editorial de la Guía Digital Vive Sano',
+    gloria: '/images/gloria-placeholder.webp',
+    gloriaAlt: 'Gloria Molina, fundadora de Vive Sano',
+    community: '/images/hero-lifestyle.jpg',
+    communityAlt: 'Comunidad Vive Sano',
   },
 
-  // Site Navigation
+  // Navigation Links
   navigation: {
     logoText: 'VIVE SANO',
     items: [
       { label: 'Inicio', href: '#inicio' },
-      { label: 'Hoja de ruta', href: '#hoja-de-ruta' },
-      { label: 'El programa', href: '#programa' },
-      { label: 'Qué incluye', href: '#incluye' },
+      { label: '¿Te ha pasado?', href: '#problema' },
+      { label: 'Beneficios', href: '#beneficios' },
+      { label: 'Dentro de la guía', href: '#guia' },
       { label: 'Sobre Gloria', href: '#sobre-gloria' },
       { label: 'Preguntas frecuentes', href: '#faq' },
     ] as NavItem[],
-    ctaText: 'QUIERO COMENZAR',
-    ctaHref: '#oferta',
+    ctaText: 'QUIERO MI GUÍA GRATIS',
+    ctaHref: '#formulario',
   },
 
   // Hero Section
   hero: {
     eyebrow: 'VIVE SANO',
-    headline: 'Empieza a escuchar lo que tu cuerpo lleva tiempo intentando decirte.',
-    subheadline: 'Una experiencia educativa para comprender mejor tu bienestar, transformar tus hábitos y construir una relación más consciente con tu alimentación.',
-    primaryCtaText: 'QUIERO COMENZAR',
-    primaryCtaHref: '#oferta',
-    secondaryCtaText: 'CONOCE EL PROGRAMA',
-    secondaryCtaHref: '#programa',
-    imageSrc: '/images/hero/hero-vive-sano.webp',
-    imageAlt: 'Fotografía lifestyle de bienestar, salud digestiva y hábitos saludables para Vive Sano',
+    headline: 'Empieza a cuidar tu bienestar desde adentro, un pequeño cambio a la vez.',
+    subheadline: 'Descubre una guía práctica y gratuita para comprender mejor tus hábitos, tu alimentación y tu bienestar digestivo, y comenzar a hacer cambios con mayor claridad.',
+    primaryCtaText: 'QUIERO MI GUÍA GRATIS',
+    primaryCtaHref: '#formulario',
+    secondaryCtaText: 'CONOCE LA GUÍA',
+    secondaryCtaHref: '#guia',
+    subtext: 'Descarga inmediata • 100% digital',
+    imageSrc: '/images/hero-lifestyle.jpg',
+    imageAlt: 'Fotografía lifestyle de bienestar, alimentación saludable y calma para Vive Sano',
   },
 
-  // Trust Bar Section
-  trustBar: {
-    title: 'Una experiencia creada por Gloria Molina para acompañarte paso a paso:',
-    items: [
-      { icon: 'book-open', text: 'Contenido digital en vivo & grabado' },
-      { icon: 'file-text', text: 'Herramientas prácticas & Ebooks' },
-      { icon: 'compass', text: 'Acompañamiento en comunidad' },
-      { icon: 'heart-handshake', text: 'Acceso online desde cualquier lugar' },
-    ] as TrustItem[],
-  },
-
-  // Problem Section (Emotional Identification)
+  // Section 1: "¿Te ha pasado?" (Problem Identification)
   problem: {
-    eyebrow: 'IDENTIFICACIÓN',
-    headline: '¿Sientes que haces muchas cosas por tu bienestar, pero no sabes por dónde empezar?',
-    subheadline: 'Muchas personas experimentan abrumamiento al intentar mejorar su alimentación sin una guía estructurada. [COPY PROPUESTO — EDICIÓN DISPONIBLE PARA GLORIA MOLINA]',
-    imageSrc: '/images/problem/problem-lifestyle.webp',
-    imageAlt: 'Mujer en momento de reflexión y tranquilidad en su cocina con su diario de hábitos',
-    cards: [
+    eyebrow: 'EMPATÍA Y CONEXIÓN',
+    headline: '¿Te ha pasado?',
+    subheadline: 'Sabes que quieres cuidar más de ti, pero entre tanta información, consejos y recomendaciones, a veces es difícil saber por dónde empezar.',
+    title: '¿Te ha pasado?',
+    subtitle: 'Sabes que quieres cuidar más de ti, pero entre tanta información, consejos y recomendaciones, a veces es difícil saber por dónde empezar.',
+    imageSrc: '/images/problem/problem-lifestyle.jpg',
+    imageAlt: 'Fotografía lifestyle de momento de calma y reflexión',
+    items: [
       {
         id: 'p1',
-        title: 'Exceso de información y consejos contradictorios',
-        description: 'Ves sugerencias opuestas en redes e internet que te generan confusión en lugar de darte claridad.',
-        icon: 'help-circle',
+        title: 'No sabes qué hábitos priorizar',
+        description: 'Sientes que hay demasiados aspectos por atender y te cuesta decidir cuál es el primer paso ideal.',
+        icon: '🎯',
       },
       {
         id: 'p2',
-        title: 'Tu alimentación cambia constantemente sin rumbo',
-        description: 'Pruebas distintas pautas sin comprender qué le sienta verdaderamente bien a tu digestión.',
-        icon: 'rotate-ccw',
+        title: 'Encuentras demasiada información diferente',
+        description: 'Cansancio ante consejos contradictorios y modas extremas que no se adaptan a tu vida real.',
+        icon: '📚',
       },
       {
         id: 'p3',
-        title: 'Dificultad para mantener hábitos sostenibles',
-        description: 'Sientes que los cambios requieren un esfuerzo insostenible y terminas volviendo a la rutina anterior.',
-        icon: 'trending-down',
+        title: 'Empiezas cambios pero te cuesta mantenerlos',
+        description: 'Inicias con entusiasmo pero la falta de estructura hace que vuelvas a las rutinas anteriores.',
+        icon: '🔄',
       },
       {
         id: 'p4',
-        title: 'Falta de una estructura amigable para comenzar',
-        description: 'Quieres organizar tu cocina y tu día a día, pero te abruma no saber cuál es el primer paso.',
-        icon: 'heart',
+        title: 'Quieres cuidar tu bienestar sin complicarte',
+        description: 'Buscas herramientas amables, realistas y sencillas de incorporar día con día.',
+        icon: '🌿',
       },
-    ] as ProblemCard[],
-  },
-
-  // Emotional Identification Section
-  identification: {
-    eyebrow: 'NUEVA PERSPECTIVA',
-    headline: 'Tu bienestar no tiene que convertirse en otra lista de cosas imposibles de cumplir.',
-    content: [
-      'Durante mucho tiempo nos han enseñado que cuidar de nuestra salud digestiva e inmunidad implica restricciones drásticas o reglas estrictas.',
-      'En Vive Sano, Gloria Molina propone sustituir la culpa por conocimiento práctico. Entender cómo responde tu organismo te devuelve el control de tus elecciones.',
-      'No necesitas cambios radicales de la noche a la mañana. Necesitas claridad, educación amigable y un método estructurado que se adapte a tu estilo de vida real.',
+    ] as ProblemItem[],
+    cards: [
+      {
+        id: 'p1',
+        title: 'No sabes qué hábitos priorizar',
+        description: 'Sientes que hay demasiados aspectos por atender y te cuesta decidir cuál es el primer paso ideal.',
+        icon: '🎯',
+      },
+      {
+        id: 'p2',
+        title: 'Encuentras demasiada información diferente',
+        description: 'Cansancio ante consejos contradictorios y modas extremas que no se adaptan a tu vida real.',
+        icon: '📚',
+      },
+      {
+        id: 'p3',
+        title: 'Empiezas cambios pero te cuesta mantenerlos',
+        description: 'Inicias con entusiasmo pero la falta de estructura hace que vuelvas a las rutinas anteriores.',
+        icon: '🔄',
+      },
+      {
+        id: 'p4',
+        title: 'Quieres cuidar tu bienestar sin complicarte',
+        description: 'Buscas herramientas amables, realistas y sencillas de incorporar día con día.',
+        icon: '🌿',
+      },
     ],
-    quote: '"El autocuidado consciente no se trata de perfección, sino de constancia y respeto por los ritmos de tu propio cuerpo."',
-    imageSrc: '/images/problem/problem-lifestyle.webp',
-    imageAlt: 'Momento de nutrición y bienestar consciente con Vive Sano',
   },
 
-  // Transformation Section
-  transformation: {
-    eyebrow: 'DE LA CONFUSIÓN A LA CLARIDAD',
-    headline: 'De la confusión a la claridad',
-    subheadline: 'Descubre cómo transforma tu día a día al contar con las herramientas y la guía adecuada de Gloria Molina.',
+  // Section 2: Identification Banner
+  identification: {
+    eyebrow: 'UN CAMINO REALISTA',
+    headline: 'No necesitas cambiarlo todo de un día para otro.',
+    subheadline: 'El bienestar también puede construirse con pequeñas decisiones conscientes.',
+    content: [
+      'El bienestar también puede construirse con pequeñas decisiones conscientes, información clara y herramientas que puedas incorporar poco a poco.',
+    ],
+    quote: 'El bienestar se construye un pequeño paso a la vez.',
+    title: 'No necesitas cambiarlo todo de un día para otro.',
+    copy: 'El bienestar también puede construirse con pequeñas decisiones conscientes, información clara y herramientas que puedas incorporar poco a poco.',
+    imageSrc: '/images/problem/problem-lifestyle.jpg',
+    imageAlt: 'Mujer en momento de calma con una taza de té orgánico y ambiente natural',
+  },
+
+  // Section 3: Benefits ("¿Qué encontrarás en esta guía?")
+  benefits: {
+    eyebrow: 'BENEFICIOS PRINCIPALES',
+    headline: '¿Qué encontrarás en esta guía?',
+    subheadline: 'Un recurso visual y práctico diseñado para darte claridad desde la primera lectura.',
+    title: '¿Qué encontrarás en esta guía?',
+    subtitle: 'Un recurso visual y práctico diseñado para darte claridad desde la primera lectura.',
     items: [
       {
-        before: 'Información dispersa y sin fundamento claro.',
-        after: 'Conocimientos prácticos y estructurados paso a paso.',
+        id: 'b1',
+        title: 'Hábitos conscientes',
+        description: 'Ideas y ejercicios sencillos para observar tus rutinas cotidianas sin juzgarte.',
+        icon: '🧠',
+        imageSrc: '/images/hero-lifestyle.jpg',
+        imageAlt: 'Hábitos saludables',
       },
       {
-        before: 'Hábitos difíciles de sostener a largo plazo.',
-        after: 'Un plan de acción amigable y adaptable a tu ritmo.',
+        id: 'b2',
+        title: 'Alimentación',
+        description: 'Conceptos prácticos e inspiradores relacionados con tus hábitos alimentarios.',
+        icon: '🥑',
+        imageSrc: '/images/hero-lifestyle.jpg',
+        imageAlt: 'Alimentación saludable',
       },
       {
-        before: 'Dudas constantes sobre qué alimentos elegir.',
-        after: 'Herramientas simples para decidir con tranquilidad.',
+        id: 'b3',
+        title: 'Bienestar digestivo',
+        description: 'Información amigable para comprender mejor esta dimensión fundamental de tu salud.',
+        icon: '🌿',
+        imageSrc: '/images/hero-lifestyle.jpg',
+        imageAlt: 'Bienestar digestivo',
       },
       {
-        before: 'Falta de estructura en tu cocina y rutina.',
-        after: 'Una guía clara para integrar el bienestar cotidiano.',
+        id: 'b4',
+        title: 'Organización',
+        description: 'Herramientas sencillas para comenzar a estructurar tu día con calma.',
+        icon: '📋',
+        imageSrc: '/images/hero-lifestyle.jpg',
+        imageAlt: 'Organización diaria',
       },
-    ] as TransformationItem[],
+      {
+        id: 'b5',
+        title: 'Reflexión',
+        description: 'Preguntas guía para observar tus propios avances y necesidades personales.',
+        icon: '💭',
+        imageSrc: '/images/hero-lifestyle.jpg',
+        imageAlt: 'Reflexión y conciencia',
+      },
+      {
+        id: 'b6',
+        title: 'Primeros pasos',
+        description: 'Ideas realizables hoy mismo para avanzar sin abrumamiento.',
+        icon: '✨',
+        imageSrc: '/images/hero-lifestyle.jpg',
+        imageAlt: 'Primeros pasos prácticos',
+      },
+    ] as BenefitCardItem[],
+    cards: [
+      {
+        id: 'b1',
+        title: 'Hábitos conscientes',
+        description: 'Ideas y ejercicios sencillos para observar tus rutinas cotidianas sin juzgarte.',
+        icon: '🧠',
+        imageSrc: '/images/hero-lifestyle.jpg',
+        imageAlt: 'Hábitos saludables',
+      },
+      {
+        id: 'b2',
+        title: 'Alimentación',
+        description: 'Conceptos prácticos e inspiradores relacionados con tus hábitos alimentarios.',
+        icon: '🥑',
+        imageSrc: '/images/hero-lifestyle.jpg',
+        imageAlt: 'Alimentación saludable',
+      },
+    ],
   },
 
-  // Method Section (5 Steps)
+  // Section 4: "Dentro de la Guía" (Protagonist Mockup + Contents)
+  guide: {
+    eyebrow: 'CONTENIDO DE LA GUÍA',
+    headline: 'Un recurso para comenzar con claridad',
+    subheadline: 'Diseñado especialmente para darte el primer impulso hacia un estilo de vida más equilibrado.',
+    subtitle: 'Diseñado especialmente para darte el primer impulso hacia un estilo de vida más equilibrado.',
+    description: 'Diseñado especialmente para darte el primer impulso hacia un estilo de vida más equilibrado.',
+    title: 'Un recurso para comenzar con claridad',
+    mockupImageSrc: '/images/lead-magnet-mockup.jpg',
+    mockupImageAlt: 'Mockup 3D editorial de la Guía Digital Vive Sano',
+    features: [
+      '✓ Listas de verificación de hábitos cotidianos',
+      '✓ Pautas amables de alimentación consciente',
+      '✓ Recomendaciones prácticas para tu rutina diaria',
+      '✓ Reflexiones simples para observar tu cuerpo',
+      '✓ Guía visual en formato PDF de alta calidad',
+      '✓ Acceso 100% digital e inmediato',
+    ],
+  },
+
+  // Section 5: "Una mirada al interior" (Interactive Lightbox Gallery)
+  guidePreview: {
+    title: 'Una mirada al interior',
+    subtitle: 'Explora el diseño editorial claro y amigable que encontrarás dentro de la guía.',
+    items: [
+      {
+        id: 'gp1',
+        title: 'Página 01: Hábitos Diarios de Bienestar',
+        description: 'Lista de verificación semanal para dar seguimiento sencillo a tus avances.',
+        imageSrc: '/images/guide/guide-page-preview.jpg',
+        imageAlt: 'Previsualización de la página interna 01 de la guía',
+      },
+      {
+        id: 'gp2',
+        title: 'Página 02: Nutrición Consciente & Recetas',
+        description: 'Ideas de ingredientes frescos y preparación fácil para incorporar hoy.',
+        imageSrc: '/images/guide/guide-page-preview.jpg',
+        imageAlt: 'Previsualización de la página interna 02 de la guía',
+      },
+      {
+        id: 'gp3',
+        title: 'Página 03: Reflexiones & Calma',
+        description: 'Preguntas clave para reconectar con lo que tu cuerpo necesita.',
+        imageSrc: '/images/guide/guide-page-preview.jpg',
+        imageAlt: 'Previsualización de la página interna 03 de la guía',
+      },
+    ] as GuidePreviewItem[],
+  },
+
+  // Section 6: "¿Para quién es?"
+  audience: {
+    title: 'Esta guía puede ser para ti si...',
+    subtitle: 'Diseñada para acompañarte con respeto y claridad en tu propio proceso.',
+    items: [
+      { id: 'a1', text: 'Quieres comenzar a cuidar más tus hábitos y bienestar.' },
+      { id: 'a2', text: 'Buscas información organizada y libre de complicaciones.' },
+      { id: 'a3', text: 'Quieres comprender mejor tu relación con la alimentación.' },
+      { id: 'a4', text: 'Deseas comenzar poco a poco, sin presiones ni extremos.' },
+      { id: 'a5', text: 'Prefieres herramientas prácticas que puedas consultar cuando quieras.' },
+    ] as AudienceItem[],
+  },
+
+  // Section 7: About Gloria ("Detrás de Vive Sano")
+  aboutGloria: {
+    eyebrow: 'CONOCE A LA FUNDADORA',
+    headline: 'Detrás de Vive Sano',
+    subheadline: 'Fundadora de Vive Sano',
+    title: 'Detrás de Vive Sano',
+    name: 'Gloria Molina',
+    role: 'Fundadora de Vive Sano',
+    copy: 'Vive Sano nace desde una visión de bienestar basada en la educación, la conciencia y la construcción de hábitos que puedan integrarse a la vida cotidiana de forma amigable y sostenible.',
+    quote: 'El bienestar no se trata de dietas restrictivas, sino de aprender a escuchar las señales de tu cuerpo.',
+    bioParagraphs: [
+      'Vive Sano nace desde una visión de bienestar basada en la educación, la conciencia y la construcción de hábitos que puedan integrarse a la vida cotidiana.',
+      'A través de recursos claros y prácticos, busco brindarte herramientas para que descubras tu propio camino hacia el equilibrio.',
+    ],
+    signatureText: 'Gloria Molina — Fundadora de Vive Sano',
+    imagePlaceholderText: 'Fotografía de Gloria — pendiente de proporcionar',
+    imageSrc: '/images/gloria-placeholder.webp',
+    imageAlt: 'Gloria Molina, fundadora de Vive Sano',
+    isPlaceholder: true,
+    knowMoreEnabled: false,
+    knowMoreText: 'Conoce más sobre Gloria',
+    knowMoreHref: '#sobre-gloria',
+  },
+
+  // Trust Bar
+  trustBar: {
+    enabled: false,
+    title: 'Confianza y Educación',
+    items: [] as TrustItem[],
+  },
+
+  // Section 8: Trust (Only real data, enabled = false until confirmed)
+  trust: {
+    enabled: false,
+    stats: [],
+  },
+
+  // Section 9: Testimonials (Enabled = false until authorized real testimonials are provided)
+  testimonials: {
+    enabled: false,
+    eyebrow: 'PRUEBA SOCIAL',
+    headline: 'Lo que dicen quienes han comenzado',
+    subheadline: 'Historias de transformación amigable',
+    title: 'Lo que dicen quienes han comenzado',
+    items: [] as TestimonialItem[],
+  },
+
+  // Bonuses (for compatibility)
+  bonuses: {
+    enabled: false,
+    showSection: false,
+    eyebrow: 'BONOS COMPLEMENTARIOS',
+    headline: 'Recursos Complementarios',
+    subheadline: 'Herramientas de apoyo',
+    title: 'Recursos Complementarios',
+    items: [] as BonusItem[],
+  },
+
+  // Community (for compatibility)
+  community: {
+    enabled: false,
+    eyebrow: 'COMUNIDAD VIVE SANO',
+    headline: 'Comunidad Vive Sano',
+    subheadline: 'Educación y acompañamiento',
+    statsText: 'Comunidad de bienestar',
+    imageSrc: '/images/hero-lifestyle.jpg',
+    imageAlt: 'Comunidad Vive Sano',
+    highlights: ['Acompañamiento diario', 'Educación amigable'],
+    title: 'Comunidad Vive Sano',
+    subtitle: 'Acompañamiento y educación',
+    description: 'Un espacio seguro de aprendizaje',
+    items: [],
+  },
+
+  // Guarantee (for compatibility)
+  guarantee: {
+    enabled: false,
+    eyebrow: 'GARANTÍA VIVE SANO',
+    headline: 'Garantía de Satisfacción',
+    description: 'Tu tranquilidad es nuestra prioridad.',
+    badgeText: 'Garantía 100%',
+    title: 'Garantía Vive Sano',
+    subtitle: 'Tranquilidad en tu elección',
+    text: 'Tu tranquilidad es nuestra prioridad.',
+  },
+
+  // Accompaniment (for compatibility)
+  accompaniment: {
+    enabled: false,
+    eyebrow: 'ACOMPAÑAMIENTO EN VIVO',
+    headline: 'Acompañamiento por Gloria Molina',
+    subheadline: 'Educación y cercanía',
+    title: 'Acompañamiento por Gloria Molina',
+    subtitle: 'Educación y cercanía',
+    features: ['Atención cercana', 'Materiales claros'],
+  },
+
+  // Method Section (for compatibility)
   method: {
-    eyebrow: 'METODOLOGÍA VIVE SANO',
-    headline: 'Un camino claro de 5 pasos para tu bienestar',
-    subheadline: 'Metodología educativa desarrollada por Gloria Molina.',
+    eyebrow: 'NUESTRA METODOLOGÍA',
+    headline: 'El Método Vive Sano',
+    subheadline: '5 pilares para transformar tus hábitos',
+    title: 'El Método Vive Sano',
+    subtitle: '5 pilares para transformar tus hábitos',
     steps: [
       {
         number: '01',
-        title: 'CONOCE',
-        description: 'Comprende tus hábitos actuales y aprende a escuchar las señales de tu cuerpo.',
-        highlight: 'Autoconocimiento',
-      },
-      {
-        number: '02',
-        title: 'APRENDE',
-        description: 'Obtén información práctica sobre nutrición consciente y salud digestiva.',
-        highlight: 'Bases educativas',
-      },
-      {
-        number: '03',
-        title: 'APLICA',
-        description: 'Lleva el aprendizaje a tu cocina y a tu día a día con pautas realizables.',
-        highlight: 'Acción práctica',
-      },
-      {
-        number: '04',
-        title: 'OBSERVA',
-        description: 'Identifica qué herramientas y hábitos funcionan mejor para ti y tu ritmo.',
-        highlight: 'Evaluación consciente',
-      },
-      {
-        number: '05',
-        title: 'SOSTÉN',
-        description: 'Construye cambios sólidos y graduales que puedas mantener en el tiempo.',
-        highlight: 'Estilo de vida',
+        title: 'Conciencia',
+        description: 'Aprender a observar tus rutinas actuales sin juicio.',
+        highlight: 'Pilar 1',
       },
     ] as MethodStep[],
   },
 
-  // Roadmap Section ("Hoja de Ruta para tu Vitalidad y Bienestar")
-  roadmap: {
-    eyebrow: 'HOJA DE RUTA VIVE SANO',
-    headline: 'Tu camino dentro de Vive Sano',
-    subheadline: 'Una estructura progresiva diseñada para que avances con seguridad y sin abrumamiento.',
-    steps: [
-      {
-        phase: '01',
-        title: 'Fundamentos & Diagnóstico Inicial',
-        description: 'Comprende la microbiota, evalúa tus hábitos actuales con el test y establece tus metas.',
-        deliverable: 'Test Personalizado + Módulo 01',
-      },
-      {
-        phase: '02',
-        title: 'Alimentación Consciente en Cocina',
-        description: 'Aprende a seleccionar insumos reales, organizar tu despensa y preparar recetas amables.',
-        deliverable: 'Guía Digital PDF + Módulo 02',
-      },
-      {
-        phase: '03',
-        title: 'Acompañamiento & Ajuste en Vivo',
-        description: 'Participa en las sesiones en directo con Gloria Molina y resuelve tus dudas específicas.',
-        deliverable: '5 Sesiones en Vivo + Comunidad',
-      },
-      {
-        phase: '04',
-        title: 'Consolidación & Estilo de Vida',
-        description: 'Integra los ebooks de Mindreset e Inmunidad para mantener tus avances a largo plazo.',
-        deliverable: 'Ebooks Complementarios + Plan Continuo',
-      },
-    ] as RoadmapStep[],
-  },
-
-  // Program Section (Modules)
+  // Program Section (for compatibility)
   program: {
-    eyebrow: 'CONTENIDO DEL PROGRAMA',
-    headline: 'Esto es lo que encontrarás dentro de Vive Sano',
-    subheadline: 'Programa "Construyendo tu Inmunidad" y sus módulos educativos.',
+    eyebrow: 'EL PROGRAMA',
+    headline: 'Construyendo tu Inmunidad',
+    subheadline: 'Un recorrido guiado por Gloria Molina',
+    title: 'Construyendo tu Inmunidad',
+    subtitle: 'Un recorrido guiado por Gloria Molina',
     modules: [
       {
         id: 'm1',
-        number: 'MÓDULO 01',
-        title: 'Fundamentos de la Inmunidad & Digestión',
-        description: 'Bases clave para entender la relación entre microbiota, digestión y sistema inmunológico.',
-        lessonsCount: 'Lecciones fundamentales',
-        badge: 'Bases',
-      },
-      {
-        id: 'm2',
-        number: 'MÓDULO 02',
-        title: 'Selección de Alimentos & Hábitos Conscientes',
-        description: 'Pautas para elegir insumos reales, interpretar etiquetas y planificar tu despensa.',
-        lessonsCount: 'Pautas prácticas',
-        badge: 'Alimentación',
-      },
-      {
-        id: 'm3',
-        number: 'MÓDULO 03',
-        title: 'Organización en Cocina & Rutinas Diarias',
-        description: 'Estrategias de Meal Prep amigable, combinación de alimentos y recetas reconfortantes.',
-        lessonsCount: 'Cocina consciente',
-        badge: 'Rutinas',
-      },
-      {
-        id: 'm4',
-        number: 'MÓDULO 04',
-        title: 'Sostenibilidad & Plan a Largo Plazo',
-        description: 'Herramientas para mantener tus avances, gestionar imprevistos y consolidar tu estilo de vida.',
-        lessonsCount: 'Plan continuo',
-        badge: 'Integración',
+        number: '01',
+        title: 'Fundamentos de Nutrición Consciente',
+        description: 'Conceptos clave para comprender tus defensas.',
       },
     ] as ModuleItem[],
   },
 
-  // Digital Guide Section
-  guide: {
-    eyebrow: 'MATERIAL DIGITAL EXCLUSIVO',
-    headline: 'Además, tendrás una guía para llevar lo aprendido contigo',
-    subheadline: 'Material descargable en formato PDF para consultar en tu celular, tablet o imprimir.',
-    title: 'Guía Digital Vive Sano',
-    description: 'Manual práctico diseñado por Gloria Molina con esquemas visuales, listas de compras y tablas de combinación de alimentos.',
-    features: [
-      'Pautas claras y listas de compras conscientes',
-      'Tablas de combinación alimenticia y digestión amigable',
-      'Recetas sencillas y nutritivas para el día a día',
-      'Formato PDF optimizado para dispositivos móviles e impresión',
-    ],
-    mockupImage: '/images/guide/guide-mockup.webp',
-    mockupAlt: 'Mockup editorial 3D de la Guía Digital Vive Sano por Gloria Molina',
+  // Roadmap Section (for compatibility)
+  roadmap: {
+    eyebrow: 'HOJA DE RUTA',
+    headline: 'Tu camino de transformación',
+    subheadline: 'Fases progresivas',
+    title: 'Tu camino de transformación',
+    subtitle: 'Fases progresivas',
+    steps: [
+      {
+        phase: 'Fase 1',
+        title: 'Inicio y Diagnóstico',
+        description: 'Evaluación inicial.',
+        deliverable: 'Checklist personal',
+      },
+    ] as RoadmapStep[],
   },
 
-  // Accompaniment Section
-  accompaniment: {
-    enabled: true,
-    eyebrow: 'ACOMPAÑAMIENTO EN VIVO',
-    headline: 'Más que información: acompañamiento directo',
-    subheadline: 'Espacios de asesoría y resolución de dudas en comunidad con Gloria Molina.',
-    features: [
-      '5 Sesiones grupales de asesoría en vivo con Gloria Molina',
-      'Comunidad privada de acompañamiento (más de 100 mujeres)',
-      'Resolución de dudas frecuentes sobre tu proceso',
-      'Grabaciones disponibles si no puedes asistir en directo',
-    ],
-  },
-
-  // Benefits Section (One Image & Icon Per Benefit)
-  benefits: {
-    eyebrow: 'HERRAMIENTAS INCLUIDAS',
-    headline: 'Más que información: herramientas para tu día a día',
-    subheadline: 'Cada beneficio cuenta con recursos visuales y prácticos para acompañarte.',
-    cards: [
-      {
-        id: 'b1',
-        title: 'Alimentación Consciente',
-        description: 'Explicaciones sin tecnicismos para comprender verdaderamente tu digestión.',
-        icon: 'utensils',
-        imageSrc: '/images/problem/problem-lifestyle.webp',
-        imageAlt: 'Plato balanceado y verduras frescas orgánicas',
-      },
-      {
-        id: 'b2',
-        title: 'Alimentos Naturales & Reales',
-        description: 'Formatos para planificar tus compras y despensa sin abrumamiento.',
-        icon: 'calendar',
-        imageSrc: '/images/hero/hero-vive-sano.webp',
-        imageAlt: 'Ingredientes frescos de origen natural',
-      },
-      {
-        id: 'b3',
-        title: 'Cambios Sostenibles',
-        description: 'Pautas realizables para integrar en tu rutina sin restricciones extremas.',
-        icon: 'trending-up',
-        imageSrc: '/images/community/community-women.webp',
-        imageAlt: 'Mujer en entorno natural disfrutando de su rutina',
-      },
-      {
-        id: 'b4',
-        title: 'Ebooks & Guías Descargables',
-        description: 'Materiales en PDF para repasar en cualquier momento desde tus dispositivos.',
-        icon: 'book-open',
-        imageSrc: '/images/problem/problem-lifestyle.webp',
-        imageAlt: 'Dispositivo mostrando la Guía Digital Vive Sano',
-      },
-      {
-        id: 'b5',
-        title: 'Test de Inmunidad',
-        description: 'Evaluación de hábitos para identificar tus prioridades iniciales.',
-        icon: 'check-square',
-        imageSrc: '/images/hero/hero-vive-sano.webp',
-        imageAlt: 'Evaluación y test de hábitos saludables',
-      },
-      {
-        id: 'b6',
-        title: 'Acompañamiento en Comunidad',
-        description: 'Espacio de asesoría en vivo y red de apoyo con Gloria Molina.',
-        icon: 'users',
-        imageSrc: '/images/community/community-women.webp',
-        imageAlt: 'Grupo de mujeres compartiendo en la comunidad Vive Sano',
-      },
-    ] as BenefitCard[],
-  },
-
-  // Bonus Section (Ebooks & Mockups)
-  bonuses: {
-    showSection: true,
-    eyebrow: 'RECURSOS COMPLEMENTARIOS',
-    headline: 'Y además recibirás estos recursos exclusivos',
-    subheadline: 'Bonos de referencia incluidos en el programa de Gloria Molina. [CADA BONO ES ACTIVABLE O DESACTIVABLE EN CONTENT.TS]',
+  // Transformation Section (for compatibility)
+  transformation: {
+    eyebrow: 'TRANSFORMACIÓN',
+    headline: 'El cambio que experimentarás',
+    subheadline: 'Antes y Después',
+    title: 'El cambio que experimentarás',
+    subtitle: 'Antes y Después',
     items: [
       {
-        id: 'bono1',
-        title: 'Ebook "Hábitos Conscientes para tu Inmunidad"',
-        description: 'Guía práctica descargable con estrategias cotidianas para fortalecer tu sistema inmunológico a través de la nutrición.',
-        estimatedValue: 'Valorado en $990 MXN',
-        imageSrc: '/images/problem/problem-lifestyle.webp',
-        imageAlt: 'Portada del Ebook Hábitos Conscientes',
-        coverColor: 'emerald',
-        enabled: true,
+        before: 'Confusión e incertidumbre sobre qué comer.',
+        after: 'Claridad y tranquilidad con elecciones informadas.',
       },
-      {
-        id: 'bono2',
-        title: 'Ebook "Mindreset: Hackea tus Patrones Emocionales"',
-        description: 'Manual de enfoque psico-emocional para comprender los disparadores del hambre emocional y la relación con tu cuerpo.',
-        estimatedValue: 'Valorado en $1,200 MXN',
-        imageSrc: '/images/hero/hero-vive-sano.webp',
-        imageAlt: 'Portada del Ebook Mindreset',
-        coverColor: 'amber',
-        enabled: true,
-      },
-      {
-        id: 'bono3',
-        title: 'Test Personalizado del Sistema Inmunológico',
-        description: 'Herramienta de autoevaluación inicial para identificar tus hábitos clave y definir tus prioridades de bienestar.',
-        estimatedValue: 'Valorado en $650 MXN',
-        imageSrc: '/images/problem/problem-lifestyle.webp',
-        imageAlt: 'Test personalizado de inmunidad',
-        coverColor: 'slate',
-        enabled: true,
-      },
-      {
-        id: 'bono4',
-        title: 'Módulo de Fundamentos del Biohacking',
-        description: 'Lecciones en video sobre optimización del descanso, ritmo circadiano y hábitos de energía diaria.',
-        estimatedValue: 'Valorado en $1,500 MXN',
-        imageSrc: '/images/community/community-women.webp',
-        imageAlt: 'Módulo de biohacking y descanso',
-        coverColor: 'emerald',
-        enabled: true,
-      },
-      {
-        id: 'bono5',
-        title: '5 Sesiones de Acompañamiento y Asesoría Grupal en Vivo',
-        description: 'Encuentros virtuales con Gloria Molina para resolver dudas, revisar avances y compartir experiencias en comunidad.',
-        estimatedValue: 'Valorado en $2,500 MXN',
-        imageSrc: '/images/gloria/gloria-molina-portrait.webp',
-        imageAlt: 'Sesiones de asesoría en vivo con Gloria Molina',
-        coverColor: 'amber',
-        enabled: true,
-      },
-    ] as BonusItem[],
+    ] as TransformationItem[],
   },
 
-  // Community Section ("Comunidad Privada Vive Sano")
-  community: {
-    enabled: true,
-    eyebrow: 'COMUNIDAD VIVE SANO',
-    headline: 'Una comunidad de más de 100 mujeres compartiendo el mismo camino',
-    subheadline: 'Al unirte a Vive Sano no estarás sola. Formarás parte de un espacio seguro de motivación y hábitos positivos.',
-    statsText: 'Más de 100 participantes en la comunidad',
-    imageSrc: '/images/community/community-women.webp',
-    imageAlt: 'Mujeres compartiendo hábitos saludables y alimentos reales en la comunidad Vive Sano',
-    highlights: [
-      'Espacio seguro para compartir avances y recetas',
-      'Respuestas directas a dudas frecuentes en el grupo',
-      'Motivación constante y acompañamiento empático de Gloria Molina',
-    ],
-  },
-
-  // Testimonials Section
-  testimonials: {
-    enabled: true,
-    eyebrow: 'TESTIMONIOS & COMUNIDAD',
-    headline: 'Lo que opinan mujeres de nuestra comunidad',
-    subheadline: 'Historias de participantes acompañadas por Gloria Molina en Vive Sano.',
-    items: [
-      {
-        id: 't1',
-        name: 'Mariana S.',
-        role: 'Comunidad Vive Sano',
-        comment: 'El programa con Gloria cambió por completo cómo elijo mis alimentos. Pasé de probar dietas abrumadoras a comprender verdaderamente qué le hace bien a mi cuerpo.',
-        rating: 5,
-        enabled: true,
-        isPlaceholder: false,
-      },
-      {
-        id: 't2',
-        name: 'Claudia R.',
-        role: 'Comunidad Vive Sano',
-        comment: 'La Guía Digital y las sesiones de asesoría con Gloria me dieron la claridad que llevaba años buscando. Los cambios en mi rutina han sido amables y sostenibles.',
-        rating: 5,
-        enabled: true,
-        isPlaceholder: false,
-      },
-      {
-        id: 't3',
-        name: 'Verónica M.',
-        role: 'Comunidad Vive Sano',
-        comment: 'Formar parte de esta comunidad de más de 100 mujeres fue lo mejor. Gloria explica todo con una calidez humana que te motiva día a día.',
-        rating: 5,
-        enabled: true,
-        isPlaceholder: false,
-      },
-    ] as TestimonialItem[],
-  },
-
-  // About Gloria Section
-  aboutGloria: {
-    eyebrow: 'FUNDADORA DE VIVE SANO',
-    headline: 'Detrás de Vive Sano está Gloria Molina',
-    quote: '"Creo que cuidar de nosotros mismos comienza por comprender nuestros hábitos, escuchar las necesidades de nuestro cuerpo y construir cambios sostenibles que respeten tu propio ritmo."',
-    bioParagraphs: [
-      'Gloria Molina es la fundadora y responsable de Vive Sano. Su propósito es brindar educación clara, humana y práctica sobre nutrición consciente, salud digestiva e inmunidad.',
-      'A través de su programa "Construyendo tu Inmunidad", ha acompañado a una comunidad de más de 100 mujeres en la transformación de sus rutinas sin caer en restricciones extremas ni culpabilidad.',
-      'Su propuesta combina la solidez educativa con la calidez del acompañamiento cercano, guiando a cada participante para que construya un estilo de vida pleno y duradero.',
-    ],
-    imageSrc: '/images/gloria/gloria-molina-portrait.webp',
-    imageAlt: 'Fotografía oficial de Gloria Molina, fundadora de Vive Sano',
-    isCopyProposed: false,
-  },
-
-  // Offer & Pricing Section
+  // Pricing / Offer (for compatibility)
   pricing: {
-    enabled: true,
-    eyebrow: 'OFERTA ESPECIAL VIVE SANO',
-    headline: 'Todo lo que necesitas para comenzar tu proceso',
-    subheadline: 'Acceso completo al programa de Gloria Molina, materiales descargables y bonos de acompañamiento.',
-    cardTitle: 'Programa "Construyendo tu Inmunidad" + Guía Digital',
+    enabled: false,
+    eyebrow: 'OFERTA',
+    headline: 'Tu inversión en bienestar',
+    subheadline: 'Acceso al programa Vive Sano',
+    title: 'Tu inversión en bienestar',
+    subtitle: 'Acceso al programa Vive Sano',
+    cardTitle: 'Programa Completo',
     originalPrice: '$5,600 MXN',
     currentPrice: '$3,797 MXN',
-    installments: 'Hasta 3 pagos sin intereses disponibles en Hotmart',
-    currency: 'MXN',
-    offerText: 'Oferta de referencia actualmente vigente',
-    includedList: [
-      'Programa completo "Construyendo tu Inmunidad" en video',
-      'Guía Digital Vive Sano descargable en formato PDF',
-      'Ebook "Hábitos Conscientes para tu Inmunidad"',
-      'Ebook "Mindreset: Hackea tus Patrones Emocionales"',
-      'Test personalizado del sistema inmunológico',
-      'Módulo exclusivo de fundamentos del biohacking',
-      '5 Sesiones grupales de asesoría en vivo con Gloria Molina',
-      'Acceso a la comunidad privada de más de 100 mujeres',
-      'Prueba de satisfacción durante 7 días',
+    installments: '3 pagos de $1,350 MXN',
+    offerText: 'Precio especial de lanzamiento',
+    includedList: ['Acceso completo', 'Guías PDF', 'Soporte'],
+    ctaText: 'QUIERO EL PROGRAMA',
+    guaranteeNotice: '7 días de garantía 100% de devolución',
+    guarantee: '7 días de garantía 100% de devolución',
+  },
+
+  // Gracias Page Config (for compatibility)
+  graciasPage: {
+    title: '¡Registro Exitoso! | Vive Sano',
+    headline: '¡Listo! Tu guía de Vive Sano está en camino',
+    subheadline: 'Hemos enviado el enlace directo a tu correo electrónico. Sigue los pasos a continuación para comenzar.',
+    ctaButtonText: 'DESCARGAR MI GUÍA AHORA',
+    whatsappSupportText: '¿Necesitas ayuda o tienes alguna pregunta?',
+    steps: [
+      {
+        number: '01',
+        title: 'Revisa tu Correo',
+        description: 'Abre tu bandeja de entrada y busca un mensaje enviado por Vive Sano.',
+      },
+      {
+        number: '02',
+        title: 'Verifica Promociones/Spam',
+        description: 'Si no lo encuentras en 2 minutos, revisa tu carpeta de correo no deseado.',
+      },
+      {
+        number: '03',
+        title: 'Descarga tu Guía PDF',
+        description: 'Haz clic en el botón del correo para guardarla en tu dispositivo.',
+      },
+      {
+        number: '04',
+        title: 'Empieza a Explorar',
+        description: 'Aplica los primeros hábitos amables hoy mismo.',
+      },
     ],
-    ctaText: 'QUIERO COMENZAR MI PROCESO AHORA',
-    guaranteeNotice: 'Inscripción procesada con pago 100% seguro a través de Hotmart.',
   },
 
-  // Guarantee Section
-  guarantee: {
-    enabled: true,
-    days: '7 días',
-    headline: 'Prueba durante 7 días sin riesgo',
-    description: 'Ingresa al programa Vive Sano, descarga tu Guía Digital y participa en los materiales. Si sientes que este programa no es para ti durante los primeros 7 días, puedes solicitar el reembolso a través de Hotmart.',
-    badgeText: 'Garantía de 7 días',
+  // Pago Page Config (for compatibility)
+  pagoPage: {
+    title: 'Inscripción al Programa | Vive Sano',
+    headline: 'Completa tu registro a Vive Sano',
+    subheadline: 'Acceso al programa de acompañamiento por Gloria Molina.',
+    productName: 'Programa Vive Sano',
+    originalPriceText: '$5,600 MXN',
+    currentPriceText: '$3,797 MXN',
+    installmentsNote: '3 pagos de $1,350 MXN',
+    ctaButtonText: 'IR AL PAGO SEGURO EN HOTMART',
+    items: ['Programa Completo', 'Guías PDF', 'Acceso a Comunidad'],
+    securityItems: [
+      'Acceso inmediato a la plataforma digital',
+      '7 días de garantía 100% de devolución',
+      'Pago encriptado con certificado SSL',
+    ],
   },
 
-  // FAQ Section
+  // CTA Section (for compatibility)
+  ctaSection: {
+    headline: 'Comienza tu camino con Vive Sano',
+    subheadline: 'Descarga gratis la guía inicial.',
+    title: 'Comienza tu camino con Vive Sano',
+    subtitle: 'Descarga gratis la guía inicial.',
+    buttonText: 'QUIERO MI GUÍA GRATIS',
+    buttonHref: '#formulario',
+  },
+
+  // WhatsApp Integration Config
+  whatsapp: {
+    enabled: false,
+    number: '+5215580462787',
+    message: 'Hola Gloria, me gustaría recibir más información sobre Vive Sano.',
+    ariaLabel: 'Contactar a Vive Sano por WhatsApp',
+  },
+
+  // Section 10: FAQ
   faq: {
     eyebrow: 'PREGUNTAS FRECUENTES',
-    headline: 'Preguntas Frecuentes',
-    subheadline: 'Resolvemos tus principales dudas sobre el programa de Gloria Molina.',
+    headline: 'Preguntas frecuentes',
+    subheadline: 'Resolvemos tus dudas sobre el acceso y contenido de la guía.',
+    title: 'Preguntas frecuentes',
+    subtitle: 'Resolvemos tus dudas sobre el acceso y contenido de la guía.',
     items: [
       {
         id: 'faq1',
-        question: '¿Qué incluye el programa Vive Sano?',
-        answer: 'Incluye el contenido modular en video "Construyendo tu Inmunidad", la Guía Digital en PDF, los ebooks complementarios, el test de inmunidad y las 5 sesiones de acompañamiento en vivo con Gloria Molina.',
+        question: '¿La guía es realmente gratuita?',
+        answer: 'Sí, la guía es 100% gratuita y sin costo alguno.',
       },
       {
         id: 'faq2',
-        question: '¿Cómo funcionan los pagos y la opción de 3 pagos?',
-        answer: 'El pago se procesa de forma 100% segura mediante Hotmart, plataforma líder global. Puedes pagar en una sola exhibición ($3,797 MXN) o elegir la modalidad de 3 pagos con tarjeta de crédito.',
+        question: '¿Cómo recibiré la guía?',
+        answer: 'Al ingresar tu nombre y correo en el formulario, recibirás el enlace de descarga directamente en tu bandeja de entrada en formato PDF.',
       },
       {
         id: 'faq3',
-        question: '¿Cómo recibiré el acceso tras realizar la compra?',
-        answer: 'Tras completar tu pago en Hotmart, recibirás un correo electrónico inmediato con tus datos personales de acceso a la plataforma digital y los enlaces para descargar tus materiales.',
+        question: '¿Puedo verla desde mi celular?',
+        answer: 'Sí, el formato PDF está optimizado para leerse cómodamente en teléfonos móviles, tablets y computadoras.',
       },
       {
         id: 'faq4',
-        question: '¿Quién imparte las sesiones de acompañamiento?',
-        answer: 'Todas las sesiones de asesoría en vivo son guiadas directamente por Gloria Molina, fundadora de Vive Sano.',
+        question: '¿Necesito conocimientos previos?',
+        answer: 'Para nada. El contenido está redactado en un lenguaje claro, sencillo y accesible para cualquier persona.',
       },
       {
         id: 'faq5',
-        question: '¿Cómo funciona la garantía de 7 días?',
-        answer: 'Tienes 7 días a partir de tu compra para explorar el programa. Si decides que no es lo que esperabas, gestionas tu devolución de forma transparente directo en la plataforma de Hotmart.',
+        question: '¿Cuánto tiempo necesito para leerla?',
+        answer: 'Está diseñada para una lectura ágil de aproximadamente 10 a 15 minutos, con ideas que puedes poner en práctica desde el primer día.',
       },
       {
         id: 'faq6',
-        question: '¿Necesito experiencia o conocimientos previos?',
-        answer: 'No. El método de Gloria Molina está diseñado para explicarse de forma sencilla y progresiva, perfecto para cualquier persona que desee organizar sus hábitos.',
-      },
-      {
-        id: 'faq7',
-        question: '¿Puedo inscribirme desde cualquier país?',
-        answer: 'Sí. Al ser un programa digital hospedado en Hotmart, puedes inscribirte desde cualquier parte del mundo utilizando tu moneda local.',
-      },
-      {
-        id: 'faq8',
-        question: '¿Dónde puedo solicitar ayuda si tengo alguna duda?',
-        answer: 'Puedes escribir directamente al WhatsApp de soporte de Gloria Molina (+52 1 55 8046 2787) haciendo clic en el botón flotante.',
+        question: '¿La guía sustituye una consulta médica?',
+        answer: 'No. El contenido es estrictamente educativo y de bienestar general, y no sustituye la valoración, diagnóstico ni tratamiento de un profesional de la salud.',
       },
     ] as FAQItem[],
   },
 
-  // Final CTA Section
-  ctaSection: {
-    headline: 'Tu bienestar merece un espacio en tu agenda.',
-    subheadline: 'Empieza con información, herramientas y un camino que puedas llevar a tu propio ritmo con el acompañamiento de Gloria Molina.',
-    buttonText: 'QUIERO COMENZAR AHORA',
-    buttonHref: '#oferta',
+  // Section 11: Main Lead Form
+  form: {
+    title: 'Obtén tu guía GRATIS',
+    subtitle: 'Ingresa tus datos para recibir tu acceso inmediato en formato PDF.',
+    nameLabel: 'Nombre',
+    namePlaceholder: 'Ej. María García',
+    emailLabel: 'Correo electrónico',
+    emailPlaceholder: 'tu@email.com',
+    checkboxText: 'Al registrarme acepto recibir la guía y comunicaciones relacionadas con Vive Sano.',
+    buttonText: 'RECIBIR MI GUÍA',
+    loadingText: 'ENVIANDO REGISTRO...',
+    successTitle: '¡Listo! Tu guía está en camino',
+    successMessage: 'Revisa tu correo electrónico para acceder al enlace de descarga. Si no lo ves en unos minutos, revisa tu carpeta de promociones o spam.',
+    errorMessage: 'Ocurrió un problema temporal al procesar tu solicitud. Por favor intenta nuevamente en unos momentos.',
+    microcopy: 'Tu información será utilizada únicamente para gestionar tu acceso y comunicaciones relacionadas con Vive Sano, conforme al aviso de privacidad.',
+    privacyLinkText: 'Aviso de privacidad',
   },
 
-  // WhatsApp Configuration Object
-  whatsapp: {
-    enabled: true,
-    number: '+5215580462787',
-    displayNumber: '+52 1 55 8046 2787',
-    message: 'Hola Gloria, tengo una pregunta sobre el programa Vive Sano.',
+  // Section 12: Pre-Footer Call to Action
+  cta: {
+    title: 'Tu primer paso puede comenzar hoy',
+    copy: 'Descarga gratuitamente la guía de Vive Sano y comienza a explorar nuevas formas de cuidar tus hábitos y tu bienestar.',
+    buttonText: 'QUIERO MI GUÍA GRATIS',
+    note: 'Sin costo • Formato digital',
   },
 
-  // Footer Section
+  // Section 13: Final Visual CTA Section
+  finalCta: {
+    title: 'Empieza con un primer paso sencillo.',
+    copy: 'Descubre la guía gratuita de Vive Sano y comienza a explorar nuevas herramientas para tu bienestar.',
+    buttonText: 'QUIERO MI GUÍA GRATIS',
+    bgImageSrc: '/images/hero-lifestyle.jpg',
+  },
+
+  // Section 14: Footer
   footer: {
+    brandName: 'VIVE SANO',
+    tagline: 'Educación y conciencia para tu bienestar cotidiano.',
+    copyright: '© 2026 Vive Sano — Gloria Molina. Todos los derechos reservados.',
+    disclaimer: 'Este sitio no forma parte ni está respaldado por Facebook Inc. ni ninguna entidad médica formal. La información compartida tiene fines exclusivamente educativos.',
     links: [
       { label: 'Inicio', href: '#inicio' },
-      { label: 'Hoja de ruta', href: '#hoja-de-ruta' },
-      { label: 'El programa', href: '#programa' },
-      { label: 'Sobre Gloria Molina', href: '#sobre-gloria' },
-      { label: 'Preguntas frecuentes', href: '#faq' },
-      { label: 'Registro', href: '/registro' },
-      { label: 'Pago', href: '/pago' },
+      { label: 'Guía Gratuita', href: '#formulario' },
+      { label: 'Preguntas Frecuentes', href: '#faq' },
+      { label: 'Aviso de Privacidad', href: '#privacidad' },
+      { label: 'Contacto', href: '#contacto' },
     ],
     legalLinks: [
-      { label: 'Aviso de Privacidad', href: '#' },
-      { label: 'Términos y Condiciones', href: '#' },
+      { label: 'Aviso de Privacidad', href: '#privacidad' },
+      { label: 'Términos de Uso', href: '#terminos' },
     ],
-  },
-
-  // Subpages Content
-  registroPage: {
-    title: 'Registro al Programa — Vive Sano | Gloria Molina',
-    headline: 'Estás a un paso de comenzar tu experiencia en Vive Sano',
-    subheadline: 'Ingresa tu nombre y correo electrónico para recibir información detallada del programa "Construyendo tu Inmunidad" y la Guía Digital.',
-    formNameLabel: 'Nombre completo',
-    formNamePlaceholder: 'Ej. María González',
-    formEmailLabel: 'Correo electrónico principal',
-    formEmailPlaceholder: 'ejemplo@correo.com',
-    ctaButtonText: 'QUIERO REGISTRARME',
-    privacyNotice: 'Tus datos están protegidos. Respetamos tu privacidad y nunca compartiremos tu información.',
-  },
-
-  pagoPage: {
-    title: 'Inscripción Segura — Vive Sano | Gloria Molina',
-    headline: 'Estás a un paso de acceder a Vive Sano',
-    subheadline: 'Serás redirigido a la pasarela oficial de Hotmart para completar tu inscripción.',
-    productName: 'Programa "Construyendo tu Inmunidad" + Guía Digital',
-    originalPriceText: '$5,600 MXN',
-    currentPriceText: '$3,797 MXN',
-    installmentsNote: 'Hasta 3 pagos sin intereses en Hotmart',
-    ctaButtonText: 'QUIERO ACCEDER AL PROGRAMA EN HOTMART',
-    securityItems: [
-      'Pago 100% encriptado y seguro a través de Hotmart',
-      'Acceso inmediato enviado a tu correo electrónico',
-      'Prueba durante 7 días respaldada por Hotmart',
-      'Soporte directo vía WhatsApp con Gloria Molina',
+    socialLinks: [
+      { platform: 'Facebook', url: 'https://www.facebook.com/ViveSanom/' },
+      { platform: 'Instagram', url: 'https://www.instagram.com/vivesanom/' },
     ],
-  },
-
-  graciasPage: {
-    title: '¡Bienvenida a Vive Sano! — Gloria Molina',
-    headline: '¡Bienvenida a Vive Sano!',
-    subheadline: 'Tu solicitud o inscripción ha sido procesada correctamente. Sigue estos pasos para ingresar:',
-    steps: [
-      {
-        number: '01',
-        title: 'Revisa tu correo electrónico',
-        description: 'Te hemos enviado un correo de confirmación con la información de tu acceso.',
-      },
-      {
-        number: '02',
-        title: 'Busca los datos de acceso a Hotmart',
-        description: 'Revisa tu bandeja de entrada o carpeta de spam/promociones.',
-      },
-      {
-        number: '03',
-        title: 'Ingresa a tu plataforma y Guía Digital',
-        description: 'Haz clic en el enlace para entrar y descargar tus materiales.',
-      },
-      {
-        number: '04',
-        title: 'Comienza tu experiencia con Gloria Molina',
-        description: 'Explora el primer módulo e intégrate a la comunidad.',
-      },
-    ],
-    ctaButtonText: 'IR A MI ACCESO EN HOTMART',
-    whatsappSupportText: '¿Tienes alguna duda con tu acceso? Escribe directamente a Gloria Molina por WhatsApp.',
   },
 };
+
+export default contentData;

@@ -1,72 +1,49 @@
-# VIVE SANO — Funnel Digital (Fase 1)
+# VIVE SANO — Landing Page de Captación (Guía Gratuita)
 
-Landing Page premium desarrollada con Next.js (App Router), TypeScript y Tailwind CSS para la nueva estrategia digital de **Vive Sano** enfocada en Salud Digestiva y Bienestar.
+Landing Page premium de captación de leads desarrollada con Next.js (App Router), TypeScript y Tailwind CSS para la marca **Vive Sano** creada por **Gloria Molina**.
 
 ---
 
 ## 📌 Descripción del Proyecto
 
-Este proyecto constituye la Fase 1 del nuevo funnel digital de **Vive Sano**. Implementa una arquitectura moderna, limpia, escalable y accesible, orientada a ofrecer una experiencia editorial de alto nivel para marcas de bienestar y educación en salud.
+Este proyecto constituye la primera etapa del embudo de ventas digital de **Vive Sano**. Su único objetivo es captar prospectos interesados en mejorar sus hábitos y su bienestar digestivo a cambio de una **Guía Gratuita en PDF**.
 
-### Objetivos de la Fase 1:
-- Base tecnológica en **Next.js 15+ (App Router)** y **TypeScript**.
-- Sistema visual **Premium, Natural, Elegante y Editorial** en **Tailwind CSS**.
-- Componentes reutilizables primarios: `Button`, `Container`, `Section`, `Header` y `Hero`.
-- Separación limpia de copy editable mediante `data/content.ts`.
-- Configuración preparada para futuras integraciones en `lib/config.ts` y `.env.example`.
-- Preparado para deployment directo en **Vercel** y control de versiones en **GitHub**.
+### Flujo del Embudo:
+$$\text{Visita} \longrightarrow \text{Identificación} \longrightarrow \text{Interés} \longrightarrow \text{Valor} \longrightarrow \text{Confianza} \longrightarrow \text{Guía Gratuita} \longrightarrow \text{Registro}$$
 
 ---
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Stack Tecnológico
 
 - **Framework**: [Next.js](https://nextjs.org/) (App Router)
 - **Lenguaje**: [TypeScript](https://www.typescriptlang.org/)
 - **Estilos**: [Tailwind CSS v4](https://tailwindcss.com/)
-- **Fuentes**: [Google Fonts](https://fonts.google.com/) (`Playfair Display` + `Plus Jakarta Sans` mediante `next/font`)
-- **Iconografía**: SVG Vectoriales optimizados e integrados en componentes
+- **Fuentes**: `Playfair Display` (serif editorial) + `Plus Jakarta Sans` (sans-serif moderna) mediante `next/font`
+- **Iconografía**: SVG Vectoriales optimizados integrados
 - **Calidad de Código**: ESLint 9+
 
 ---
 
-## 📂 Estructura del Proyecto
+## 📂 Estructura de Rutas y Arquitectura
 
-```
-vive-sano/
-├── app/
-│   ├── globals.css         # Sistema de variables de diseño y utilidades Tailwind
-│   ├── layout.tsx          # Root Layout con fuentes y SEO base
-│   └── page.tsx            # Página principal integrando Header y Hero
-├── components/
-│   ├── Button.tsx          # Componente reutilizable de botones (primary, secondary, outline)
-│   ├── Container.tsx       # Contenedor responsivo con max-width y padding unificado
-│   ├── Header.tsx          # Header sticky con menú móvil y navegación accesible
-│   ├── Hero.tsx            # Hero con layout 50/50, placeholders de copy y badges de confianza
-│   └── Section.tsx         # Sección semántica con variantes de fondo
-├── data/
-│   └── content.ts          # Almacén de contenido y textos editables
-├── lib/
-│   └── config.ts           # Configuración de variables de entorno futuras
-├── public/
-│   └── images/             # Imágenes estáticas y placeholder (hero-placeholder.webp)
-├── .env.example            # Plantilla de variables de entorno
-├── next.config.ts          # Configuración de Next.js
-├── package.json            # Dependencias y scripts del proyecto
-├── tsconfig.json           # Configuración de TypeScript
-└── README.md               # Documentación del proyecto
-```
+- `/` — Landing Page Principal de Captación de Leads (Guía Gratuita).
+- `/registro` — Página directa del formulario de registro.
+- `/gracias` — Página de confirmación y entrega inmediata de la Guía PDF.
+- `/programa` — *(Preparado para el embudo futuro)* Página de venta del programa completo de Gloria Molina.
+- `/pago` — *(Preparado para el embudo futuro)* Checkout en Hotmart.
+- `/gracias-compra` — *(Preparado para el embudo futuro)* Confirmación de compra del programa.
 
 ---
 
 ## ⚙️ Requisitos Previos e Instalación
 
 ### Requisitos:
-- Node.js v18.17+ o superior
+- Node.js v18.17+
 - npm v9+
 
-### Pasos de Instalación:
+### Instalación:
 
-1. **Clonar o ingresar al directorio del proyecto**:
+1. **Clonar e ingresar al directorio**:
    ```bash
    cd vive-sano
    ```
@@ -76,26 +53,28 @@ vive-sano/
    npm install
    ```
 
-3. **Configurar variables de entorno** (opcional para Fase 1):
+3. **Configurar variables de entorno**:
    Copiar `.env.example` a `.env.local`:
    ```bash
    cp .env.example .env.local
    ```
 
-4. **Ejecutar el servidor de desarrollo**:
+4. **Ejecutar en desarrollo**:
    ```bash
    npm run dev
    ```
-   Abrir [http://localhost:3000](http://localhost:3000) en el navegador.
+   Abre [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## 📋 Variables de Entorno (.env.example)
-
-Las siguientes variables están preparadas para las fases posteriores (Hotmart, WhatsApp, Meta Pixel, Google Analytics):
+## 📋 Variables de Entorno (`.env.example`)
 
 ```env
+NEXT_PUBLIC_SITE_URL=https://www.vive-sano.mx
+NEXT_PUBLIC_SYSTEME_FORM_ACTION=
+NEXT_PUBLIC_LEAD_MAGNET_PDF_URL=
 NEXT_PUBLIC_HOTMART_CHECKOUT_URL=
+NEXT_PUBLIC_PRODUCT_ACCESS_URL=
 NEXT_PUBLIC_WHATSAPP_NUMBER=
 NEXT_PUBLIC_META_PIXEL_ID=
 NEXT_PUBLIC_GA_MEASUREMENT_ID=
@@ -110,36 +89,26 @@ NEXT_PUBLIC_GA_MEASUREMENT_ID=
 | `npm run dev` | Inicia el servidor de desarrollo local en `http://localhost:3000` |
 | `npm run build` | Compila la aplicación optimizada para producción |
 | `npm run start` | Inicia el servidor de producción compilado |
-| `npm run lint` | Ejecuta ESLint para verificar calidad y buenas prácticas |
+| `npm run lint` | Ejecuta ESLint para verificar calidad de código |
 
 ---
 
-## 🎨 Sistema Visual y Paleta de Colores
+## 🎨 Paleta de Colores de Marca
 
-| Token | Propósito | Color Hex |
+| Token | Tono Hex | Aplicación |
 | :--- | :--- | :--- |
-| `--color-primary` | Verde Natural | `#2D5A43` |
-| `--color-primary-dark` | Verde Oscuro Editorial | `#1B3B2B` |
-| `--color-primary-light` | Verde Suave Organico | `#E8F2EB` |
-| `--color-background` | Crema Cálido | `#FAF7F2` |
-| `--color-background-soft` | Crema Beige Suave | `#F4EFE6` |
-| `--color-text` | Gris Oscuro Orgánico | `#1D2722` |
-| `--color-text-muted` | Texto Secundario | `#596760` |
-| `--color-border` | Bordes Sutiles | `#E0E7E2` |
+| **Verde Profundo** | `#123C32` | Titulares principales, hero bar, CTA final y elementos de prestigio |
+| **Verde Bosque** | `#1F6B50` | Botones de conversión principales, badges y acentos primarios |
+| **Verde Natural** | `#5E9F78` | Detalles secundarios y numeración |
+| **Verde Salvia** | `#B8D8C2` | Fondos suaves, bordes y popups |
+| **Verde Muy Claro** | `#EEF7F0` | Fondos alternativos de sección |
+| **Crema Orgánico** | `#FAF8F1` | Fondo general de la aplicación |
+| **Blanco Nieve** | `#FFFFFF` | Contraste en tarjetas elevadas |
 
 ---
 
-## 🗺️ Roadmap de Fases Siguientes
+## 👤 Créditos y Derechos
 
-- **FASE 2**:
-  - `ProblemSection` (Abordaje del dolor / problema)
-  - `BenefitsSection` (Beneficios clave del programa)
-  - `MethodSection` (Explicación del método Vive Sano)
-  - `ProgramSection` (Estructura y entregables del programa)
-  - `GuideSection` (Perfil y autoridad del instructor / Mary Carmen)
-- **FASE 3**:
-  - `Testimonials` (Prueba social)
-  - `FAQ` (Preguntas frecuentes desplegables)
-  - `CTA Section` (Llamado final a la acción)
-  - `Footer` & `WhatsAppButton`
-- **FASE 4**: Integraciones de Checkout, Analytics, Pixel y Deployment Final en Vercel.
+- **Propietaria & Fundadora**: Gloria Molina
+- **Marca**: Vive Sano
+- **Derechos**: © 2026 Vive Sano — Todos los derechos reservados.
