@@ -16,14 +16,15 @@ export const Footer: React.FC = () => {
             <Link
               href="#inicio"
               aria-label="Vive Sano - Ir al inicio"
-              className="inline-flex items-center gap-2"
+              className="inline-block"
             >
-              <span className="w-8 h-8 rounded-full bg-emerald-700 text-white flex items-center justify-center font-bold text-xs">
-                VS
-              </span>
-              <span className="font-serif text-2xl font-bold tracking-tight text-white">
-                {name}
-              </span>
+              <div className="relative w-44 h-14 bg-white/90 p-2 rounded-xl">
+                <img
+                  src={contentData.images.logo || '/images/logo.png'}
+                  alt={name}
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </Link>
             <p className="text-xs sm:text-sm text-emerald-200/80 max-w-md leading-relaxed">
               Una experiencia educativa de Vive Sano para aprender, comprender y construir hábitos relacionados con tu bienestar digestivo.

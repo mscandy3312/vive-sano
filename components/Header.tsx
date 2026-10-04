@@ -63,21 +63,15 @@ export const Header: React.FC = () => {
           <Link
             href="#inicio"
             aria-label="Vive Sano - Ir al inicio"
-            className="flex items-center gap-2 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] rounded-lg p-1"
+            className="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] rounded-lg p-1"
           >
-            <span className="w-8 h-8 rounded-full bg-[var(--color-primary-dark)] text-white flex items-center justify-center transition-transform duration-300 group-hover:scale-105 shadow-sm">
-              <svg
-                className="w-4 h-4 text-emerald-200"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path d="M17.7 3.3c-2.3 0-4.6 1.4-5.7 3.5-1.1-2.1-3.4-3.5-5.7-3.5C2.8 3.3 0 6.2 0 9.7c0 7.2 12 11 12 11s12-3.8 12-11c0-3.5-2.8-6.4-6.3-6.4zm-5.7 15.6S4 14.8 4 9.7c0-1.8 1.4-3.2 3.1-3.2 1.9 0 3.6 1.6 4.1 3.5h1.6c.5-1.9 2.2-3.5 4.1-3.5 1.7 0 3.1 1.4 3.1 3.2 0 5.1-8.1 9.2-8.1 9.2z" />
-              </svg>
-            </span>
-            <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[var(--color-primary-dark)]">
-              {logoText}
-            </span>
+            <div className="relative w-36 sm:w-44 h-10 sm:h-12">
+              <img
+                src={contentData.images.logo || '/images/logo.png'}
+                alt={contentData.images.logoAlt || 'Vive Sano'}
+                className="w-full h-full object-contain object-left group-hover:scale-102 transition-transform"
+              />
+            </div>
           </Link>
 
           {/* DESKTOP NAVIGATION */}

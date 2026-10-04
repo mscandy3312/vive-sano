@@ -213,17 +213,16 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-[#D5E8DC]/80 shadow-xs transition-all">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
           {/* LOGO */}
-          <a href="#inicio" className="flex items-center gap-2.5 group focus:outline-none">
-            <span className="w-9 h-9 rounded-full bg-[#123C32] text-white flex items-center justify-center font-bold text-xs shadow-md group-hover:bg-[#1F6B50] transition-colors">
-              VS
-            </span>
-            <div className="flex flex-col">
-              <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#123C32] leading-none">
-                VIVE SANO
-              </span>
-              <span className="text-[10px] font-semibold text-[#5E9F78] tracking-widest uppercase mt-0.5">
-                Por Gloria Molina
-              </span>
+          <a href="#inicio" className="flex items-center group focus:outline-none py-1">
+            <div className="relative w-36 sm:w-44 h-10 sm:h-12">
+              <Image
+                src={contentData.images.logo || '/images/logo.png'}
+                alt={contentData.images.logoAlt || 'Vive Sano — Gloria Molina'}
+                fill
+                priority
+                sizes="(max-width: 640px) 150px, 180px"
+                className="object-contain object-left group-hover:scale-102 transition-transform"
+              />
             </div>
           </a>
 
@@ -1007,12 +1006,15 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       <footer className="py-12 bg-white border-t border-[#D5E8DC] text-center px-4">
         <div className="max-w-5xl mx-auto space-y-8">
           
-          <div className="space-y-2">
-            <a href="#inicio" className="inline-flex items-center gap-2 font-serif text-2xl font-bold text-[#123C32]">
-              <span className="w-7 h-7 rounded-full bg-[#123C32] text-white flex items-center justify-center font-bold text-xs">
-                VS
-              </span>
-              <span>{footer.brandName}</span>
+          <div className="space-y-2 flex flex-col items-center">
+            <a href="#inicio" className="inline-block relative w-44 sm:w-52 h-14 sm:h-16 group focus:outline-none">
+              <Image
+                src={contentData.images.logo || '/images/logo.png'}
+                alt={contentData.images.logoAlt || 'Vive Sano — Gloria Molina'}
+                fill
+                sizes="200px"
+                className="object-contain object-center group-hover:scale-102 transition-transform"
+              />
             </a>
             <p className="text-xs text-[#4A6B60] max-w-md mx-auto">
               {footer.tagline}

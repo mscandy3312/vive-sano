@@ -137,6 +137,8 @@ export const contentData = {
 
   // Centralized Images
   images: {
+    logo: '/images/logo.png',
+    logoAlt: 'Logo oficial de Vive Sano por Gloria Molina',
     hero: '/images/hero-lifestyle.jpg',
     heroAlt: 'Fotografía lifestyle de bienestar y alimentación saludable para Vive Sano',
     problem: '/images/problem/problem-lifestyle.jpg',
