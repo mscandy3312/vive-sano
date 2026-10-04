@@ -17,7 +17,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
   const [formData, setFormData] = useState({ name: '', email: '', acceptTerms: true });
   const [errors, setErrors] = useState<{ name?: string; email?: string; acceptTerms?: string }>({});
   const [formState, setFormState] = useState<'IDLE' | 'LOADING' | 'SUCCESS' | 'ERROR'>('IDLE');
-  
+
   // Modals & Menu State
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -196,11 +196,11 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
               >
                 {social.platform === 'Facebook' ? (
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                   </svg>
                 ) : (
                   <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                   </svg>
                 )}
               </a>
@@ -292,10 +292,10 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 3. HERO PRINCIPAL: COPY IMPACTANTE + LEAD MAGNET FORM DIRECTO */}
       <section id="inicio" ref={heroRef} className="relative py-10 sm:py-14 lg:py-20 px-4 sm:px-6 max-w-6xl mx-auto w-full flex flex-col justify-center">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           {/* COLUMNA IZQUIERDA: VALUE PROP + HERO VISUAL */}
           <div className="lg:col-span-6 space-y-6 text-left">
-            
+
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EEF7F0] border border-[#B8D8C2] text-[#1F6B50] text-xs font-bold uppercase tracking-wider shadow-2xs">
                 <span>{hero.eyebrow}</span>
@@ -358,7 +358,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
           {/* COLUMNA DERECHA: FORMULARIO DE CAPTACIÓN HIGH-CONVERSION */}
           <div className="lg:col-span-6" ref={formRef} id="formulario">
             <div className="w-full bg-white rounded-3xl border border-[#D5E8DC] shadow-2xl p-6 sm:p-8 relative overflow-hidden transition-all duration-300">
-              
+
               <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#123C32] via-[#1F6B50] to-[#5E9F78]"></div>
 
               {formState === 'SUCCESS' ? (
@@ -432,9 +432,8 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
                         }}
                         placeholder={form.namePlaceholder}
                         aria-required="true"
-                        className={`w-full px-4 py-3.5 rounded-xl border bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all ${
-                          errors.name ? 'border-red-500 focus:ring-red-500 bg-red-50/20' : 'border-[#D5E8DC]'
-                        }`}
+                        className={`w-full px-4 py-3.5 rounded-xl border bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all ${errors.name ? 'border-red-500 focus:ring-red-500 bg-red-50/20' : 'border-[#D5E8DC]'
+                          }`}
                       />
                       {errors.name && (
                         <p className="text-xs text-red-600 font-medium flex items-center gap-1 mt-1" role="alert">
@@ -459,9 +458,8 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
                         }}
                         placeholder={form.emailPlaceholder}
                         aria-required="true"
-                        className={`w-full px-4 py-3.5 rounded-xl border bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all ${
-                          errors.email ? 'border-red-500 focus:ring-red-500 bg-red-50/20' : 'border-[#D5E8DC]'
-                        }`}
+                        className={`w-full px-4 py-3.5 rounded-xl border bg-[#FAF8F1] text-sm text-[#123C32] placeholder-[#8A9890] focus:outline-none focus:ring-2 focus:ring-[#1F6B50] focus:bg-white transition-all ${errors.email ? 'border-red-500 focus:ring-red-500 bg-red-50/20' : 'border-[#D5E8DC]'
+                          }`}
                       />
                       {errors.email && (
                         <p className="text-xs text-red-600 font-medium flex items-center gap-1 mt-1" role="alert">
@@ -577,7 +575,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 5. SECCIÓN 1: "¿TE HA PASADO?" (PROBLEMA / EMPATÍA) */}
       <section id="problema" className="py-14 sm:py-20 bg-white px-4 sm:px-6">
         <div className="max-w-5xl mx-auto space-y-12 text-center">
-          
+
           <div className="space-y-3 max-w-2xl mx-auto">
             <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-[#EEF7F0] px-3.5 py-1 rounded-full border border-[#B8D8C2]">
               {problem.eyebrow}
@@ -615,7 +613,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 6. SECCIÓN 2: IDENTIFICACIÓN / PROPUESTA DE VALOR ("UN CAMINO REALISTA") */}
       <section className="py-14 sm:py-20 bg-[#FAF8F1] border-y border-[#D5E8DC] px-4 sm:px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           <div className="lg:col-span-6 relative aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border border-[#D5E8DC]">
             <Image
               src={identification.imageSrc}
@@ -660,7 +658,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 7. SECCIÓN 3: BENEFICIOS ("¿QUÉ ENCONTRARÁS EN ESTA GUÍA?") */}
       <section id="beneficios" className="py-14 sm:py-20 bg-[#EEF7F0] border-b border-[#D5E8DC] px-4 sm:px-6">
         <div className="max-w-5xl mx-auto space-y-12 text-center">
-          
+
           <div className="space-y-3 max-w-xl mx-auto">
             <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-white px-3.5 py-1 rounded-full border border-[#B8D8C2] shadow-2xs">
               {benefits.eyebrow}
@@ -704,7 +702,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 8. SECCIÓN 4: DENTRO DE LA GUÍA (MOCKUP PROTAGONISTA) */}
       <section id="guia" className="py-14 sm:py-20 px-4 sm:px-6 max-w-5xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           {/* MOCKUP PROTAGONISTA */}
           <div className="lg:col-span-6 relative">
             <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-[#D5E8DC] bg-white group">
@@ -757,7 +755,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 9. SECCIÓN 5: GALERÍA DE PREVISUALIZACIÓN CON LIGHTBOX INTERACTIVO */}
       <section id="preview" className="py-14 sm:py-20 bg-[#EEF7F0] border-y border-[#D5E8DC] px-4 sm:px-6">
         <div className="max-w-5xl mx-auto space-y-10 text-center">
-          
+
           <div className="space-y-3 max-w-xl mx-auto">
             <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-white px-3.5 py-1 rounded-full border border-[#B8D8C2]">
               PREVISUALIZACIÓN EDITORIAL
@@ -808,7 +806,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 10. SECCIÓN 6: PARA QUIÉN ES ("ESTA GUÍA ES PARA TI SI...") */}
       <section className="py-14 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto w-full text-center">
         <div className="space-y-8">
-          
+
           <div className="space-y-3 max-w-xl mx-auto">
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#123C32]">
               {audience.title}
@@ -835,7 +833,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 11. SECCIÓN 7: SOBRE GLORIA MOLINA / CONOCE VIVE SANO */}
       <section id="conoce-vive-sano" className="py-14 sm:py-20 bg-white border-y border-[#D5E8DC] px-4 sm:px-6">
         <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           {/* FOTOGRAFÍA / PERFIL DE GLORIA */}
           <div className="lg:col-span-5 relative aspect-[4/5] rounded-3xl overflow-hidden border border-[#D5E8DC] bg-[#EEF7F0] shadow-lg">
             <Image
@@ -862,7 +860,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
             <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-[#EEF7F0] px-3.5 py-1 rounded-full border border-[#B8D8C2]">
               {aboutGloria.eyebrow}
             </span>
-            
+
             <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#123C32]">
               {aboutGloria.title}
             </h2>
@@ -904,7 +902,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 13. SECCIÓN 9: PREGUNTAS FRECUENTES (FAQ ACORDEÓN) */}
       <section id="faq" className="py-14 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto w-full">
         <div className="space-y-10 text-center">
-          
+
           <div className="space-y-3 max-w-xl mx-auto">
             <span className="text-xs font-bold text-[#1F6B50] uppercase tracking-widest bg-[#EEF7F0] px-3.5 py-1 rounded-full border border-[#B8D8C2]">
               {faq.eyebrow}
@@ -937,9 +935,8 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
                       {item.question}
                     </h3>
                     <span
-                      className={`w-7 h-7 rounded-full bg-[#EEF7F0] text-[#1F6B50] flex items-center justify-center font-bold text-sm shrink-0 transition-transform duration-300 ${
-                        isOpen ? 'rotate-180 bg-[#123C32] text-white' : ''
-                      }`}
+                      className={`w-7 h-7 rounded-full bg-[#EEF7F0] text-[#1F6B50] flex items-center justify-center font-bold text-sm shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180 bg-[#123C32] text-white' : ''
+                        }`}
                     >
                       ↓
                     </span>
@@ -1005,14 +1002,14 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 15. SECCIÓN 11: FOOTER ELEGANTE */}
       <footer className="py-12 bg-white border-t border-[#D5E8DC] text-center px-4">
         <div className="max-w-5xl mx-auto space-y-8">
-          
+
           <div className="space-y-2 flex flex-col items-center">
-            <a href="#inicio" className="inline-block relative w-44 sm:w-52 h-14 sm:h-16 group focus:outline-none">
+            <a href="#inicio" className="inline-block relative w-[280px] sm:w-[400px] h-20 sm:h-28 group focus:outline-none">
               <Image
                 src={contentData.images.logo || '/images/logo.png'}
                 alt={contentData.images.logoAlt || 'Vive Sano — Gloria Molina'}
                 fill
-                sizes="200px"
+                sizes="400px"
                 className="object-contain object-center group-hover:scale-102 transition-transform"
               />
             </a>
