@@ -59,7 +59,7 @@ export const AboutGloria: React.FC = () => {
             <div className="pt-4 flex flex-wrap items-center gap-4 text-xs font-semibold text-[var(--primary-dark)] uppercase tracking-wider">
               <span className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[var(--primary)]" />
-                Nutrición Consciente & Inmunidad
+                Nutrición Consciente & Bienestar Digestivo
               </span>
               <span className="flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[var(--secondary)]" />

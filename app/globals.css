@@ -1,16 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  /* Direct-Response Digestive Health Palette */
-  --green-deep: #123C32;     /* Titulares, fondos oscuros, elementos premium */
-  --green-forest: #1F6B50;   /* Botones, elementos destacados, iconos */
-  --green-natural: #5E9F78;  /* Detalles, elementos secundarios */
-  --green-sage: #B8D8C2;     /* Fondos suaves, tarjetas */
-  --green-light: #EEF7F0;    /* Secciones, fondos alternativos */
-  --cream: #FAF8F1;          /* Sensación cálida y orgánica */
-  --white: #FFFFFF;          /* Contraste y limpieza */
+  /* Luxury Health & Wellness Natural Green Palette */
+  --green-deep: #123C32;     /* Dark forest green for headlines, hero dark backgrounds, elite branding */
+  --green-forest: #1F6B50;   /* Primary green for buttons, accents, icons, hover states */
+  --green-natural: #5E9F78;  /* Sage leaf green for highlights and secondary details */
+  --green-sage: #8BA896;     /* Muted sage green for borders, subtle badges, cards */
+  --green-light: #EEF7F0;    /* Soft botanical mist for section backgrounds and soft pills */
+  --cream: #FAF8F1;          /* Organic warm cream background for maximum warmth and comfort */
+  --white: #FFFFFF;          /* Pure white for high contrast cards and containers */
+  --sand: #F4F0EA;           /* Light sand tint for warm subtle cards */
 
-  /* Standard Tokens mapped to green palette */
+  /* Semantic Design Tokens */
   --primary: #1F6B50;
   --primary-dark: #123C32;
   --primary-light: #EEF7F0;
@@ -31,6 +32,7 @@
   --color-green-light: var(--green-light);
   --color-cream: var(--cream);
   --color-white: var(--white);
+  --color-sand: var(--sand);
   --color-primary: var(--primary);
   --color-primary-dark: var(--primary-dark);
   --color-primary-light: var(--primary-light);
@@ -58,7 +60,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Micro-Animations & Interactivity */
+/* Glassmorphism & Surface Utilities */
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(213, 232, 220, 0.8);
+}
+
+.glass-dark {
+  background: rgba(18, 60, 50, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #123C32 0%, #1F6B50 50%, #3B7A60 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom Micro-Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -83,15 +106,24 @@ body {
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(31, 107, 80, 0.2);
+    box-shadow: 0 0 15px rgba(31, 107, 80, 0.18);
   }
   50% {
-    box-shadow: 0 0 25px rgba(31, 107, 80, 0.45);
+    box-shadow: 0 0 28px rgba(31, 107, 80, 0.38);
+  }
+}
+
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
   }
 }
 
 .animate-fadeIn {
-  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-slideUp {
@@ -100,6 +132,25 @@ body {
 
 .animate-pulseGlow {
   animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.animate-floatSlow {
+  animation: floatSlow 4s infinite ease-in-out;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F1;
+}
+::-webkit-scrollbar-thumb {
+  background: #B8D8C2;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1F6B50;
 }
 
 /* Reduced motion accessibility */
@@ -114,4 +165,5 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
 

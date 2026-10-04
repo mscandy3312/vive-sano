@@ -15,10 +15,11 @@ const jakarta = Plus_Jakarta_Sans({
   display: 'swap',
 });
 
-const siteTitle = `${contentData.brand.name} | ${contentData.brand.tagline}`;
-const siteDescription = contentData.hero.subheadline;
+const siteTitle = 'Vive Sano | Guía Gratuita de Bienestar Digestivo';
+const siteDescription = 'Descubre una guía práctica y gratuita para comprender mejor tus hábitos, alimentación y bienestar digestivo.';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://vive-sano.vercel.app'),
   title: siteTitle,
   description: siteDescription,
   openGraph: {
@@ -27,6 +28,20 @@ export const metadata: Metadata = {
     siteName: contentData.brand.name,
     locale: 'es_MX',
     type: 'website',
+    images: [
+      {
+        url: '/images/lead-magnet-mockup.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Guía Gratuita de Bienestar Digestivo — Vive Sano',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteTitle,
+    description: siteDescription,
+    images: ['/images/lead-magnet-mockup.jpg'],
   },
   robots: {
     index: true,
