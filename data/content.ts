@@ -3,9 +3,11 @@
  * 
  * BRAND: Vive Sano
  * FOUNDER & RESPONSIBLE: Gloria Molina
- * 
- * Single Source of Truth for editable copy, visual assets, FAQs,
- * lead magnet features, and section flags across all components.
+ * PRODUCT: Método SANA (Curso práctico de bienestar digestivo)
+ * OFFICIAL PALETTE:
+ * - Verde (#4DA92C): Marca, CTA principal ("QUIERO EMPEZAR"), Salud, Bienestar, Estados positivos
+ * - Naranja (#E76100): Atención, énfasis, señales, energía
+ * - Azul (#0078BF): Educación, información, materiales, herramientas, análisis
  */
 
 export interface NavItem {
@@ -23,6 +25,7 @@ export interface ProblemItem {
   title: string;
   description: string;
   icon: string;
+  colorAccent?: string;
 }
 
 export interface ProblemCard {
@@ -30,6 +33,8 @@ export interface ProblemCard {
   title: string;
   description: string;
   icon: string;
+  colorAccent: string;
+  badgeLabel?: string;
 }
 
 export interface TransformationItem {
@@ -92,12 +97,16 @@ export interface BonusItem {
   coverColor?: 'emerald' | 'amber' | 'slate';
 }
 
-export interface GuidePreviewItem {
+export interface MaterialSupportItem {
   id: string;
   title: string;
   description: string;
+  primaryColor: string;
+  accentColor?: string;
+  badgeLabel: string;
   imageSrc: string;
   imageAlt: string;
+  isSemaforoMulti?: boolean;
 }
 
 export interface AudienceItem {
@@ -129,10 +138,22 @@ export const contentData = {
     tagline: 'Bienestar Digestivo y Nutrición Consciente',
     ownerName: 'Gloria Molina',
     ownerRole: 'Fundadora de Vive Sano',
-    programReferenceTitle: 'Vive Sano',
+    productName: 'Método SANA',
+    priceText: '497,00 MXN',
+    ctaText: 'QUIERO EMPEZAR',
     communityStats: 'Comunidad de bienestar',
     copyright: '© 2026 Vive Sano — Gloria Molina. Todos los derechos reservados.',
     disclaimer: 'Este material tiene fines educativos y de bienestar general. No sustituye la valoración, diagnóstico ni tratamiento de un profesional de la salud.',
+  },
+
+  // Official Palette Colors
+  colors: {
+    green: '#4DA92C',
+    orange: '#E76100',
+    blue: '#0078BF',
+    deepForest: '#123C32',
+    cream: '#FAF8F1',
+    softBg: '#F0F9ED',
   },
 
   // Centralized Images
@@ -140,17 +161,9 @@ export const contentData = {
     logo: '/images/logo.png',
     logoAlt: 'Logo oficial de Vive Sano por Gloria Molina',
     hero: '/images/hero-lifestyle.jpg',
-    heroAlt: 'Fotografía lifestyle de bienestar y alimentación saludable para Vive Sano',
-    problem: '/images/problem/problem-lifestyle.jpg',
-    problemAlt: 'Fotografía de estilo de vida consciente y reflexión',
-    identification: '/images/problem/problem-lifestyle.jpg',
-    identificationAlt: 'Momento de calma con té orgánico y ambiente natural',
-    guide: '/images/lead-magnet-mockup.jpg',
-    guideAlt: 'Mockup 3D editorial de la Guía Digital Vive Sano',
+    heroAlt: 'Fotografía de bienestar y nutrición consciente Vive Sano',
     gloria: '/images/gloria/gloria-molina.jpg',
-    gloriaAlt: 'Vive Sano — Hábitos de bienestar digestivo',
-    community: '/images/hero-lifestyle.jpg',
-    communityAlt: 'Comunidad Vive Sano',
+    gloriaAlt: 'Gloria Molina — Fundadora de Vive Sano',
   },
 
   // Navigation Links
@@ -159,305 +172,423 @@ export const contentData = {
     items: [
       { label: 'Inicio', href: '#inicio' },
       { label: '¿Te ha pasado?', href: '#problema' },
-      { label: 'Beneficios', href: '#beneficios' },
-      { label: 'Dentro de la guía', href: '#guia' },
-      { label: 'Conoce Vive Sano', href: '#conoce-vive-sano' },
-      { label: 'Preguntas frecuentes', href: '#faq' },
+      { label: 'Método SANA', href: '#metodo-sana' },
+      { label: 'Material de Apoyo', href: '#materiales' },
+      { label: 'Oferta', href: '#oferta' },
+      { label: 'Conoce a Gloria', href: '#conoce-vive-sano' },
+      { label: 'Preguntas Frecuentes', href: '#faq' },
     ] as NavItem[],
-    ctaText: 'QUIERO MI GUÍA GRATIS',
-    ctaHref: '#formulario',
+    ctaText: 'QUIERO EMPEZAR',
+    ctaHref: '#oferta',
   },
 
-  // Hero Section
+  // Hero Principal (Método SANA)
   hero: {
-    eyebrow: '🌿 RECURSO GRATUITO',
-    headline: 'Empieza a cuidar tu bienestar digestivo desde pequeños cambios.',
-    subheadline: 'Descubre una guía práctica y gratuita para comprender mejor tus hábitos, alimentación y bienestar digestivo.',
-    primaryCtaText: 'QUIERO RECIBIR MI GUÍA GRATIS',
-    primaryCtaHref: '#formulario',
-    secondaryCtaText: 'CONOCE LA GUÍA',
-    secondaryCtaHref: '#guia',
-    subtext: 'Descarga inmediata • 100% digital',
+    eyebrow: '🌿 MÉTODO SANA POR GLORIA MOLINA',
+    title: 'Empieza hoy tu Método SANA',
+    headline: 'Empieza hoy tu Método SANA',
+    promise: 'Desinflama tu cuerpo y recupera tu energía paso a paso, sin dietas extremas ni rutinas imposibles.',
+    subheadline: 'Un curso práctico para entender las señales de tu digestión, saber qué alimentos te inflaman y cuáles te ayudan, y aprender a escuchar a tu cuerpo con los Semáforos Digestivos.',
+    priceText: '497,00 MXN',
+    primaryCtaText: 'QUIERO EMPEZAR',
+    primaryCtaHref: '#oferta',
+    secondaryCtaText: 'CONOCER EL MÉTODO',
+    secondaryCtaHref: '#metodo-sana',
     imageSrc: '/images/hero-lifestyle.jpg',
-    imageAlt: 'Fotografía lifestyle de bienestar, alimentación saludable y calma para Vive Sano',
+    imageAlt: 'Fotografía de bienestar Vive Sano',
+    highlights: [
+      '✓ Acceso digital e inmediato al curso',
+      '✓ Incluye las 4 Herramientas de Apoyo descargables',
+      '✓ Aprendizaje a tu propio ritmo sin presiones',
+    ],
   },
 
-  // Section 1: "¿Te ha pasado?" (Problem Identification)
-  problem: {
-    eyebrow: 'EMPATÍA Y CONEXIÓN',
-    headline: '¿Te ha pasado?',
-    subheadline: 'Sabes que quieres cuidar más de ti, pero entre tanta información, consejos y recomendaciones, a veces es difícil saber por dónde empezar.',
+  // Sección de Identificación ("¿TE SUENA FAMILIAR?")
+  identification: {
+    eyebrow: '¿TE SUENA FAMILIAR?',
     title: '¿Te ha pasado?',
-    subtitle: 'Sabes que quieres cuidar más de ti, pero entre tanta información, consejos y recomendaciones, a veces es difícil saber por dónde empezar.',
-    imageSrc: '/images/problem/problem-lifestyle.jpg',
-    imageAlt: 'Fotografía lifestyle de momento de calma y reflexión',
+    headline: '¿Te ha pasado?',
+    subtitle: 'Sientes que comes bien, pero tu digestión no se siente bien y no sabes qué lo está provocando.',
+    subheadline: 'Sientes que comes bien, pero tu digestión no se siente bien y no sabes qué lo está provocando.',
+    copy: 'El bienestar también puede construirse con pequeñas decisiones conscientes e información clara.',
+    content: ['El bienestar también puede construirse con pequeñas decisiones conscientes.'],
+    quote: 'El bienestar se construye un pequeño paso a la vez.',
+    imageSrc: '/images/hero-lifestyle.jpg',
+    imageAlt: 'Momento de calma y bienestar',
+    cards: [
+      {
+        id: 'c1',
+        title: 'Te inflamas después de comer',
+        description: 'Amaneces con el abdomen plano y en la tarde ya te sientes hinchada.',
+        icon: '🫄',
+        colorAccent: '#4DA92C',
+        badgeLabel: 'Inflamación',
+      },
+      {
+        id: 'c2',
+        title: 'Tienes gases o ruidos que te incomodan',
+        description: 'Aparecen después de comer o durante el día, sin saber qué los provoca.',
+        icon: '💨',
+        colorAccent: '#0078BF',
+        badgeLabel: 'Gases',
+      },
+      {
+        id: 'c3',
+        title: 'Te da sueño después de comer',
+        description: 'Terminas de comer y en lugar de energía sientes pesadez y cansancio.',
+        icon: '😴',
+        colorAccent: '#E76100',
+        badgeLabel: 'Energía',
+      },
+      {
+        id: 'c4',
+        title: 'Tu digestión no fluye',
+        description: 'Estreñimiento, reflujo o ardor que ya se volvieron parte de tu día.',
+        icon: '🔄',
+        colorAccent: '#4DA92C',
+        badgeLabel: 'Digestión',
+      },
+    ] as ProblemCard[],
+  },
+
+  problem: {
+    eyebrow: '¿TE SUENA FAMILIAR?',
+    headline: '¿Te ha pasado?',
+    title: '¿Te ha pasado?',
+    subheadline: 'Sientes que comes bien, pero tu digestión no se siente bien y no sabes qué lo está provocando.',
+    subtitle: 'Sientes que comes bien, pero tu digestión no se siente bien y no sabes qué lo está provocando.',
+    imageSrc: '/images/hero-lifestyle.jpg',
+    imageAlt: 'Fotografía lifestyle Vive Sano',
     items: [
       {
-        id: 'p1',
-        title: 'No sabes qué hábitos priorizar',
-        description: 'Sientes que hay demasiados aspectos por atender y te cuesta decidir cuál es el primer paso ideal.',
-        icon: '🎯',
+        id: 'c1',
+        title: 'Te inflamas después de comer',
+        description: 'Amaneces con el abdomen plano y en la tarde ya te sientes hinchada.',
+        icon: '🫄',
+        colorAccent: '#4DA92C',
       },
       {
-        id: 'p2',
-        title: 'Encuentras demasiada información diferente',
-        description: 'Cansancio ante consejos contradictorios y modas extremas que no se adaptan a tu vida real.',
-        icon: '📚',
+        id: 'c2',
+        title: 'Tienes gases o ruidos que te incomodan',
+        description: 'Aparecen después de comer o durante el día, sin saber qué los provoca.',
+        icon: '💨',
+        colorAccent: '#0078BF',
       },
       {
-        id: 'p3',
-        title: 'Empiezas cambios pero te cuesta mantenerlos',
-        description: 'Inicias con entusiasmo pero la falta de estructura hace que vuelvas a las rutinas anteriores.',
+        id: 'c3',
+        title: 'Te da sueño después de comer',
+        description: 'Terminas de comer y en lugar de energía sientes pesadez y cansancio.',
+        icon: '😴',
+        colorAccent: '#E76100',
+      },
+      {
+        id: 'c4',
+        title: 'Tu digestión no fluye',
+        description: 'Estreñimiento, reflujo o ardor que ya se volvieron parte de tu día.',
         icon: '🔄',
-      },
-      {
-        id: 'p4',
-        title: 'Quieres cuidar tu bienestar sin complicarte',
-        description: 'Buscas herramientas amables, realistas y sencillas de incorporar día con día.',
-        icon: '🌿',
+        colorAccent: '#4DA92C',
       },
     ] as ProblemItem[],
     cards: [
       {
-        id: 'p1',
-        title: 'No sabes qué hábitos priorizar',
-        description: 'Sientes que hay demasiados aspectos por atender y te cuesta decidir cuál es el primer paso ideal.',
-        icon: '🎯',
+        id: 'c1',
+        title: 'Te inflamas después de comer',
+        description: 'Amaneces con el abdomen plano y en la tarde ya te sientes hinchada.',
+        icon: '🫄',
+        colorAccent: '#4DA92C',
       },
       {
-        id: 'p2',
-        title: 'Encuentras demasiada información diferente',
-        description: 'Cansancio ante consejos contradictorios y modas extremas que no se adaptan a tu vida real.',
-        icon: '📚',
+        id: 'c2',
+        title: 'Tienes gases o ruidos que te incomodan',
+        description: 'Aparecen después de comer o durante el día, sin saber qué los provoca.',
+        icon: '💨',
+        colorAccent: '#0078BF',
       },
       {
-        id: 'p3',
-        title: 'Empiezas cambios pero te cuesta mantenerlos',
-        description: 'Inicias con entusiasmo pero la falta de estructura hace que vuelvas a las rutinas anteriores.',
+        id: 'c3',
+        title: 'Te da sueño después de comer',
+        description: 'Terminas de comer y en lugar de energía sientes pesadez y cansancio.',
+        icon: '😴',
+        colorAccent: '#E76100',
+      },
+      {
+        id: 'c4',
+        title: 'Tu digestión no fluye',
+        description: 'Estreñimiento, reflujo o ardor que ya se volvieron parte de tu día.',
         icon: '🔄',
+        colorAccent: '#4DA92C',
+      },
+    ] as ProblemCard[],
+  },
+
+  // Sección Método SANA (La Solución)
+  metodoSana: {
+    eyebrow: 'EL CAMINO PASO A PASO',
+    title: '¿Qué es el Método SANA?',
+    subtitle: 'Una metodología amable y consciente diseñada para que aprendas a observar cómo responde tu digestión sin caer en dietas drásticas.',
+    copy: 'El Método SANA te enseña a clasificar las respuestas de tu cuerpo mediante Semáforos Digestivos, identificar detonantes y construir hábitos duraderos que le devuelvan el descanso y la energía a tu organismo.',
+    pillars: [
+      {
+        number: '01',
+        title: 'Observación Consciente',
+        description: 'Aprende a registrar lo que comes y a identificar las señales físicas que tu cuerpo emite durante el día.',
+        color: '#4DA92C',
       },
       {
-        id: 'p4',
-        title: 'Quieres cuidar tu bienestar sin complicarte',
-        description: 'Buscas herramientas amables, realistas y sencillas de incorporar día con día.',
-        icon: '🌿',
+        number: '02',
+        title: 'Semáforos Digestivos',
+        description: 'Clasifica tus síntomas y alimentos en Verde (bienestar), Naranja (precaución) y Azul (análisis FODMAP).',
+        color: '#0078BF',
+      },
+      {
+        number: '03',
+        title: 'Nutrición Amable',
+        description: 'Sustituye detonantes por ingredientes que le den descanso a tu sistema digestivo sin pasar hambre.',
+        color: '#E76100',
       },
     ],
   },
 
-  // Section 2: Identification Banner
-  identification: {
-    eyebrow: 'UN CAMINO REALISTA',
-    headline: 'No necesitas cambiarlo todo de un día para otro.',
-    subheadline: 'El bienestar también puede construirse con pequeñas decisiones conscientes.',
-    content: [
-      'El bienestar también puede construirse con pequeñas decisiones conscientes, información clara y herramientas que puedas incorporar poco a poco.',
-    ],
-    quote: 'El bienestar se construye un pequeño paso a la vez.',
-    title: 'No necesitas cambiarlo todo de un día para otro.',
-    copy: 'El bienestar también puede construirse con pequeñas decisiones conscientes, información clara y herramientas que puedas incorporar poco a poco.',
-    imageSrc: '/images/problem/problem-lifestyle.jpg',
-    imageAlt: 'Momento de calma con una taza de té orgánico y ambiente natural',
+  method: {
+    eyebrow: 'NUESTRA METODOLOGÍA',
+    headline: 'El Método SANA',
+    subheadline: 'Pilares para transformar tus hábitos',
+    title: 'El Método SANA',
+    subtitle: 'Pilares para transformar tus hábitos',
+    steps: [
+      {
+        number: '01',
+        title: 'Observación Consciente',
+        description: 'Identifica los detonantes de tu digestión.',
+        highlight: 'Pilar 1',
+      },
+    ] as MethodStep[],
   },
 
-  // Section 3: Benefits ("¿Qué encontrarás en esta guía?")
+  // Sección "Una mirada al interior" (Material de Apoyo)
+  materialSupport: {
+    eyebrow: 'MATERIAL DE APOYO',
+    title: 'Una mirada al interior',
+    subtitle: 'Herramientas descargables para que observes cómo reacciona tu digestión día a día.',
+    materials: [
+      {
+        id: 'm1',
+        title: 'Diario Digestivo',
+        description: 'Registra lo que comes y cómo te sientes para entender tu propio patrón.',
+        primaryColor: '#4DA92C',
+        badgeLabel: 'Registro Diario',
+        imageSrc: '/images/lead-magnet-mockup.jpg',
+        imageAlt: 'Mockup del Diario Digestivo Vive Sano',
+      },
+      {
+        id: 'm2',
+        title: '8 Semáforos Digestivos',
+        description: 'Uno para cada señal, para que identifiques en qué color está tu cuerpo.',
+        primaryColor: '#4DA92C',
+        accentColor: '#E76100',
+        badgeLabel: 'Sistema de Semáforos',
+        imageSrc: '/images/lead-magnet-mockup.jpg',
+        imageAlt: 'Mockup de los 8 Semáforos Digestivos',
+        isSemaforoMulti: true,
+      },
+      {
+        id: 'm3',
+        title: 'Semáforo FODMAP',
+        description: 'Identifica qué alimentos pueden estar provocando tus gases.',
+        primaryColor: '#0078BF',
+        badgeLabel: 'Análisis FODMAP',
+        imageSrc: '/images/lead-magnet-mockup.jpg',
+        imageAlt: 'Mockup del Semáforo FODMAP',
+      },
+      {
+        id: 'm4',
+        title: 'Guía FODMAP: Descubre por qué te inflamas',
+        description: 'Conoce qué alimentos le dan descanso a tu digestión, cuáles conviene limitar y un ejercicio para revisar tus combinaciones.',
+        primaryColor: '#0078BF',
+        accentColor: '#E76100',
+        badgeLabel: 'Guía Práctica',
+        imageSrc: '/images/lead-magnet-mockup.jpg',
+        imageAlt: 'Mockup de la Guía FODMAP',
+      },
+    ] as MaterialSupportItem[],
+  },
+
+  guide: {
+    eyebrow: 'MATERIAL DE APOYO',
+    headline: 'Una mirada al interior',
+    subheadline: 'Herramientas descargables para que observes cómo reacciona tu digestión día a día.',
+    subtitle: 'Herramientas descargables para que observes cómo reacciona tu digestión día a día.',
+    description: 'Herramientas descargables para que observes cómo reacciona tu digestión día a día.',
+    title: 'Una mirada al interior',
+    mockupImageSrc: '/images/lead-magnet-mockup.jpg',
+    mockupImageAlt: 'Mockup 3D editorial de los Materiales Vive Sano',
+    features: [
+      '✓ Diario Digestivo interactivo',
+      '✓ 8 Semáforos Digestivos visuales',
+      '✓ Semáforo FODMAP',
+      '✓ Guía FODMAP práctica',
+    ],
+  },
+
+  guidePreview: {
+    title: 'Una mirada al interior',
+    subtitle: 'Herramientas descargables para que observes cómo reacciona tu digestión día a día.',
+    items: [
+      {
+        id: 'gp1',
+        title: 'Diario Digestivo',
+        description: 'Registra lo que comes y cómo te sientes.',
+        imageSrc: '/images/lead-magnet-mockup.jpg',
+        imageAlt: 'Diario Digestivo',
+      },
+    ],
+  },
+
   benefits: {
-    eyebrow: 'BENEFICIOS PRINCIPALES',
-    headline: '¿Qué encontrarás en esta guía?',
-    subheadline: 'Un recurso visual y práctico diseñado para darte claridad desde la primera lectura.',
-    title: '¿Qué encontrarás en esta guía?',
-    subtitle: 'Un recurso visual y práctico diseñado para darte claridad desde la primera lectura.',
+    eyebrow: 'MATERIAL DE APOYO',
+    headline: 'Materiales Incluidos',
+    subheadline: 'Recursos prácticos',
+    title: 'Materiales Incluidos',
+    subtitle: 'Recursos prácticos',
     items: [
       {
         id: 'b1',
-        title: 'Hábitos conscientes',
-        description: 'Ideas y ejercicios sencillos para observar tus rutinas cotidianas sin juzgarte.',
-        icon: '🧠',
-        imageSrc: '/images/hero-lifestyle.jpg',
-        imageAlt: 'Hábitos saludables',
-      },
-      {
-        id: 'b2',
-        title: 'Alimentación',
-        description: 'Conceptos prácticos e inspiradores relacionados con tus hábitos alimentarios.',
-        icon: '🥑',
-        imageSrc: '/images/hero-lifestyle.jpg',
-        imageAlt: 'Alimentación saludable',
-      },
-      {
-        id: 'b3',
-        title: 'Bienestar digestivo',
-        description: 'Información amigable para comprender mejor esta dimensión fundamental de tu salud.',
-        icon: '🌿',
-        imageSrc: '/images/hero-lifestyle.jpg',
-        imageAlt: 'Bienestar digestivo',
-      },
-      {
-        id: 'b4',
-        title: 'Organización',
-        description: 'Herramientas sencillas para comenzar a estructurar tu día con calma.',
-        icon: '📋',
-        imageSrc: '/images/hero-lifestyle.jpg',
-        imageAlt: 'Organización diaria',
-      },
-      {
-        id: 'b5',
-        title: 'Reflexión',
-        description: 'Preguntas guía para observar tus propios avances y necesidades personales.',
-        icon: '💭',
-        imageSrc: '/images/hero-lifestyle.jpg',
-        imageAlt: 'Reflexión y conciencia',
-      },
-      {
-        id: 'b6',
-        title: 'Primeros pasos',
-        description: 'Ideas realizables hoy mismo para avanzar sin abrumamiento.',
-        icon: '✨',
-        imageSrc: '/images/hero-lifestyle.jpg',
-        imageAlt: 'Primeros pasos prácticos',
+        title: 'Diario Digestivo',
+        description: 'Registra lo que comes.',
+        icon: '📄',
+        imageSrc: '/images/lead-magnet-mockup.jpg',
+        imageAlt: 'Diario Digestivo',
       },
     ] as BenefitCardItem[],
     cards: [
       {
         id: 'b1',
-        title: 'Hábitos conscientes',
-        description: 'Ideas y ejercicios sencillos para observar tus rutinas cotidianas sin juzgarte.',
-        icon: '🧠',
-        imageSrc: '/images/hero-lifestyle.jpg',
-        imageAlt: 'Hábitos saludables',
+        title: 'Diario Digestivo',
+        description: 'Registra lo que comes.',
+        icon: '📄',
+        imageSrc: '/images/lead-magnet-mockup.jpg',
+        imageAlt: 'Diario Digestivo',
       },
-      {
-        id: 'b2',
-        title: 'Alimentación',
-        description: 'Conceptos prácticos e inspiradores relacionados con tus hábitos alimentarios.',
-        icon: '🥑',
-        imageSrc: '/images/hero-lifestyle.jpg',
-        imageAlt: 'Alimentación saludable',
-      },
-    ],
+    ] as BenefitCardItem[],
   },
 
-  // Section 4: "Dentro de la Guía" (Protagonist Mockup + Contents)
-  guide: {
-    eyebrow: 'CONTENIDO DE LA GUÍA',
-    headline: 'Un recurso para comenzar con claridad',
-    subheadline: 'Diseñado especialmente para darte el primer impulso hacia un estilo de vida más equilibrado.',
-    subtitle: 'Diseñado especialmente para darte el primer impulso hacia un estilo de vida más equilibrado.',
-    description: 'Diseñado especialmente para darte el primer impulso hacia un estilo de vida más equilibrado.',
-    title: 'Un recurso para comenzar con claridad',
-    mockupImageSrc: '/images/lead-magnet-mockup.jpg',
-    mockupImageAlt: 'Mockup 3D editorial de la Guía Digital Vive Sano',
-    features: [
-      '✓ Listas de verificación de hábitos cotidianos',
-      '✓ Pautas amables de alimentación consciente',
-      '✓ Recomendaciones prácticas para tu rutina diaria',
-      '✓ Reflexiones simples para observar tu cuerpo',
-      '✓ Guía visual en formato PDF de alta calidad',
-      '✓ Acceso 100% digital e inmediato',
-    ],
-  },
-
-  // Section 5: "Una mirada al interior" (Interactive Lightbox Gallery)
-  guidePreview: {
-    title: 'Una mirada al interior',
-    subtitle: 'Explora el diseño editorial claro y amigable que encontrarás dentro de la guía.',
-    items: [
-      {
-        id: 'gp1',
-        title: 'Página 01: Hábitos Diarios de Bienestar',
-        description: 'Lista de verificación semanal para dar seguimiento sencillo a tus avances.',
-        imageSrc: '/images/guide/guide-page-preview.jpg',
-        imageAlt: 'Previsualización de la página interna 01 de la guía',
-      },
-      {
-        id: 'gp2',
-        title: 'Página 02: Nutrición Consciente & Recetas',
-        description: 'Ideas de ingredientes frescos y preparación fácil para incorporar hoy.',
-        imageSrc: '/images/guide/guide-page-preview.jpg',
-        imageAlt: 'Previsualización de la página interna 02 de la guía',
-      },
-      {
-        id: 'gp3',
-        title: 'Página 03: Reflexiones & Calma',
-        description: 'Preguntas clave para reconectar con lo que tu cuerpo necesita.',
-        imageSrc: '/images/guide/guide-page-preview.jpg',
-        imageAlt: 'Previsualización de la página interna 03 de la guía',
-      },
-    ] as GuidePreviewItem[],
-  },
-
-  // Section 6: "¿Para quién es?"
   audience: {
-    title: 'Esta guía puede ser para ti si...',
-    subtitle: 'Diseñada para acompañarte con respeto y claridad en tu propio proceso.',
+    title: 'El Método SANA es para ti si...',
+    subtitle: 'Diseñado para acompañarte con respeto y claridad en tu proceso.',
     items: [
-      { id: 'a1', text: 'Quieres comenzar a cuidar más tus hábitos y bienestar.' },
-      { id: 'a2', text: 'Buscas información organizada y libre de complicaciones.' },
-      { id: 'a3', text: 'Quieres comprender mejor tu relación con la alimentación.' },
-      { id: 'a4', text: 'Deseas comenzar poco a poco, sin presiones ni extremos.' },
-      { id: 'a5', text: 'Prefieres herramientas prácticas que puedas consultar cuando quieras.' },
+      { id: 'a1', text: 'Te inflamas con frecuencia después de comer.' },
+      { id: 'a2', text: 'Sientes pesadez o cansancio tras tus alimentos.' },
+      { id: 'a3', text: 'Quieres identificar los detonantes sin dietas extremas.' },
     ] as AudienceItem[],
   },
 
-  // Section 7: About Gloria / About Vive Sano ("Conoce Vive Sano")
   aboutGloria: {
-    eyebrow: 'CONOCE VIVE SANO',
-    headline: 'Conoce Vive Sano',
-    subheadline: 'Fundadora de Vive Sano',
-    title: 'Conoce Vive Sano',
+    eyebrow: 'CONOCE A TU GUÍA',
+    title: 'Hola, soy Gloria Molina',
+    headline: 'Hola, soy Gloria Molina',
     name: 'Gloria Molina',
     role: 'Fundadora de Vive Sano',
-    copy: 'Vive Sano nace con la intención de acercar información práctica y herramientas sencillas que ayuden a las personas a construir hábitos de bienestar de manera consciente y progresiva.',
-    quote: 'El bienestar no se trata de dietas restrictivas ni soluciones mágicas, sino de aprender a escuchar las señales de tu cuerpo.',
-    bioParagraphs: [
-      'Vive Sano nace con la intención de acercar información práctica y herramientas sencillas que ayuden a las personas a construir hábitos de bienestar de manera consciente y progresiva.',
-      'A través de recursos claros y prácticos, buscamos brindarte herramientas para que descubras tu propio camino hacia el equilibrio.',
-    ],
+    subheadline: 'Fundadora de Vive Sano',
+    copy: 'Vive Sano y el Método SANA nacieron de la necesidad de acercar información clara, práctica y libre de extremos a quienes sufren de incomodidad digestiva recurrente.',
+    quote: 'El bienestar no se logra con restricciones severas, sino aprendiendo a escuchar con empatía las señales de tu cuerpo.',
     signatureText: 'Gloria Molina — Fundadora de Vive Sano',
-    imagePlaceholderText: 'Fotografía oficial de Gloria Molina',
     imageSrc: '/images/gloria/gloria-molina.jpg',
-    imageAlt: 'Fotografía para Vive Sano',
-    isPlaceholder: true,
-    knowMoreEnabled: false,
-    knowMoreText: 'Conoce más sobre Vive Sano',
-    knowMoreHref: '#conoce-vive-sano',
+    imageAlt: 'Fotografía oficial de Gloria Molina',
+    bioParagraphs: [
+      'Vive Sano y el Método SANA nacieron de la necesidad de acercar información clara y práctica.',
+    ],
   },
 
-  // Trust Bar
+  offer: {
+    eyebrow: 'OFERTA PRINCIPAL',
+    headline: 'Método SANA',
+    promise: 'Desinflama tu cuerpo y recupera tu energía paso a paso, sin dietas extremas ni rutinas imposibles.',
+    priceText: '497,00 MXN',
+    ctaText: 'QUIERO EMPEZAR',
+    includedItems: [
+      'Acceso completo al Curso Práctico Método SANA',
+      'Diario Digestivo en formato PDF descargable',
+      '8 Semáforos Digestivos en alta definición',
+      'Semáforo FODMAP para control de gases e inflamación',
+      'Guía FODMAP: Descubre por qué te inflamas',
+      'Acceso inmediato desde cualquier dispositivo',
+    ],
+    guaranteeText: 'Acceso seguro e inmediato tras completar tu inscripción.',
+  },
+
+  finalCta: {
+    title: 'Empieza hoy a cuidar tu digestión sin presiones',
+    copy: 'Desinflama tu cuerpo y recupera tu energía paso a paso, sin dietas extremas ni rutinas imposibles.',
+    buttonText: 'QUIERO EMPEZAR (497,00 MXN)',
+    bgImageSrc: '/images/hero-lifestyle.jpg',
+  },
+
+  ctaSection: {
+    headline: 'Empieza hoy tu Método SANA',
+    subheadline: 'Desinflama tu cuerpo y recupera tu energía paso a paso.',
+    title: 'Empieza hoy tu Método SANA',
+    subtitle: 'Desinflama tu cuerpo y recupera tu energía paso a paso.',
+    buttonText: 'QUIERO EMPEZAR',
+    buttonHref: '#oferta',
+  },
+
+  pricing: {
+    enabled: true,
+    eyebrow: 'OFERTA',
+    headline: 'Método SANA',
+    subheadline: 'Acceso completo al curso práctico',
+    title: 'Método SANA',
+    subtitle: 'Acceso completo al curso práctico',
+    cardTitle: 'Método SANA',
+    originalPrice: '$1,200 MXN',
+    currentPrice: '497,00 MXN',
+    installments: 'Pago único',
+    offerText: 'Precio especial de lanzamiento',
+    includedList: ['Curso Práctico', '4 Materiales PDF', 'Acceso Inmediato'],
+    ctaText: 'QUIERO EMPEZAR',
+    guaranteeNotice: 'Acceso inmediato y seguro',
+    guarantee: 'Acceso inmediato y seguro',
+  },
+
+  guarantee: {
+    enabled: true,
+    eyebrow: 'GARANTÍA DE SATISFACCIÓN',
+    headline: 'Acceso Seguro',
+    description: 'Acceso inmediato a la plataforma y materiales.',
+    badgeText: '100% Digital',
+    title: 'Garantía Vive Sano',
+    subtitle: 'Tranquilidad en tu elección',
+    text: 'Tu tranquilidad es nuestra prioridad.',
+  },
+
   trustBar: {
-    enabled: false,
+    enabled: true,
     title: 'Confianza y Educación',
-    items: [] as TrustItem[],
+    items: [
+      { icon: '🌿', text: 'Método SANA' },
+      { icon: '📄', text: 'PDF Descargable' },
+    ] as TrustItem[],
   },
 
-  // Section 8: Trust (Only real data, enabled = false until confirmed)
-  trust: {
-    enabled: false,
-    stats: [],
-  },
-
-  // Section 9: Testimonials (Enabled = false until authorized real testimonials are provided)
   testimonials: {
     enabled: false,
     eyebrow: 'PRUEBA SOCIAL',
     headline: 'Lo que dicen quienes han comenzado',
-    subheadline: 'Historias de transformación amigable',
+    subheadline: 'Historias de transformación',
     title: 'Lo que dicen quienes han comenzado',
     items: [] as TestimonialItem[],
   },
 
-  // Bonuses (for compatibility)
   bonuses: {
     enabled: false,
     showSection: false,
-    eyebrow: 'BONOS COMPLEMENTARIOS',
+    eyebrow: 'BONOS',
     headline: 'Recursos Complementarios',
     subheadline: 'Herramientas de apoyo',
     title: 'Recursos Complementarios',
     items: [] as BonusItem[],
   },
 
-  // Community (for compatibility)
   community: {
     enabled: false,
     eyebrow: 'COMUNIDAD VIVE SANO',
@@ -466,26 +597,13 @@ export const contentData = {
     statsText: 'Comunidad de bienestar',
     imageSrc: '/images/hero-lifestyle.jpg',
     imageAlt: 'Comunidad Vive Sano',
-    highlights: ['Acompañamiento diario', 'Educación amigable'],
+    highlights: ['Acompañamiento diario'],
     title: 'Comunidad Vive Sano',
     subtitle: 'Acompañamiento y educación',
-    description: 'Un espacio seguro de aprendizaje',
+    description: 'Un espacio seguro',
     items: [],
   },
 
-  // Guarantee (for compatibility)
-  guarantee: {
-    enabled: false,
-    eyebrow: 'GARANTÍA VIVE SANO',
-    headline: 'Garantía de Satisfacción',
-    description: 'Tu tranquilidad es nuestra prioridad.',
-    badgeText: 'Garantía 100%',
-    title: 'Garantía Vive Sano',
-    subtitle: 'Tranquilidad en tu elección',
-    text: 'Tu tranquilidad es nuestra prioridad.',
-  },
-
-  // Accompaniment (for compatibility)
   accompaniment: {
     enabled: false,
     eyebrow: 'ACOMPAÑAMIENTO EN VIVO',
@@ -493,248 +611,153 @@ export const contentData = {
     subheadline: 'Educación y cercanía',
     title: 'Acompañamiento por Gloria Molina',
     subtitle: 'Educación y cercanía',
-    features: ['Atención cercana', 'Materiales claros'],
+    features: ['Atención cercana'],
   },
 
-  // Method Section (for compatibility)
-  method: {
-    eyebrow: 'NUESTRA METODOLOGÍA',
-    headline: 'El Método Vive Sano',
-    subheadline: 'Pilares para transformar tus hábitos',
-    title: 'El Método Vive Sano',
-    subtitle: 'Pilares para transformar tus hábitos',
-    steps: [
-      {
-        number: '01',
-        title: 'Conciencia',
-        description: 'Aprender a observar tus rutinas actuales sin juicio.',
-        highlight: 'Pilar 1',
-      },
-    ] as MethodStep[],
+  whatsapp: {
+    enabled: true,
+    number: '+5215580462787',
+    message: 'Hola Gloria, me gustaría recibir más información sobre el Método SANA.',
+    ariaLabel: 'Contactar a Vive Sano por WhatsApp',
   },
 
-  // Program Section (for compatibility)
   program: {
-    eyebrow: 'EL PROGRAMA',
-    headline: 'Programa Vive Sano',
-    subheadline: 'Un recorrido guiado',
-    title: 'Programa Vive Sano',
-    subtitle: 'Un recorrido guiado',
-    modules: [
-      {
-        id: 'm1',
-        number: '01',
-        title: 'Fundamentos de Nutrición Consciente',
-        description: 'Conceptos clave para comprender tu bienestar.',
-      },
-    ] as ModuleItem[],
+    eyebrow: 'MÉTODO SANA',
+    headline: 'Módulos del Curso',
+    subheadline: 'Aprende a tu ritmo',
+    title: 'El Método SANA',
+    subtitle: 'Aprende a tu ritmo',
+    modules: [] as ModuleItem[],
   },
 
-  // Roadmap Section (for compatibility)
   roadmap: {
     eyebrow: 'HOJA DE RUTA',
-    headline: 'Tu camino de transformación',
-    subheadline: 'Fases progresivas',
-    title: 'Tu camino de transformación',
-    subtitle: 'Fases progresivas',
-    steps: [
-      {
-        phase: 'Fase 1',
-        title: 'Inicio y Diagnóstico',
-        description: 'Evaluación inicial.',
-        deliverable: 'Checklist personal',
-      },
-    ] as RoadmapStep[],
+    headline: 'Tu camino con el Método SANA',
+    subheadline: 'Fases amables',
+    title: 'Tu camino con el Método SANA',
+    subtitle: 'Fases amables',
+    steps: [] as RoadmapStep[],
   },
 
-  // Transformation Section (for compatibility)
   transformation: {
     eyebrow: 'TRANSFORMACIÓN',
     headline: 'El cambio que experimentarás',
     subheadline: 'Antes y Después',
     title: 'El cambio que experimentarás',
     subtitle: 'Antes y Después',
-    items: [
-      {
-        before: 'Confusión e incertidumbre sobre qué comer.',
-        after: 'Claridad y tranquilidad con elecciones informadas.',
-      },
-    ] as TransformationItem[],
+    items: [] as TransformationItem[],
   },
 
-  // Pricing / Offer (for compatibility)
-  pricing: {
-    enabled: false,
-    eyebrow: 'OFERTA',
-    headline: 'Tu inversión en bienestar',
-    subheadline: 'Acceso al programa Vive Sano',
-    title: 'Tu inversión en bienestar',
-    subtitle: 'Acceso al programa Vive Sano',
-    cardTitle: 'Programa Completo',
-    originalPrice: '$5,600 MXN',
-    currentPrice: '$3,797 MXN',
-    installments: '3 pagos de $1,350 MXN',
-    offerText: 'Precio especial de lanzamiento',
-    includedList: ['Acceso completo', 'Guías PDF', 'Soporte'],
-    ctaText: 'QUIERO EL PROGRAMA',
-    guaranteeNotice: '7 días de garantía 100% de devolución',
-    guarantee: '7 días de garantía 100% de devolución',
-  },
-
-  // Gracias Page Config (for compatibility)
-  graciasPage: {
-    title: '¡Registro Exitoso! | Vive Sano',
-    headline: '¡Listo! Tu guía de Vive Sano está en camino',
-    subheadline: 'Hemos enviado el enlace directo a tu correo electrónico. Sigue los pasos a continuación para comenzar.',
-    ctaButtonText: 'DESCARGAR MI GUÍA AHORA',
-    whatsappSupportText: '¿Necesitas ayuda o tienes alguna pregunta?',
-    steps: [
-      {
-        number: '01',
-        title: 'Revisa tu Correo',
-        description: 'Abre tu bandeja de entrada y busca un mensaje enviado por Vive Sano.',
-      },
-      {
-        number: '02',
-        title: 'Verifica Promociones/Spam',
-        description: 'Si no lo encuentras en 2 minutos, revisa tu carpeta de correo no deseado.',
-      },
-      {
-        number: '03',
-        title: 'Descarga tu Guía PDF',
-        description: 'Haz clic en el botón del correo para guardarla en tu dispositivo.',
-      },
-      {
-        number: '04',
-        title: 'Empieza a Explorar',
-        description: 'Aplica los primeros hábitos amables hoy mismo.',
-      },
-    ],
-  },
-
-  // Pago Page Config (for compatibility)
-  pagoPage: {
-    title: 'Inscripción al Programa | Vive Sano',
-    headline: 'Completa tu registro a Vive Sano',
-    subheadline: 'Acceso al programa de acompañamiento por Gloria Molina.',
-    productName: 'Programa Vive Sano',
-    originalPriceText: '$5,600 MXN',
-    currentPriceText: '$3,797 MXN',
-    installmentsNote: '3 pagos de $1,350 MXN',
-    ctaButtonText: 'IR AL PAGO SEGURO EN HOTMART',
-    items: ['Programa Completo', 'Guías PDF', 'Acceso a Comunidad'],
-    securityItems: [
-      'Acceso inmediato a la plataforma digital',
-      '7 días de garantía 100% de devolución',
-      'Pago encriptado con certificado SSL',
-    ],
-  },
-
-  // CTA Section (for compatibility)
-  ctaSection: {
-    headline: 'Comienza tu camino con Vive Sano',
-    subheadline: 'Descarga gratis la guía inicial.',
-    title: 'Comienza tu camino con Vive Sano',
-    subtitle: 'Descarga gratis la guía inicial.',
-    buttonText: 'QUIERO MI GUÍA GRATIS',
-    buttonHref: '#formulario',
-  },
-
-  // WhatsApp Integration Config
-  whatsapp: {
-    enabled: false,
-    number: '+5215580462787',
-    message: 'Hola Gloria, me gustaría recibir más información sobre Vive Sano.',
-    ariaLabel: 'Contactar a Vive Sano por WhatsApp',
-  },
-
-  // Section 10: FAQ
+  // Preguntas Frecuentes (FAQ)
   faq: {
     eyebrow: 'PREGUNTAS FRECUENTES',
-    headline: 'Preguntas frecuentes',
-    subheadline: 'Resolvemos tus dudas sobre el acceso y contenido de la guía.',
-    title: 'Preguntas frecuentes',
-    subtitle: 'Resolvemos tus dudas sobre el acceso y contenido de la guía.',
+    title: 'Preguntas Frecuentes sobre el Método SANA',
+    headline: 'Preguntas Frecuentes sobre el Método SANA',
+    subtitle: 'Resolvemos tus dudas sobre el contenido, acceso y materiales incluidos.',
+    subheadline: 'Resolvemos tus dudas sobre el contenido, acceso y materiales incluidos.',
     items: [
       {
         id: 'faq1',
-        question: '¿La guía realmente es gratuita?',
-        answer: 'Sí. La guía se ofrece gratuitamente como recurso educativo de Vive Sano.',
+        question: '¿Qué es el Método SANA?',
+        answer: 'Es un curso práctico en formato digital que te enseña a observar las respuestas de tu cuerpo, identificar los alimentos que te generan inflamación o gases, y utilizar los Semáforos Digestivos para recuperar tu energía diaria.',
       },
       {
         id: 'faq2',
-        question: '¿Cómo recibiré la guía?',
-        answer: 'Después de completar el registro podrás acceder a las indicaciones para obtenerla.',
+        question: '¿Qué precio tiene y cómo lo recibo?',
+        answer: 'El Método SANA tiene un costo único de 497,00 MXN. Al inscribirte recibes acceso digital e inmediato al curso y a las 4 Herramientas de Apoyo en PDF.',
       },
       {
         id: 'faq3',
-        question: '¿Puedo verla desde mi celular?',
-        answer: 'Sí. La guía está pensada para consultarse fácilmente desde computadora, tablet o teléfono.',
+        question: '¿Necesito seguir una dieta estricta?',
+        answer: 'No. El Método SANA NO promueve dietas extremas ni rutinas imposibles. Su objetivo es enseñarte a escuchar a tu propio cuerpo y tomar decisiones amables y sostenibles.',
       },
       {
         id: 'faq4',
-        question: '¿Necesito conocimientos previos?',
-        answer: 'No. Está diseñada para comenzar desde conceptos sencillos y hábitos cotidianos.',
+        question: '¿El Método SANA reemplaza una consulta médica?',
+        answer: 'No. El Método SANA es un recurso práctico educativo de bienestar general. Si tienes una condición médica grave o crónica, siempre debes consultar con un profesional de la salud.',
       },
       {
         id: 'faq5',
-        question: '¿La guía sustituye una consulta médica?',
-        answer: 'No. El contenido tiene fines educativos y de bienestar general y no sustituye la valoración, diagnóstico o tratamiento de un profesional de la salud.',
+        question: '¿Puedo consultarlo desde mi celular?',
+        answer: 'Sí. Tanto la plataforma del curso como las guías y semáforos en PDF están optimizados para celular, tablet o computadora.',
       },
     ] as FAQItem[],
   },
 
-  // Section 11: Main Lead Form
+  // Form (for lead magnet compatibility)
   form: {
-    title: 'Obtén tu guía GRATIS',
-    subtitle: 'Ingresa tus datos para recibir tu acceso inmediato en formato PDF.',
-    nameLabel: 'Nombre',
+    title: 'Empieza hoy tu Método SANA',
+    subtitle: 'Ingresa tus datos para continuar con tu inscripción.',
+    nameLabel: 'Nombre completo',
     namePlaceholder: 'Ej. María García',
     nameError: 'Ingresa tu nombre.',
     emailLabel: 'Correo electrónico',
     emailPlaceholder: 'tu@email.com',
     emailError: 'Ingresa un correo electrónico válido.',
-    checkboxText: 'Quiero recibir gratuitamente la guía de Vive Sano y acepto el Aviso de Privacidad.',
+    checkboxText: 'Acepto el Aviso de Privacidad de Vive Sano.',
     checkboxError: 'Debes aceptar el Aviso de Privacidad.',
-    buttonText: 'QUIERO RECIBIR MI GUÍA GRATIS',
-    loadingText: 'Enviando...',
-    successTitle: '¡Listo! 🌿',
-    successMessage1: 'Tu registro fue recibido correctamente.',
-    successMessage2: 'En breve podrás acceder a tu guía gratuita.',
-    successButtonText: 'DESCARGAR GUÍA',
-    errorMessage: 'Ocurrió un problema temporal al procesar tu solicitud. Por favor intenta nuevamente en unos momentos.',
-    microcopy: 'Tu información será utilizada únicamente para enviarte la guía y comunicaciones relacionadas con Vive Sano.',
+    buttonText: 'QUIERO EMPEZAR (497,00 MXN)',
+    loadingText: 'Procesando...',
+    successTitle: '¡Bienvenida al Método SANA! 🌿',
+    successMessage1: 'Tu registro ha sido completado.',
+    successMessage2: 'En breve serás redirigida al acceso de tus materiales.',
+    successButtonText: 'CONTINUAR AL PAGO',
+    errorMessage: 'Ocurrió un problema temporal. Por favor intenta nuevamente.',
+    microcopy: 'Tu información está 100% protegida. Respetamos tu privacidad.',
     privacyLinkText: 'Aviso de Privacidad',
   },
 
-  // Section 12: Pre-Footer Call to Action
-  cta: {
-    title: 'Empieza hoy a cuidar tu bienestar digestivo.',
-    copy: 'Descarga gratuitamente la guía y comienza con pequeños pasos hacia hábitos más conscientes.',
-    buttonText: 'QUIERO MI GUÍA GRATIS',
-    note: 'Sin costo • Formato digital',
+  // Pago Page Config
+  pagoPage: {
+    title: 'Inscripción al Método SANA | Vive Sano',
+    headline: 'Completa tu inscripción al Método SANA',
+    subheadline: 'Acceso inmediato al curso práctico por Gloria Molina.',
+    productName: 'Método SANA',
+    originalPriceText: '$1,200 MXN',
+    currentPriceText: '497,00 MXN',
+    installmentsNote: 'Pago único de 497,00 MXN',
+    ctaButtonText: 'QUIERO EMPEZAR EN HOTMART',
+    items: ['Curso Práctico Método SANA', '4 Materiales PDF', 'Acceso Ilimitado'],
+    securityItems: [
+      'Acceso inmediato a la plataforma digital',
+      'Materiales descargables en formato PDF',
+      'Pago encriptado con certificado SSL vía Hotmart',
+    ],
   },
 
-  // Section 13: Final Visual CTA Section
-  finalCta: {
-    title: 'Empieza hoy a cuidar tu bienestar digestivo.',
-    copy: 'Descarga gratuitamente la guía y comienza con pequeños pasos hacia hábitos más conscientes.',
-    buttonText: 'QUIERO MI GUÍA GRATIS',
-    bgImageSrc: '/images/hero-lifestyle.jpg',
+  graciasPage: {
+    title: '¡Inscripción Exitosa! | Método SANA',
+    headline: '¡Bienvenida al Método SANA!',
+    subheadline: 'Hemos enviado el acceso directo a tu correo electrónico.',
+    ctaButtonText: 'INGRESAR A MI CURSO',
+    whatsappSupportText: '¿Necesitas ayuda o tienes alguna pregunta?',
+    steps: [
+      {
+        number: '01',
+        title: 'Revisa tu Correo',
+        description: 'Busca el mensaje de confirmación enviado por Vive Sano / Hotmart.',
+      },
+      {
+        number: '02',
+        title: 'Descarga los Materiales',
+        description: 'Accede a tu Diario Digestivo y Semáforos en PDF.',
+      },
+    ],
   },
 
-  // Section 14: Footer
+  // Footer
   footer: {
     brandName: 'VIVE SANO',
-    tagline: 'Educación y conciencia para tu bienestar cotidiano.',
+    tagline: 'Educación y conciencia para tu bienestar digestivo cotidiano.',
     copyright: '© 2026 Vive Sano — Gloria Molina. Todos los derechos reservados.',
     disclaimer: 'Este material tiene fines educativos y de bienestar general. No sustituye la valoración, diagnóstico ni tratamiento de un profesional de la salud.',
     links: [
       { label: 'Inicio', href: '#inicio' },
       { label: '¿Te ha pasado?', href: '#problema' },
-      { label: 'Beneficios', href: '#beneficios' },
-      { label: 'Dentro de la guía', href: '#guia' },
-      { label: 'Conoce Vive Sano', href: '#conoce-vive-sano' },
+      { label: 'Método SANA', href: '#metodo-sana' },
+      { label: 'Material de Apoyo', href: '#materiales' },
+      { label: 'Oferta', href: '#oferta' },
+      { label: 'Conoce a Gloria', href: '#conoce-vive-sano' },
       { label: 'Preguntas Frecuentes', href: '#faq' },
     ],
     legalLinks: [

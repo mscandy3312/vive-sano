@@ -1,32 +1,75 @@
 import React from 'react';
 import Container from './Container';
 import Section from './Section';
-import PricingCard from './PricingCard';
 import { contentData } from '@/data/content';
 
 export const OfferSection: React.FC = () => {
-  const { enabled, eyebrow, headline, subheadline } = contentData.pricing;
-
-  if (!enabled) {
-    return null;
-  }
+  const { eyebrow, headline, promise, priceText, ctaText, includedItems, guaranteeText } = contentData.offer;
 
   return (
-    <Section id="oferta" bgVariant="soft" py="lg">
-      <Container size="lg">
-        <div className="max-w-3xl mx-auto text-center space-y-4 mb-14">
-          <span className="text-xs sm:text-sm font-bold tracking-widest text-[var(--primary)] uppercase bg-[var(--primary-light)] px-3.5 py-1 rounded-full border border-[var(--border)]">
-            {eyebrow}
-          </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--primary-dark)] leading-tight">
-            {headline}
-          </h2>
-          <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-            {subheadline}
-          </p>
-        </div>
+    <Section id="oferta" className="py-16 sm:py-24 bg-[#FAF8F1] border-b border-[#D5E8DC]">
+      <Container size="md">
+        <div className="bg-white rounded-3xl border-2 border-[#4DA92C] shadow-2xl p-6 sm:p-10 text-center relative overflow-hidden space-y-8">
+          
+          {/* TOP HIGHLIGHT BADGE */}
+          <div className="absolute top-0 left-0 right-0 bg-[#4DA92C] text-white py-2 px-4 text-xs font-bold uppercase tracking-widest">
+            {eyebrow} · ACCESO INMEDIATO Y DIGITAL
+          </div>
 
-        <PricingCard />
+          <div className="pt-4 space-y-4 max-w-2xl mx-auto">
+            <span className="inline-block text-xs font-extrabold text-[#4DA92C] bg-[#F0F9ED] px-4 py-1 rounded-full border border-[#B8D8C2]">
+              🌿 CURSO PRÁCTICO + 4 MATERIALES DE APOYO
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#123C32]">
+              {headline}
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-[#4A6B60] leading-relaxed italic">
+              "{promise}"
+            </p>
+          </div>
+
+          {/* PRICE DISPLAY */}
+          <div className="py-6 bg-[#F0F9ED] rounded-2xl border border-[#B8D8C2] max-w-md mx-auto space-y-2">
+            <span className="text-xs font-bold text-[#4A6B60] uppercase tracking-wider">
+              Precio Oficial Único
+            </span>
+            <div className="font-serif text-4xl sm:text-5xl font-extrabold text-[#123C32]">
+              {priceText}
+            </div>
+            <p className="text-xs font-semibold text-[#4DA92C]">
+              Sin mensualidades • Acceso ilimitado
+            </p>
+          </div>
+
+          {/* INCLUDED ITEMS CHECKLIST */}
+          <div className="max-w-lg mx-auto text-left space-y-3">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-[#123C32] text-center mb-4">
+              Todo lo que recibes al comenzar hoy:
+            </h3>
+            {includedItems.map((item, idx) => (
+              <div key={idx} className="flex items-center gap-3 p-3 rounded-xl bg-[#FAF8F1] border border-[#D5E8DC]">
+                <span className="w-6 h-6 rounded-full bg-[#4DA92C] text-white font-bold text-xs flex items-center justify-center shrink-0">
+                  ✓
+                </span>
+                <span className="text-xs sm:text-sm text-[#123C32] font-semibold">{item}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* PRIMARY CTA BUTTON */}
+          <div className="pt-4 max-w-md mx-auto space-y-3">
+            <a
+              href="/pago"
+              className="w-full py-4 px-8 rounded-2xl bg-[#4DA92C] hover:bg-[#3e8b23] text-white font-extrabold text-base sm:text-lg uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 cursor-pointer transform hover:-translate-y-0.5"
+            >
+              <span>{ctaText} →</span>
+            </a>
+            <p className="text-xs text-[#4A6B60]">
+              {guaranteeText}
+            </p>
+          </div>
+
+        </div>
       </Container>
     </Section>
   );

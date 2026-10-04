@@ -1,23 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  /* Luxury Health & Wellness Natural Green Palette */
-  --green-deep: #123C32;     /* Dark forest green for headlines, hero dark backgrounds, elite branding */
-  --green-forest: #1F6B50;   /* Primary green for buttons, accents, icons, hover states */
-  --green-natural: #5E9F78;  /* Sage leaf green for highlights and secondary details */
-  --green-sage: #8BA896;     /* Muted sage green for borders, subtle badges, cards */
-  --green-light: #EEF7F0;    /* Soft botanical mist for section backgrounds and soft pills */
-  --cream: #FAF8F1;          /* Organic warm cream background for maximum warmth and comfort */
-  --white: #FFFFFF;          /* Pure white for high contrast cards and containers */
-  --sand: #F4F0EA;           /* Light sand tint for warm subtle cards */
+  /* Official Brand Palette for Método SANA & Vive Sano */
+  --brand-green: #4DA92C;   /* Marca, CTA Principal ("QUIERO EMPEZAR"), Salud, Bienestar, Estados Positivos */
+  --brand-orange: #E76100;  /* Atención, Énfasis, Señales, Elementos Destacados, Energía */
+  --brand-blue: #0078BF;    /* Educación, Información, Materiales, Herramientas, Análisis */
+
+  /* Supporting Palette */
+  --green-deep: #123C32;     /* Dark forest green for headlines and contrast text */
+  --green-forest: #4DA92C;   /* Main button green */
+  --green-natural: #5E9F78;  /* Sage details */
+  --green-sage: #B8D8C2;     /* Soft borders */
+  --green-light: #F0F9ED;    /* Light green background tint */
+  --cream: #FAF8F1;          /* Organic warm background */
+  --white: #FFFFFF;          /* Surface white */
+  --sand: #F4F0EA;           /* Light sand tint */
 
   /* Semantic Design Tokens */
-  --primary: #1F6B50;
+  --primary: #4DA92C;
   --primary-dark: #123C32;
-  --primary-light: #EEF7F0;
-  --secondary: #5E9F78;
+  --primary-light: #F0F9ED;
+  --secondary: #0078BF;
+  --accent: #E76100;
   --background: #FAF8F1;
-  --background-soft: #EEF7F0;
+  --background-soft: #F0F9ED;
   --surface: #FFFFFF;
   --text: #123C32;
   --text-muted: #4A6B60;
@@ -25,6 +31,9 @@
 }
 
 @theme {
+  --color-brand-green: var(--brand-green);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-blue: var(--brand-blue);
   --color-green-deep: var(--green-deep);
   --color-green-forest: var(--green-forest);
   --color-green-natural: var(--green-natural);
@@ -37,6 +46,7 @@
   --color-primary-dark: var(--primary-dark);
   --color-primary-light: var(--primary-light);
   --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
   --color-background: var(--background);
   --color-background-soft: var(--background-soft);
   --color-surface: var(--surface);
