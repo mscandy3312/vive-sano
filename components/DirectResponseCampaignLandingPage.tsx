@@ -143,7 +143,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
             <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <a
                 href={hero.primaryCtaHref}
-                className="py-4 px-8 rounded-2xl bg-[#4DA92C] hover:bg-[#3e8b23] text-white font-extrabold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 cursor-pointer transform hover:-translate-y-0.5"
+                className="py-4 px-8 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 cursor-pointer transform hover:-translate-y-0.5"
               >
                 <span>{hero.primaryCtaText} ({hero.priceText}) →</span>
               </a>
@@ -190,7 +190,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
 
               <a
                 href="#oferta"
-                className="w-full py-3.5 px-6 rounded-2xl bg-[#4DA92C] hover:bg-[#3e8b23] text-white font-extrabold text-sm uppercase tracking-wider transition-all shadow-md block text-center"
+                className="w-full py-3.5 px-6 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm uppercase tracking-wider transition-all shadow-md block text-center"
               >
                 QUIERO EMPEZAR
               </a>
@@ -285,7 +285,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
           <div className="pt-4">
             <a
               href="/pago"
-              className="py-4 px-10 rounded-2xl bg-[#4DA92C] hover:bg-white hover:text-[#123C32] text-white font-extrabold text-sm sm:text-base transition-all duration-300 shadow-2xl uppercase tracking-wider inline-flex items-center gap-2 transform hover:-translate-y-0.5 cursor-pointer"
+              className="py-4 px-10 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm sm:text-base transition-all duration-300 shadow-2xl uppercase tracking-wider inline-flex items-center gap-2 transform hover:-translate-y-0.5 cursor-pointer"
             >
               <span>QUIERO EMPEZAR (497,00 MXN) →</span>
             </a>
@@ -309,7 +309,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
           </div>
           <a
             href="/pago"
-            className="py-2.5 px-4 rounded-xl bg-[#4DA92C] text-white font-extrabold text-xs uppercase tracking-wider shadow-lg cursor-pointer"
+            className="py-2.5 px-4 rounded-xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-xs uppercase tracking-wider shadow-lg cursor-pointer"
           >
             <span>EMPEZAR →</span>
           </a>
