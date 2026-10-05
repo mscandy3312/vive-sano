@@ -13,20 +13,27 @@ export const MaterialSupportSection: React.FC = () => {
     <Section id="materiales" className="py-16 sm:py-24 bg-[#F0F9ED] border-y border-[#D5E8DC]">
       <Container size="lg">
         {/* SECTION HEADER */}
-        <div className="max-w-3xl mx-auto text-center space-y-3 mb-14">
-          <span className="inline-block text-xs font-extrabold tracking-widest text-[#0078BF] uppercase bg-[#EBF5FC] px-4 py-1.5 rounded-full border border-[#B3DAF2] shadow-2xs">
-            {eyebrow}
-          </span>
+        <div className="max-w-3xl mx-auto text-center space-y-3.5 mb-12 sm:mb-16">
+          <div className="flex items-center justify-center gap-2">
+            <span className="inline-block text-xs font-extrabold tracking-widest text-[#0078BF] uppercase bg-[#EBF5FC] px-4 py-1.5 rounded-full border border-[#B3DAF2] shadow-2xs">
+              {eyebrow}
+            </span>
+            <span className="inline-block text-xs font-bold tracking-wider text-[#4DA92C] uppercase bg-[#F0F9ED] px-3 py-1 rounded-full border border-[#B8D8C2]">
+              📄 PDF Interactivos
+            </span>
+          </div>
+
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#123C32] tracking-tight">
             {title}
           </h2>
+
           <p className="text-sm sm:text-base md:text-lg text-[#4A6B60] leading-relaxed max-w-2xl mx-auto">
             "{subtitle}"
           </p>
         </div>
 
-        {/* 4 MATERIALS GRID: Desktop 4 cols, Tablet 2x2, Mobile 1 col */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* MATERIALS GRID: Desktop 4 cols, Tablet 2 cols, Mobile 1 col */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {materials.map((material) => (
             <MaterialCard
               key={material.id}
@@ -36,13 +43,18 @@ export const MaterialSupportSection: React.FC = () => {
           ))}
         </div>
 
-        {/* INCLUDED NOTE */}
-        <div className="mt-12 text-center text-xs text-[#4A6B60] font-semibold bg-white p-4 rounded-2xl max-w-lg mx-auto border border-[#D5E8DC] shadow-2xs">
-          📄 Todos los materiales están incluidos en formato PDF de alta calidad con tu inscripción de <strong className="text-[#4DA92C]">497,00 MXN</strong>.
+        {/* INCLUDED NOTE & ASSURANCE */}
+        <div className="mt-12 text-center text-xs sm:text-sm text-[#4A6B60] font-medium bg-white p-5 rounded-2xl max-w-xl mx-auto border border-[#D5E8DC] shadow-xs space-y-1">
+          <p className="font-bold text-[#123C32] flex items-center justify-center gap-2">
+            <span className="text-[#4DA92C] text-base">✓</span> Descarga o consulta directa desde cualquier dispositivo
+          </p>
+          <p className="text-[#4A6B60]">
+            Todos los materiales están incluidos en formato PDF de alta calidad con tu inscripción de <strong className="text-[#4DA92C] font-extrabold">497,00 MXN</strong> al Método SANA.
+          </p>
         </div>
       </Container>
 
-      {/* LIGHTBOX MODAL */}
+      {/* LIGHTBOX MODAL FOR IMAGE PREVIEW */}
       {activeImage && (
         <div
           onClick={() => setActiveImage(null)}

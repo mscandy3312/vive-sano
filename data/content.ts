@@ -107,6 +107,9 @@ export interface MaterialSupportItem {
   imageSrc: string;
   imageAlt: string;
   isSemaforoMulti?: boolean;
+  pdfUrl?: string;
+  downloadFilename?: string;
+  isAvailable?: boolean;
 }
 
 export interface AudienceItem {
@@ -373,42 +376,50 @@ export const contentData = {
     materials: [
       {
         id: 'm1',
+        title: 'Semáforos de tu cuerpo — Señales digestivas',
+        description: 'Una herramienta para observar tus señales, reconocer tus patrones y entender lo que tu cuerpo te está diciendo.',
+        primaryColor: '#4DA92C',
+        accentColor: '#E76100',
+        badgeLabel: 'Semáforos Digestivos',
+        imageSrc: '/images/materiales/semaforos-de-tu-cuerpo-cover.jpg',
+        imageAlt: 'Portada real de Semáforos de tu cuerpo — Señales digestivas',
+        isSemaforoMulti: true,
+        pdfUrl: '/materiales/semaforos-de-tu-cuerpo.pdf',
+        downloadFilename: 'semaforos-de-tu-cuerpo.pdf',
+        isAvailable: true,
+      },
+      {
+        id: 'm2',
+        title: 'Descubre por qué te inflamas — Guía FODMAP',
+        description: 'Entiende tu digestión, conoce tu cuerpo y recupera tu bienestar. Incluye lista de alimentos permitidos, a limitar, a evitar y ejercicio práctico.',
+        primaryColor: '#0078BF',
+        accentColor: '#E76100',
+        badgeLabel: 'Guía Práctica FODMAP',
+        imageSrc: '/images/materiales/guia-fodmap-cover.jpg',
+        imageAlt: 'Portada real de Descubre por qué te inflamas — Guía FODMAP',
+        pdfUrl: '/materiales/guia-fodmap-descubre-por-que-te-inflamas.pdf',
+        downloadFilename: 'guia-fodmap-descubre-por-que-te-inflamas.pdf',
+        isAvailable: true,
+      },
+      {
+        id: 'm3',
         title: 'Diario Digestivo',
-        description: 'Registra lo que comes y cómo te sientes para entender tu propio patrón.',
+        description: 'Registra lo que comes y cómo te sientes para identificar tus patrones diarios.',
         primaryColor: '#4DA92C',
         badgeLabel: 'Registro Diario',
         imageSrc: '/images/lead-magnet-mockup.jpg',
         imageAlt: 'Mockup del Diario Digestivo Vive Sano',
-      },
-      {
-        id: 'm2',
-        title: '8 Semáforos Digestivos',
-        description: 'Uno para cada señal, para que identifiques en qué color está tu cuerpo.',
-        primaryColor: '#4DA92C',
-        accentColor: '#E76100',
-        badgeLabel: 'Sistema de Semáforos',
-        imageSrc: '/images/lead-magnet-mockup.jpg',
-        imageAlt: 'Mockup de los 8 Semáforos Digestivos',
-        isSemaforoMulti: true,
-      },
-      {
-        id: 'm3',
-        title: 'Semáforo FODMAP',
-        description: 'Identifica qué alimentos pueden estar provocando tus gases.',
-        primaryColor: '#0078BF',
-        badgeLabel: 'Análisis FODMAP',
-        imageSrc: '/images/lead-magnet-mockup.jpg',
-        imageAlt: 'Mockup del Semáforo FODMAP',
+        isAvailable: false,
       },
       {
         id: 'm4',
-        title: 'Guía FODMAP: Descubre por qué te inflamas',
-        description: 'Conoce qué alimentos le dan descanso a tu digestión, cuáles conviene limitar y un ejercicio para revisar tus combinaciones.',
+        title: 'Semáforo FODMAP Rápido',
+        description: 'Consulta rápida de alimentos para llevar en tu celular durante el día.',
         primaryColor: '#0078BF',
-        accentColor: '#E76100',
-        badgeLabel: 'Guía Práctica',
+        badgeLabel: 'Análisis Rápido',
         imageSrc: '/images/lead-magnet-mockup.jpg',
-        imageAlt: 'Mockup de la Guía FODMAP',
+        imageAlt: 'Mockup del Semáforo FODMAP',
+        isAvailable: false,
       },
     ] as MaterialSupportItem[],
   },
