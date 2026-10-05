@@ -173,16 +173,16 @@ export const contentData = {
   navigation: {
     logoText: 'VIVE SANO',
     items: [
-      { label: 'Inicio', href: '#inicio' },
-      { label: '¿Te ha pasado?', href: '#problema' },
-      { label: 'Contenido', href: '#contenido' },
-      { label: 'Lo que incluye', href: '#incluye' },
-      { label: 'Material de Apoyo', href: '#materiales' },
-      { label: 'Conoce a Gloria', href: '#conoce-vive-sano' },
-      { label: 'Preguntas Frecuentes', href: '#faq' },
+      { label: 'Inicio', href: '/#inicio' },
+      { label: '¿Te ha pasado?', href: '/#problema' },
+      { label: 'Contenido', href: '/#contenido' },
+      { label: 'Lo que incluye', href: '/#incluye' },
+      { label: 'Material de Apoyo', href: '/#materiales' },
+      { label: 'Conoce a Gloria', href: '/#conoce-vive-sano' },
+      { label: 'Preguntas Frecuentes', href: '/#faq' },
     ] as NavItem[],
     ctaText: 'QUIERO EMPEZAR',
-    ctaHref: '#oferta',
+    ctaHref: '/#oferta',
   },
 
   // Hero Principal (Método SANA)

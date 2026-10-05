@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Container from '@/components/Container';
@@ -18,6 +19,17 @@ export default function PrivacidadPage() {
       <main className="flex-1 pt-28 pb-16 sm:pt-36 sm:pb-24">
         <Section className="py-8">
           <Container size="md">
+            
+            {/* BACK TO HOME NAVIGATION BUTTON */}
+            <div className="mb-6">
+              <Link
+                href="/"
+                className="inline-flex items-center gap-2 text-xs font-extrabold text-[#4DA92C] bg-white hover:bg-[#4DA92C] hover:text-white px-4 py-2.5 rounded-2xl border border-[#B8D8C2] shadow-2xs transition-all"
+              >
+                <span>← Volver al Inicio (Método SANA)</span>
+              </Link>
+            </div>
+
             <div className="bg-white rounded-3xl border border-[#D5E8DC] p-6 sm:p-12 shadow-sm space-y-8 text-left">
               
               {/* HEADER */}
@@ -134,14 +146,22 @@ export default function PrivacidadPage() {
                     8. Cambios al Aviso de Privacidad
                   </h2>
                   <p>
-                    El presente Aviso de Privacidad puede sufrir modificaciones o actualizaciones derivadas de nuevos requerimientos legales o de nuestras propias prácticas de privacidad. Dichos cambios estarán siempre disponibles en esta misma página web.
+                    El presente Aviso de Privacidad puede sufrir modificaciones o actualizaciones derivadas de nuevos requerimientos legales o de nuestras propias prácticas de privacidad. Dichas modificaciones estarán siempre disponibles en esta misma página web.
                   </p>
                 </section>
 
-                {/* 9. CONTACTO */}
-                <div className="pt-6 border-t border-[#D5E8DC] text-center space-y-2">
+                {/* 9. CONTACTO & REGRESO */}
+                <div className="pt-6 border-t border-[#D5E8DC] text-center space-y-4">
                   <p className="font-bold text-[#123C32]">¿Tiene dudas sobre este Aviso de Privacidad?</p>
                   <p>Escríbanos a <a href="mailto:gloria@vive-sano.mx" className="text-[#4DA92C] font-bold">gloria@vive-sano.mx</a></p>
+                  <div className="pt-2">
+                    <Link
+                      href="/"
+                      className="inline-flex items-center gap-2 py-3 px-8 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-md"
+                    >
+                      <span>← Volver al Inicio (Método SANA)</span>
+                    </Link>
+                  </div>
                 </div>
 
               </div>

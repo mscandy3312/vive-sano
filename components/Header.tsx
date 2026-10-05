@@ -61,7 +61,7 @@ export const Header: React.FC = () => {
         <div className="flex items-center justify-between">
           {/* LOGO */}
           <Link
-            href="#inicio"
+            href="/"
             aria-label="Vive Sano - Ir al inicio"
             className="flex items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)] rounded-lg p-1"
           >

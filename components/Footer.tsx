@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
           {/* Brand Column */}
           <div className="md:col-span-6 space-y-4">
             <Link
-              href="#inicio"
+              href="/"
               aria-label="Vive Sano - Ir al inicio"
               className="inline-block"
             >
