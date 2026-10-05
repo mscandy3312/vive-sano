@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { contentData } from '@/data/content';
 import Header from './Header';
 import ProblemSection from './ProblemSection';
@@ -25,6 +26,13 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
   const [showStickyMobileCta, setShowStickyMobileCta] = useState(false);
 
+  const closePrivacyModal = () => {
+    setShowPrivacyModal(false);
+    if (typeof window !== 'undefined' && window.location.hash === '#privacidad') {
+      history.pushState('', document.title, window.location.pathname + window.location.search);
+    }
+  };
+
   // Handle Scroll for Sticky Mobile CTA
   useEffect(() => {
     const handleScroll = () => {
@@ -37,11 +45,28 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Keyboard Accessibility
+  // Handle Hash Changes & Auto-close Modal on Navigation
+  useEffect(() => {
+    const handleHashOrNavigation = () => {
+      if (typeof window !== 'undefined') {
+        if (window.location.hash === '#privacidad') {
+          setShowPrivacyModal(true);
+        } else {
+          setShowPrivacyModal(false);
+        }
+      }
+    };
+
+    handleHashOrNavigation();
+    window.addEventListener('hashchange', handleHashOrNavigation);
+    return () => window.removeEventListener('hashchange', handleHashOrNavigation);
+  }, []);
+
+  // Keyboard Accessibility (ESC key)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setShowPrivacyModal(false);
+        closePrivacyModal();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -282,33 +307,54 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
 
       {/* AVISO DE PRIVACIDAD MODAL */}
       {showPrivacyModal && (
-        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-fadeIn">
-          <div className="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-[#D5E8DC]" role="dialog" aria-modal="true">
+        <div
+          onClick={closePrivacyModal}
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs flex items-center justify-center p-4 animate-fadeIn cursor-pointer"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-[#D5E8DC] cursor-default"
+          >
             <div className="flex items-center justify-between border-b border-[#D5E8DC] pb-3">
               <h3 className="font-serif text-lg font-bold text-[#123C32]">
                 Aviso de Privacidad
               </h3>
               <button
-                onClick={() => setShowPrivacyModal(false)}
+                onClick={closePrivacyModal}
                 className="text-[#4A6B60] hover:text-[#123C32] text-xl font-bold p-1 cursor-pointer focus:outline-none"
+                aria-label="Cerrar ventana emergente"
               >
                 ✕
               </button>
             </div>
+
             <div className="text-xs text-[#4A6B60] space-y-2.5 leading-relaxed max-h-60 overflow-y-auto">
               <p>
                 Sus datos personales son recabados con el único propósito de proporcionar acceso al <em>Método SANA</em> y enviarle información relevante sobre bienestar y hábitos saludables.
               </p>
               <p>
-                No vendemos ni transferimos sus datos a terceros. Puede solicitar la eliminación de sus datos escribiendo a <a href="mailto:gloria@vive-sano.mx" className="text-[#0078BF] underline">gloria@vive-sano.mx</a>.
+                No vendemos ni transferimos sus datos a terceros. Puede solicitar la eliminación de sus datos escribiendo a <a href="mailto:gloria@vive-sano.mx" className="text-[#0078BF] underline font-bold">gloria@vive-sano.mx</a>.
               </p>
             </div>
-            <button
-              onClick={() => setShowPrivacyModal(false)}
-              className="w-full py-2.5 rounded-xl bg-[#4DA92C] text-white font-bold text-xs hover:bg-[#3e8b23] transition-colors cursor-pointer"
-            >
-              Entendido y Cerrar
-            </button>
+
+            <div className="space-y-2 pt-2">
+              <Link
+                href="/privacidad"
+                onClick={closePrivacyModal}
+                className="block w-full py-2.5 rounded-xl bg-[#0078BF] hover:bg-[#006099] text-white font-bold text-xs transition-colors text-center"
+              >
+                📄 Ver Aviso de Privacidad Completo
+              </Link>
+
+              <button
+                onClick={closePrivacyModal}
+                className="w-full py-2.5 rounded-xl bg-[#4DA92C] text-white font-bold text-xs hover:bg-[#3e8b23] transition-colors cursor-pointer"
+              >
+                Entendido y Cerrar
+              </button>
+            </div>
           </div>
         </div>
       )}
