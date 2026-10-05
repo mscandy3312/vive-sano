@@ -5,8 +5,12 @@ import Image from 'next/image';
 import { contentData } from '@/data/content';
 import Header from './Header';
 import ProblemSection from './ProblemSection';
-import MethodSection from './MethodSection';
+import NoNeedToChangeSection from './NoNeedToChangeSection';
+import CourseModulesSection from './CourseModulesSection';
+import IncludesSection from './IncludesSection';
 import MaterialSupportSection from './MaterialSupportSection';
+import AudienceSection from './AudienceSection';
+import AboutGloria from './AboutGloria';
 import OfferSection from './OfferSection';
 import FAQ from './FAQ';
 import Footer from './Footer';
@@ -44,7 +48,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const { hero, aboutGloria, finalCta } = contentData;
+  const { hero, finalCta } = contentData;
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F1] text-[#123C32] font-sans antialiased selection:bg-[#B8D8C2] selection:text-[#123C32]">
@@ -91,7 +95,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
           </div>
 
           <div className="hidden md:flex items-center gap-4 text-white/90">
-            <span className="text-[11px] text-[#B8D8C2]">Curso Práctico Digital — 497,00 MXN</span>
+            <span className="text-[11px] text-[#B8D8C2]">Curso Práctico Digital — $497 MXN</span>
           </div>
         </div>
       </div>
@@ -123,7 +127,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
 
               {/* EXACT SUPPORTING TEXT */}
               <p className="text-xs sm:text-sm md:text-base text-[#4A6B60] leading-relaxed">
-                {hero.subheadline}
+                "{hero.subheadline}"
               </p>
             </div>
 
@@ -176,7 +180,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
                   Método SANA
                 </div>
                 <div className="absolute bottom-3 right-3 bg-[#123C32]/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md border border-white/20">
-                  4 Materiales Incluidos
+                  Herramientas Incluidas 📄
                 </div>
               </div>
 
@@ -190,7 +194,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
 
               <a
                 href="#oferta"
-                className="w-full py-3.5 px-6 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm uppercase tracking-wider transition-all shadow-md block text-center"
+                className="w-full py-3.5 px-6 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm uppercase tracking-wider transition-all shadow-md block text-center cursor-pointer"
               >
                 QUIERO EMPEZAR
               </a>
@@ -200,78 +204,38 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 4. SECCIÓN DE IDENTIFICACIÓN ("¿TE SUENA FAMILIAR?" + ¿Te ha pasado? + 4 TARJETAS) */}
+      {/* 4. ¿TE HA PASADO? (SECCIÓN DE IDENTIFICACIÓN) */}
       <ProblemSection />
 
-      {/* 5. SECCIÓN MÉTODO SANA (EXPLICACIÓN PASO A PASO + 3 PILARES) */}
-      <MethodSection />
+      {/* 5. NO NECESITAS CAMBIARLO TODO (PASO A PASO) */}
+      <NoNeedToChangeSection />
 
-      {/* 6. SECCIÓN "UNA MIRADA AL INTERIOR" (MATERIAL DE APOYO + 4 MATERIALES) */}
+      {/* 6. ¿QUÉ ENCONTRARÁS EN EL MÉTODO SANA? (MÓDULOS DEL CURSO) */}
+      <CourseModulesSection />
+
+      {/* 7. LO QUE INCLUYE (CURSO EN VIDEO + HERRAMIENTAS) */}
+      <IncludesSection />
+
+      {/* 8. UNA MIRADA AL INTERIOR (MATERIAL DE APOYO EN PDF) */}
       <MaterialSupportSection />
 
-      {/* 7. SECCIÓN CONOCE A GLORIA MOLINA */}
-      <section id="conoce-vive-sano" className="py-16 sm:py-24 bg-white border-b border-[#D5E8DC] px-4 sm:px-6">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
-          <div className="lg:col-span-5 relative aspect-[4/5] rounded-3xl overflow-hidden border border-[#D5E8DC] bg-[#F0F9ED] shadow-lg">
-            <Image
-              src={aboutGloria.imageSrc}
-              alt={aboutGloria.imageAlt}
-              fill
-              sizes="(max-width: 768px) 100vw, 400px"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#123C32]/85 via-transparent to-transparent flex items-end p-6">
-              <div className="text-white text-left space-y-1">
-                <p className="font-serif font-bold text-xl text-white">
-                  {aboutGloria.name}
-                </p>
-                <p className="text-xs text-[#B8D8C2] font-semibold">
-                  {aboutGloria.role}
-                </p>
-              </div>
-            </div>
-          </div>
+      {/* 9. ESTE CURSO ES PARA TI SI... (TARGET AUDIENCE) */}
+      <AudienceSection />
 
-          <div className="lg:col-span-7 space-y-6 text-left">
-            <span className="text-xs font-bold text-[#4DA92C] uppercase tracking-widest bg-[#F0F9ED] px-3.5 py-1 rounded-full border border-[#B8D8C2]">
-              {aboutGloria.eyebrow}
-            </span>
-            
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#123C32]">
-              {aboutGloria.title}
-            </h2>
+      {/* 10. CONOCE A LA FUNDADORA (GLORIA MOLINA) */}
+      <AboutGloria />
 
-            <div className="space-y-3.5 text-sm sm:text-base text-[#4A6B60] leading-relaxed">
-              <p>{aboutGloria.copy}</p>
-              <p>
-                El Método SANA está pensado como un puente entre la educación digestiva y tu día a día, permitiéndote tomar decisiones informadas sin abrumamiento.
-              </p>
-            </div>
-
-            <blockquote className="p-4 rounded-2xl bg-[#FAF8F1] border-l-4 border-[#4DA92C] text-xs sm:text-sm font-serif italic text-[#123C32]">
-              "{aboutGloria.quote}"
-            </blockquote>
-
-            <p className="text-xs font-bold text-[#123C32] uppercase tracking-wider">
-              {aboutGloria.signatureText}
-            </p>
-          </div>
-
-        </div>
-      </section>
-
-      {/* 8. SECCIÓN COMERCIAL DE OFERTA MÉTODO SANA (497,00 MXN) */}
+      {/* 11. OFERTA COMERCIAL MÉTODO SANA ($497 MXN) */}
       <OfferSection />
 
-      {/* 9. PREGUNTAS FRECUENTES (FAQ ACORDEÓN) */}
+      {/* 12. PREGUNTAS FRECUENTES (FAQ ACORDEÓN) */}
       <FAQ />
 
-      {/* 10. FINAL CTA BANNER */}
+      {/* 13. FINAL CTA BANNER */}
       <section className="relative py-16 sm:py-24 bg-[#123C32] text-white px-4 sm:px-6 text-center overflow-hidden">
         <div className="relative max-w-3xl mx-auto space-y-6">
           <span className="inline-block px-4 py-1 rounded-full bg-white/10 text-[#4DA92C] text-xs font-extrabold uppercase tracking-wider border border-white/20">
-            🌿 MÉTODO SANA — 497,00 MXN
+            🌿 MÉTODO SANA — $497 MXN
           </span>
           
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
@@ -287,7 +251,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
               href="/pago"
               className="py-4 px-10 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm sm:text-base transition-all duration-300 shadow-2xl uppercase tracking-wider inline-flex items-center gap-2 transform hover:-translate-y-0.5 cursor-pointer"
             >
-              <span>QUIERO EMPEZAR (497,00 MXN) →</span>
+              <span>QUIERO EMPEZAR ($497 MXN) →</span>
             </a>
           </div>
 
@@ -297,7 +261,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         </div>
       </section>
 
-      {/* 11. FOOTER */}
+      {/* 14. FOOTER */}
       <Footer />
 
       {/* STICKY MOBILE BOTTOM BAR */}
@@ -305,7 +269,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#123C32]/95 backdrop-blur-md border-t border-white/20 p-3 flex items-center justify-between sm:hidden animate-slideUp">
           <div className="text-left text-white px-2">
             <p className="text-xs font-bold">Método SANA</p>
-            <p className="text-[10px] text-[#4DA92C] font-semibold">497,00 MXN • Digital</p>
+            <p className="text-[10px] text-[#4DA92C] font-semibold">$497 MXN • Digital</p>
           </div>
           <a
             href="/pago"
@@ -336,7 +300,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
                 Sus datos personales son recabados con el único propósito de proporcionar acceso al <em>Método SANA</em> y enviarle información relevante sobre bienestar y hábitos saludables.
               </p>
               <p>
-                No vendemos ni transferimos sus datos a terceros. Puede solicitar la eliminación de sus datos en cualquier momento.
+                No vendemos ni transferimos sus datos a terceros. Puede solicitar la eliminación de sus datos escribiendo a <a href="mailto:gloria@vive-sano.mx" className="text-[#0078BF] underline">gloria@vive-sano.mx</a>.
               </p>
             </div>
             <button

@@ -5,68 +5,61 @@ import Section from './Section';
 import { contentData } from '@/data/content';
 
 export const AboutGloria: React.FC = () => {
-  const { eyebrow, headline, quote, bioParagraphs, imageSrc, imageAlt } = contentData.aboutGloria;
-  const { ownerName, ownerRole, communityStats } = contentData.brand;
+  const { eyebrow, title, copy, quote, signatureText, imageSrc, imageAlt, name, role } = contentData.aboutGloria;
 
   return (
-    <Section id="sobre-gloria" bgVariant="default" py="lg">
+    <Section id="conoce-vive-sano" className="py-16 sm:py-24 bg-white border-b border-[#D5E8DC]">
       <Container size="lg">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Gloria Photography Frame */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          
+          {/* REAL PHOTOGRAPHY FRAME */}
           <div className="lg:col-span-5 relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-xl border border-[var(--border)] bg-white aspect-[4/5]">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#D5E8DC] bg-[#F0F9ED] aspect-[4/5]">
               <Image
                 src={imageSrc}
                 alt={imageAlt}
                 fill
-                sizes="(max-width: 768px) 100vw, 500px"
+                sizes="(max-width: 768px) 100vw, 450px"
                 className="object-cover object-center"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary-dark)]/50 via-transparent to-transparent" />
-
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/95 backdrop-blur-md border border-white/60 shadow-lg">
-                <p className="font-serif font-bold text-lg text-[var(--primary-dark)]">
-                  {ownerName}
-                </p>
-                <p className="text-xs font-medium text-[var(--text-muted)]">{ownerRole}</p>
-                <span className="inline-block mt-1 text-[11px] font-bold text-[var(--primary)] bg-[var(--primary-light)] px-2.5 py-0.5 rounded-full">
-                  {communityStats}
-                </span>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#123C32]/85 via-transparent to-transparent flex items-end p-6">
+                <div className="text-white text-left space-y-1">
+                  <p className="font-serif font-bold text-xl text-white">
+                    {name}
+                  </p>
+                  <p className="text-xs text-[#B8D8C2] font-semibold">
+                    {role}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Gloria Bio Content */}
-          <div className="lg:col-span-7 space-y-6">
-            <span className="text-xs sm:text-sm font-bold tracking-widest text-[var(--primary)] uppercase bg-[var(--primary-light)] px-3.5 py-1 rounded-full border border-[var(--border)]">
+          {/* GLORIA BIO CONTENT */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            <span className="inline-block text-xs font-extrabold tracking-widest text-[#4DA92C] uppercase bg-[#F0F9ED] px-4 py-1.5 rounded-full border border-[#B8D8C2]">
               {eyebrow}
             </span>
 
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--primary-dark)] leading-tight">
-              {headline}
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#123C32] leading-tight">
+              "{title}"
             </h2>
 
-            <blockquote className="p-4 sm:p-5 rounded-2xl bg-[var(--background-soft)] border-l-4 border-[var(--primary)] font-serif italic text-base sm:text-lg text-[var(--primary-dark)] leading-relaxed">
-              {quote}
+            <div className="space-y-4 text-sm sm:text-base text-[#4A6B60] leading-relaxed">
+              <p className="text-base sm:text-lg text-[#123C32] font-medium leading-relaxed">
+                "{copy}"
+              </p>
+            </div>
+
+            <blockquote className="p-4 sm:p-5 rounded-2xl bg-[#FAF8F1] border-l-4 border-[#4DA92C] font-serif italic text-sm sm:text-base text-[#123C32] leading-relaxed">
+              "{quote}"
             </blockquote>
 
-            <div className="space-y-4 text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
-              {bioParagraphs.map((para, idx) => (
-                <p key={idx}>{para}</p>
-              ))}
-            </div>
-
-            <div className="pt-4 flex flex-wrap items-center gap-4 text-xs font-semibold text-[var(--primary-dark)] uppercase tracking-wider">
-              <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[var(--primary)]" />
-                Nutrición Consciente & Bienestar Digestivo
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[var(--secondary)]" />
-                Acompañamiento Humano
-              </span>
-            </div>
+            <p className="text-xs font-extrabold text-[#123C32] uppercase tracking-wider">
+              {signatureText}
+            </p>
           </div>
+
         </div>
       </Container>
     </Section>
