@@ -53,11 +53,26 @@ export const Header: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[var(--color-background)]/95 backdrop-blur-md shadow-sm border-b border-[var(--color-border)] py-3'
-          : 'bg-transparent py-5'
+          ? 'bg-[var(--color-background)]/95 backdrop-blur-md shadow-sm border-b border-[var(--color-border)]'
+          : 'bg-transparent'
       }`}
     >
-      <Container size="lg">
+      {/* SCROLLING MARQUEE TOP BAR */}
+      <div className="w-full bg-[#1B3B2B] text-white overflow-hidden py-2 border-b border-[#2D5A43]">
+        <div className="flex w-max animate-marqueeRight">
+          {/* Double the content for continuous scrolling effect */}
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="flex items-center space-x-8 px-4 text-xs font-semibold tracking-wide whitespace-nowrap">
+              <span className="flex items-center gap-1.5"><span className="text-[#4DA92C]">✓</span> Acceso digital e inmediato al curso</span>
+              <span className="flex items-center gap-1.5"><span className="text-[#4DA92C]">✓</span> Incluye las Herramientas de Apoyo descargables</span>
+              <span className="flex items-center gap-1.5"><span className="text-[#4DA92C]">✓</span> Aprendizaje a tu propio ritmo sin presiones</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className={`${isScrolled ? 'py-3' : 'py-5'}`}>
+        <Container size="lg">
         <div className="flex items-center justify-between">
           {/* LOGO */}
           <Link
@@ -140,6 +155,7 @@ export const Header: React.FC = () => {
           </button>
         </div>
       </Container>
+      </div>
 
       {/* MOBILE MENU OVERLAY */}
       {isMobileMenuOpen && (
