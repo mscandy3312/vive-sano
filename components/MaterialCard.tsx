@@ -104,7 +104,7 @@ export const MaterialCard: React.FC<MaterialCardProps> = ({ material, onPreviewC
         {/* PDF ACTION BUTTONS */}
         <div className="pt-3 border-t border-[#D5E8DC]/60 space-y-2">
           {pdfUrl && isAvailable ? (
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 gap-2">
               <a
                 href={pdfUrl}
                 target="_blank"
@@ -114,15 +114,6 @@ export const MaterialCard: React.FC<MaterialCardProps> = ({ material, onPreviewC
                 title={`Ver ${title} en una nueva pestaña`}
               >
                 <span>👁️ VER PDF</span>
-              </a>
-              <a
-                href={pdfUrl}
-                download={downloadFilename || 'documento.pdf'}
-                onClick={(e) => e.stopPropagation()}
-                className="w-full py-2.5 px-3 rounded-xl bg-[#E76100] hover:bg-[#cf5600] text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs hover:shadow-md cursor-pointer text-center"
-                title={`Descargar ${title}`}
-              >
-                <span>📥 DESCARGAR</span>
               </a>
             </div>
           ) : (

@@ -381,8 +381,6 @@ export const contentData = {
         badgeLabel: 'Guía Práctica FODMAP',
         imageSrc: '/images/materiales/guia-fodmap-cover.jpg',
         imageAlt: 'Portada real de Guía FODMAP',
-        pdfUrl: '/materiales/guia-fodmap-descubre-por-que-te-inflamas.pdf',
-        downloadFilename: 'guia-fodmap-descubre-por-que-te-inflamas.pdf',
         isAvailable: true,
       },
     ] as MaterialSupportItem[],
