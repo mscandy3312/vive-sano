@@ -25,7 +25,7 @@ export const SneakPeekSection: React.FC = () => {
               preload="metadata"
               poster="/images/hero-lifestyle.jpg"
             >
-              <source src="/materiales/gemini_generated_video_611544be.mp4" type="video/mp4" />
+              <source src="/materiales/vive-sano.mp4" type="video/mp4" />
               Tu navegador no soporta la reproducción de videos.
             </video>
           </div>
