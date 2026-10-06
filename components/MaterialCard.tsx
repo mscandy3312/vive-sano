@@ -125,7 +125,6 @@ export const MaterialCard: React.FC<MaterialCardProps> = ({ material, onPreviewC
             </div>
           )}
         </div>
-        </div>
       </div>
     </div>
 
