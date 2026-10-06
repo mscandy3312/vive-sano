@@ -339,7 +339,7 @@ export const contentData = {
         description: 'Registra lo que comes y cómo te sientes para entender tu propio patrón.',
         primaryColor: '#4DA92C',
         badgeLabel: 'Registro Diario',
-        imageSrc: '/images/lead-magnet-mockup.jpg',
+        imageSrc: '/images/materiales/diario-digestivo-cover.jpg',
         imageAlt: 'Mockup del Diario Digestivo Vive Sano',
         isAvailable: true,
         pdfUrl: '/materiales/diario digestivo.pdf',
