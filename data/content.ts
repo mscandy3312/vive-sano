@@ -341,7 +341,9 @@ export const contentData = {
         badgeLabel: 'Registro Diario',
         imageSrc: '/images/lead-magnet-mockup.jpg',
         imageAlt: 'Mockup del Diario Digestivo Vive Sano',
-        isAvailable: false,
+        isAvailable: true,
+        pdfUrl: '/materiales/diario digestivo.pdf',
+        downloadFilename: 'diario-digestivo.pdf',
       },
       {
         id: 'm2',

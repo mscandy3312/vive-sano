@@ -7,6 +7,7 @@ import { contentData } from '@/data/content';
 import Header from './Header';
 import ProblemSection from './ProblemSection';
 import NoNeedToChangeSection from './NoNeedToChangeSection';
+import SneakPeekSection from './SneakPeekSection';
 import CourseModulesSection from './CourseModulesSection';
 import IncludesSection from './IncludesSection';
 import MaterialSupportSection from './MaterialSupportSection';
@@ -234,6 +235,9 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
 
       {/* 5. NO NECESITAS CAMBIARLO TODO (PASO A PASO) */}
       <NoNeedToChangeSection />
+
+      {/* SNEAK PEEK (VIDEO CORTO) */}
+      <SneakPeekSection />
 
       {/* 6. ¿QUÉ ENCONTRARÁS EN EL MÉTODO SANA? (MÓDULOS DEL CURSO) */}
       <CourseModulesSection />
