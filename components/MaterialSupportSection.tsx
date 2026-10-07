@@ -71,12 +71,6 @@ export const MaterialSupportSection: React.FC = () => {
               sizes="100vw"
               className="object-contain"
             />
-            <button
-              onClick={() => setActiveImage(null)}
-              className="absolute top-4 right-4 bg-transparent/90 hover:bg-transparent text-white rounded-full px-4 py-2 text-xs font-bold shadow-md cursor-pointer"
-            >
-              ✕ Cerrar
-            </button>
           </div>
         </div>
       )}

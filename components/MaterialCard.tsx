@@ -52,10 +52,6 @@ export const MaterialCard: React.FC<MaterialCardProps> = ({ material, onPreviewC
         />
 
 
-        {/* HOVER OVERLAY */}
-        <div className="absolute inset-0 bg-[#123C32]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-xs gap-1.5 backdrop-blur-xs">
-          <span>{pdfUrl ? '📄 Abrir PDF' : '🔍 Vista previa de imagen'}</span>
-        </div>
       </div>
 
       {/* CARD CONTENT */}
