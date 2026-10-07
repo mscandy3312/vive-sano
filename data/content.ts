@@ -197,8 +197,8 @@ export const contentData = {
     primaryCtaHref: '#oferta',
     secondaryCtaText: 'CONOCER EL MÉTODO',
     secondaryCtaHref: '#problema',
-    imageSrc: '/images/hero-lifestyle.jpg',
-    imageAlt: 'Fotografía de bienestar Vive Sano',
+    imageSrc: '/materiales/dieta.jpeg',
+    imageAlt: 'Fotografía de dieta y bienestar Vive Sano',
     highlights: [
       '✓ Acceso digital e inmediato al curso',
       '✓ Incluye los Semáforos Digestivos y material de apoyo',
