@@ -24,14 +24,7 @@ export const IncludesSection: React.FC = () => {
                   className="object-cover"
                 />
                 
-                {/* OVERLAY BADGES */}
-                <div className="absolute top-3 left-3 bg-[#E76100] text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
-                  📹 {imageBadge}
-                </div>
 
-                <div className="absolute bottom-3 right-3 bg-[#123C32]/90 text-white text-[11px] font-bold px-3 py-1 rounded-full backdrop-blur-md border border-white/20">
-                  Acceso Inmediato 📱💻
-                </div>
               </div>
 
               <div className="p-4 rounded-2xl bg-transparent border border-[#D5E8DC] text-center space-y-1">

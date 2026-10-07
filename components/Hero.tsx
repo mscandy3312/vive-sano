@@ -108,22 +108,7 @@ export const Hero: React.FC = () => {
                   className="object-cover object-center transform transition-transform duration-700 hover:scale-105"
                 />
 
-                {/* Subtle Editorial Overlay Badge */}
-                <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-auto bg-transparent/95 backdrop-blur-md p-3 sm:p-4 rounded-xl shadow-lg border border-white/60 max-w-xs">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[var(--primary-light)] text-white flex items-center justify-center font-bold text-sm shrink-0">
-                      VS
-                    </div>
-                    <div>
-                      <p className="text-xs font-bold text-white">
-                        Salud & Bienestar
-                      </p>
-                      <p className="text-[11px] text-white">
-                        Fundado por Gloria
-                      </p>
-                    </div>
-                  </div>
-                </div>
+
               </div>
             </div>
           </div>

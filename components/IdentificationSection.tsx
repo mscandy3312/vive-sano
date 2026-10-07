@@ -22,9 +22,6 @@ export const IdentificationSection: React.FC = () => {
                 className="object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary-dark)]/40 to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-transparent/90 backdrop-blur-md border border-white/40 text-xs sm:text-sm font-serif italic text-white">
-                {quote}
-              </div>
             </div>
           </div>
 

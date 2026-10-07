@@ -38,23 +38,6 @@ export const BenefitsSection: React.FC = () => {
                   className="object-cover object-center transform transition-transform duration-700 group-hover:scale-105 opacity-90"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary-dark)]/70 via-transparent to-transparent" />
-
-                <div className="absolute top-3 left-3 w-10 h-10 rounded-2xl bg-transparent/90 backdrop-blur-md text-white flex items-center justify-center font-bold shadow-md">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
               </div>
 
               {/* Card Body Content */}

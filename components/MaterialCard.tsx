@@ -51,43 +51,6 @@ export const MaterialCard: React.FC<MaterialCardProps> = ({ material, onPreviewC
           className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
         />
 
-        {/* CATEGORY BADGE */}
-        <div className="absolute top-3 left-3 z-10 flex flex-wrap items-center gap-1.5">
-          <span
-            className="text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full backdrop-blur-md shadow-sm border"
-            style={{
-              backgroundColor: `${primaryColor}EE`,
-              color: '#FFFFFF',
-              borderColor: `${primaryColor}`,
-            }}
-          >
-            {badgeLabel}
-          </span>
-          {accentColor && (
-            <span
-              className="text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full backdrop-blur-md shadow-sm text-white"
-              style={{ backgroundColor: accentColor }}
-            >
-              FODMAP
-            </span>
-          )}
-        </div>
-
-        {/* SEMÁFORO MULTI ACCENT INDICATOR */}
-        {isSemaforoMulti && (
-          <div className="absolute top-3 right-3 z-10 flex items-center gap-1 bg-white/95 backdrop-blur-md px-2 py-1 rounded-full border border-gray-200 shadow-sm">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#4DA92C]"></span>
-            <span className="w-2.5 h-2.5 rounded-full bg-[#E76100]"></span>
-            <span className="w-2.5 h-2.5 rounded-full bg-[#0078BF]"></span>
-          </div>
-        )}
-
-        {/* AVAILABILITY BADGE IF NOT AVAILABLE */}
-        {!isAvailable && (
-          <div className="absolute bottom-3 right-3 z-10 bg-[#123C32]/90 text-white text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-md border border-white/20">
-            🔒 Material del Curso
-          </div>
-        )}
 
         {/* HOVER OVERLAY */}
         <div className="absolute inset-0 bg-[#123C32]/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-xs gap-1.5 backdrop-blur-xs">

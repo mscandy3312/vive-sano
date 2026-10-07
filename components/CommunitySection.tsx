@@ -67,10 +67,6 @@ export const CommunitySection: React.FC = () => {
                 className="object-cover object-center transform transition-transform duration-700 hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary-dark)]/40 via-transparent to-transparent" />
-
-              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl bg-transparent/95 backdrop-blur-md border border-white/60 text-xs text-white font-serif font-bold shadow-md">
-                Comunidad de Aprendizaje & Apoyo Continuo
-              </div>
             </div>
           </div>
         </div>
