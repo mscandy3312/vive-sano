@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
               aria-label="Vive Sano - Ir al inicio"
               className="inline-block"
             >
-              <div className="relative w-44 h-14 bg-white/90 p-2 rounded-xl">
+              <div className="relative w-44 h-14 bg-transparent/90 p-2 rounded-xl">
                 <img
                   src={contentData.images.logo || '/images/logo.png'}
                   alt={name}

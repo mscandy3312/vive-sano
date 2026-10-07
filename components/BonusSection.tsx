@@ -20,10 +20,10 @@ export const BonusSection: React.FC = () => {
           <span className="text-xs sm:text-sm font-bold tracking-widest text-[var(--secondary)] uppercase bg-amber-50 px-3.5 py-1 rounded-full border border-amber-200">
             {eyebrow}
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--primary-dark)] leading-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
             {headline}
           </h2>
-          <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+          <p className="text-sm sm:text-base text-white leading-relaxed">
             {subheadline}
           </p>
         </div>
@@ -57,10 +57,10 @@ export const BonusSection: React.FC = () => {
 
               {/* Text Description */}
               <div className="space-y-2 pt-2 border-t border-[var(--border)]">
-                <h3 className="font-serif text-lg font-bold text-[var(--primary-dark)] leading-snug">
+                <h3 className="font-serif text-lg font-bold text-white leading-snug">
                   {bonus.title}
                 </h3>
-                <p className="text-xs text-[var(--text-muted)] leading-relaxed">
+                <p className="text-xs text-white leading-relaxed">
                   {bonus.description}
                 </p>
               </div>

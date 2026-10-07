@@ -20,10 +20,10 @@ export const Testimonials: React.FC = () => {
           <span className="text-xs sm:text-sm font-bold tracking-widest text-[var(--primary)] uppercase bg-[var(--primary-light)] px-3.5 py-1 rounded-full border border-[var(--border)]">
             {eyebrow}
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--primary-dark)] leading-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
             {headline}
           </h2>
-          <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+          <p className="text-sm sm:text-base text-white leading-relaxed">
             {subheadline}
           </p>
         </div>

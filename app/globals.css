@@ -12,7 +12,7 @@
   --green-natural: #5E9F78;  /* Sage details */
   --green-sage: #B8D8C2;     /* Soft borders */
   --green-light: #F0F9ED;    /* Light green background tint */
-  --cream: #FAF8F1;          /* Organic warm background */
+  --cream: #1E4D2B;          /* Organic warm background */
   --white: #FFFFFF;          /* Surface white */
   --sand: #F4F0EA;           /* Light sand tint */
 
@@ -22,10 +22,10 @@
   --primary-light: #F0F9ED;
   --secondary: #0078BF;
   --accent: #E76100;
-  --background: #FAF8F1;
-  --background-soft: #F0F9ED;
+  --background: #1E4D2B;
+  --background-soft: #1E4D2B;
   --surface: #FFFFFF;
-  --text: #123C32;
+  --text: #FFFFFF;
   --text-muted: #4A6B60;
   --border: #D5E8DC;
 }

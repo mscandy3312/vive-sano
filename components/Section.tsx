@@ -21,7 +21,7 @@ export const Section: React.FC<SectionProps> = ({
     default: 'bg-[var(--color-background)] text-[var(--color-text)]',
     soft: 'bg-[var(--color-background-soft)] text-[var(--color-text)]',
     primary: 'bg-[var(--color-primary-dark)] text-white',
-    white: 'bg-white text-[var(--color-text)]',
+    white: 'bg-transparent text-[var(--color-text)]',
   };
 
   const paddingClasses = {

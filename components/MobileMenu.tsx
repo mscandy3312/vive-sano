@@ -36,7 +36,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
             key={item.label}
             href={item.href}
             onClick={onClose}
-            className="text-2xl font-serif font-bold text-[var(--primary-dark)] hover:text-[var(--primary)] py-3 border-b border-[var(--border)]/50 transition-colors"
+            className="text-2xl font-serif font-bold text-white hover:text-[var(--primary)] py-3 border-b border-[var(--border)]/50 transition-colors"
           >
             {item.label}
           </Link>
@@ -47,7 +47,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
         <Button href={ctaHref} size="lg" variant="primary" fullWidth onClick={onClose}>
           {ctaText}
         </Button>
-        <p className="text-xs text-center text-[var(--text-muted)] italic">
+        <p className="text-xs text-center text-white italic">
           Vive Sano — Salud Digestiva & Bienestar
         </p>
       </div>

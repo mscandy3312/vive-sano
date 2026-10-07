@@ -56,7 +56,7 @@ export const PricingCard: React.FC = () => {
           <ul className="space-y-3">
             {includedList.map((item, idx) => (
               <li key={idx} className="flex items-start gap-3 text-xs sm:text-sm text-[var(--text)]">
-                <span className="w-5 h-5 rounded-full bg-[var(--primary-light)] text-[var(--primary-dark)] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                <span className="w-5 h-5 rounded-full bg-white text-[#4DA92C] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
                   ✓
                 </span>
                 <span>{item}</span>

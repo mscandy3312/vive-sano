@@ -15,7 +15,7 @@ export const GuaranteeSection: React.FC = () => {
     <Section id="garantia" bgVariant="default" py="md">
       <Container size="md">
         <div className="bg-[var(--surface)] p-6 sm:p-8 rounded-2xl border-2 border-emerald-100 shadow-sm flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
-          <div className="w-16 h-16 rounded-full bg-[var(--primary-light)] text-[var(--primary-dark)] flex items-center justify-center font-bold shrink-0 shadow-inner">
+          <div className="w-16 h-16 rounded-full bg-white text-[#4DA92C] flex items-center justify-center font-bold shrink-0 shadow-inner">
             <svg
               className="w-8 h-8 text-[var(--primary)]"
               fill="none"
@@ -36,10 +36,10 @@ export const GuaranteeSection: React.FC = () => {
             <div className="inline-block text-[10px] font-bold uppercase tracking-wider text-[var(--primary)] bg-[var(--primary-light)] px-3 py-0.5 rounded-full">
               {badgeText}
             </div>
-            <h3 className="font-serif text-xl font-bold text-[var(--primary-dark)]">
+            <h3 className="font-serif text-xl font-bold text-white">
               {headline}
             </h3>
-            <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+            <p className="text-xs sm:text-sm text-white leading-relaxed">
               {description}
             </p>
           </div>

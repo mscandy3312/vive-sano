@@ -31,7 +31,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({ testimonial })
 
       {/* Author Details */}
       <div className="pt-6 mt-6 border-t border-[var(--border)]/60 flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-[var(--primary-light)] text-[var(--primary-dark)] font-bold text-sm flex items-center justify-center shrink-0">
+        <div className="w-10 h-10 rounded-full bg-white text-[#4DA92C] font-bold text-sm flex items-center justify-center shrink-0">
           {testimonial.name.slice(0, 2).toUpperCase()}
         </div>
         <div>

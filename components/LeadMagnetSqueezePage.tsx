@@ -39,7 +39,7 @@ export const LeadMagnetSqueezePage: React.FC<LeadMagnetSqueezePageProps> = ({
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#1D2722] selection:bg-[#E8F2EB] selection:text-[#1B3B2B] font-sans antialiased">
       {/* MINIMALIST HEADER - NO DISTRACTING NAVIGATION */}
-      <header className="py-4 sm:py-6 border-b border-[#E0E7E2]/70 bg-white/80 backdrop-blur-md sticky top-0 z-30">
+      <header className="py-4 sm:py-6 border-b border-[#E0E7E2]/70 bg-transparent/80 backdrop-blur-md sticky top-0 z-30">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-9 h-9 rounded-full bg-[#1B3B2B] text-white flex items-center justify-center font-bold text-xs shadow-sm">
@@ -83,7 +83,7 @@ export const LeadMagnetSqueezePage: React.FC<LeadMagnetSqueezePageProps> = ({
             
             {/* COLUMN 1: EBOOK MOCKUP & BENEFITS (7 COLS ON LARGE) */}
             <div className="lg:col-span-6 space-y-6 flex flex-col items-center lg:items-start text-left">
-              <div className="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-[#E0E7E2] bg-white group transition-transform duration-500 hover:scale-[1.01]">
+              <div className="relative w-full max-w-md aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-[#E0E7E2] bg-transparent group transition-transform duration-500 hover:scale-[1.01]">
                 <Image
                   src="/images/lead-magnet-guide.jpg"
                   alt="Guía Práctica de Salud Digestiva y Bienestar Intestinal por Gloria Molina"
@@ -94,7 +94,7 @@ export const LeadMagnetSqueezePage: React.FC<LeadMagnetSqueezePageProps> = ({
                 />
                 
                 {/* FLOATING TRUST BADGES */}
-                <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md border border-[#E0E7E2] flex items-center gap-1.5 text-xs font-bold text-[#1B3B2B]">
+                <div className="absolute top-3 left-3 bg-transparent/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md border border-[#E0E7E2] flex items-center gap-1.5 text-xs font-bold text-[#1B3B2B]">
                   <span>📄 Formato PDF</span>
                 </div>
                 <div className="absolute bottom-3 right-3 bg-[#1B3B2B]/95 text-white backdrop-blur-md px-3 py-1.5 rounded-full shadow-md border border-white/20 flex items-center gap-1.5 text-xs font-semibold">
@@ -109,7 +109,7 @@ export const LeadMagnetSqueezePage: React.FC<LeadMagnetSqueezePageProps> = ({
                 </h2>
                 
                 {/* BENEFIT 1 */}
-                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white/80 border border-[#E0E7E2] shadow-xs hover:border-[#2D5A43]/40 transition-colors">
+                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-transparent/80 border border-[#E0E7E2] shadow-xs hover:border-[#2D5A43]/40 transition-colors">
                   <div className="w-6 h-6 rounded-full bg-[#E8F2EB] text-[#2D5A43] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
                     ✓
                   </div>
@@ -119,7 +119,7 @@ export const LeadMagnetSqueezePage: React.FC<LeadMagnetSqueezePageProps> = ({
                 </div>
 
                 {/* BENEFIT 2 */}
-                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white/80 border border-[#E0E7E2] shadow-xs hover:border-[#2D5A43]/40 transition-colors">
+                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-transparent/80 border border-[#E0E7E2] shadow-xs hover:border-[#2D5A43]/40 transition-colors">
                   <div className="w-6 h-6 rounded-full bg-[#E8F2EB] text-[#2D5A43] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
                     ✓
                   </div>
@@ -129,7 +129,7 @@ export const LeadMagnetSqueezePage: React.FC<LeadMagnetSqueezePageProps> = ({
                 </div>
 
                 {/* BENEFIT 3 */}
-                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-white/80 border border-[#E0E7E2] shadow-xs hover:border-[#2D5A43]/40 transition-colors">
+                <div className="flex items-start gap-3 p-3.5 rounded-xl bg-transparent/80 border border-[#E0E7E2] shadow-xs hover:border-[#2D5A43]/40 transition-colors">
                   <div className="w-6 h-6 rounded-full bg-[#E8F2EB] text-[#2D5A43] flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
                     ✓
                   </div>
@@ -142,7 +142,7 @@ export const LeadMagnetSqueezePage: React.FC<LeadMagnetSqueezePageProps> = ({
 
             {/* COLUMN 2: HIGH-CONVERTING FORM CARD (6 COLS ON LARGE) */}
             <div className="lg:col-span-6">
-              <div className="bg-white rounded-3xl border border-[#E0E7E2] shadow-2xl p-6 sm:p-8 md:p-9 relative overflow-hidden transition-all duration-300">
+              <div className="bg-transparent rounded-3xl border border-[#E0E7E2] shadow-2xl p-6 sm:p-8 md:p-9 relative overflow-hidden transition-all duration-300">
                 
                 {/* DECORATIVE TOP ACCENT BAR */}
                 <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#1B3B2B] via-[#2D5A43] to-[#7DAE93]"></div>
@@ -218,7 +218,7 @@ export const LeadMagnetSqueezePage: React.FC<LeadMagnetSqueezePageProps> = ({
       </main>
 
       {/* FOOTER & LEGAL DISCLAIMER (WELLNESS & EDUCATIONAL ONLY) */}
-      <footer className="py-8 bg-white border-t border-[#E0E7E2] mt-auto">
+      <footer className="py-8 bg-transparent border-t border-[#E0E7E2] mt-auto">
         <div className="max-w-5xl mx-auto px-4 text-center space-y-3">
           <p className="text-[11px] text-[#596760] max-w-3xl mx-auto leading-relaxed">
             <strong>Aviso importante:</strong> La información contenida en esta página y en la guía gratuita tiene un carácter estrictamente educativo, divulgativo y de bienestar general. No constituye asesoramiento médico, diagnóstico ni tratamiento profesional. Ante cualquier duda relativa a tu salud o tratamiento médico, consulta siempre a un profesional sanitario cualificado.
@@ -232,7 +232,7 @@ export const LeadMagnetSqueezePage: React.FC<LeadMagnetSqueezePageProps> = ({
       {/* PRIVACY MODAL */}
       {showPrivacyModal && (
         <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 animate-fadeIn">
-          <div className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-4 shadow-2xl border border-[#E0E7E2]">
+          <div className="bg-transparent rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-4 shadow-2xl border border-[#E0E7E2]">
             <div className="flex items-center justify-between border-b border-[#E0E7E2] pb-3">
               <h3 className="font-serif text-lg font-bold text-[#1B3B2B]">
                 Aviso de Privacidad

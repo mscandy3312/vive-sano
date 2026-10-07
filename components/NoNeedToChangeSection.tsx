@@ -10,7 +10,7 @@ export const NoNeedToChangeSection: React.FC = () => {
     <Section className="py-16 sm:py-24 bg-[#123C32] text-white relative overflow-hidden">
       <Container size="md">
         <div className="text-center space-y-6 max-w-3xl mx-auto">
-          <span className="inline-block text-xs font-extrabold tracking-widest text-[#4DA92C] uppercase bg-white/10 px-4 py-1.5 rounded-full border border-white/20">
+          <span className="inline-block text-xs font-extrabold tracking-widest text-[#4DA92C] uppercase bg-transparent/10 px-4 py-1.5 rounded-full border border-white/20">
             {eyebrow}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">

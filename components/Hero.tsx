@@ -16,6 +16,7 @@ export const Hero: React.FC = () => {
     secondaryCtaHref,
     imageSrc,
     imageAlt,
+    promise,
   } = contentData.hero;
 
   const trustItems = contentData.trustBar.items;
@@ -27,20 +28,19 @@ export const Hero: React.FC = () => {
           {/* CONTENT COLUMN (Mobile: Stacked, Desktop: 50% / 6 cols out of 12) */}
           <div className="lg:col-span-6 space-y-6 text-center lg:text-left z-10">
             {/* EYEBROW */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--primary-light)] border border-[var(--border)] text-xs sm:text-sm font-semibold tracking-wider text-[var(--primary-dark)] uppercase">
-              <span className="w-2 h-2 rounded-full bg-[var(--primary)] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#4DA92C] text-xs sm:text-sm font-semibold tracking-wider text-[#4DA92C] uppercase">
+              <span className="w-2 h-2 rounded-full bg-[#4DA92C] animate-pulse" />
               <span>{eyebrow}</span>
             </div>
 
             {/* HEADLINE PRINCIPAL */}
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-[var(--primary-dark)] leading-[1.15]">
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-[1.15]">
               {headline}
             </h1>
 
             {/* SUBHEADLINE */}
-            <p className="text-base sm:text-lg md:text-xl text-[var(--text-muted)] max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              {subheadline}
-            </p>
+            <div className="bg-white border-l-4 border-[#4DA92C] p-4 text-left shadow-lg max-w-2xl mx-auto lg:mx-0 mb-4"><p className="text-[#1E4D2B] font-medium text-base sm:text-lg">{promise}</p></div>
+<p className="text-base sm:text-lg md:text-xl text-white max-w-2xl mx-auto lg:mx-0 leading-relaxed">{subheadline}</p>
 
             {/* CALL TO ACTION BUTTONS */}
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
@@ -61,7 +61,7 @@ export const Hero: React.FC = () => {
             </div>
 
             {/* TRUST VISUAL ELEMENT */}
-            <div className="pt-6 border-t border-[var(--border)]/70 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs sm:text-sm text-[var(--text-muted)]">
+            <div className="pt-6 border-t border-[var(--border)]/70 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs sm:text-sm text-white">
               {trustItems.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-1.5">
                   <svg
@@ -83,7 +83,7 @@ export const Hero: React.FC = () => {
               ))}
             </div>
 
-            <p className="text-xs text-[var(--text-muted)] italic text-center lg:text-left">
+            <p className="text-xs text-white italic text-center lg:text-left">
               Experiencia educativa de autocuidado y bienestar
             </p>
           </div>
@@ -98,7 +98,7 @@ export const Hero: React.FC = () => {
               />
 
               {/* Main Image Frame */}
-              <div className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-[var(--border)] shadow-xl bg-white aspect-[4/3] sm:aspect-[14/10] lg:aspect-[4/3]">
+              <div className="relative rounded-2xl md:rounded-3xl overflow-hidden border border-[var(--border)] shadow-xl bg-transparent aspect-[4/3] sm:aspect-[14/10] lg:aspect-[4/3]">
                 <Image
                   src={imageSrc}
                   alt={imageAlt}
@@ -109,16 +109,16 @@ export const Hero: React.FC = () => {
                 />
 
                 {/* Subtle Editorial Overlay Badge */}
-                <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-auto bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-xl shadow-lg border border-white/60 max-w-xs">
+                <div className="absolute bottom-4 left-4 right-4 sm:left-6 sm:right-auto bg-transparent/95 backdrop-blur-md p-3 sm:p-4 rounded-xl shadow-lg border border-white/60 max-w-xs">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[var(--primary-light)] text-[var(--primary-dark)] flex items-center justify-center font-bold text-sm shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-[var(--primary-light)] text-white flex items-center justify-center font-bold text-sm shrink-0">
                       VS
                     </div>
                     <div>
-                      <p className="text-xs font-bold text-[var(--primary-dark)]">
+                      <p className="text-xs font-bold text-white">
                         Salud & Bienestar
                       </p>
-                      <p className="text-[11px] text-[var(--text-muted)]">
+                      <p className="text-[11px] text-white">
                         Fundado por Gloria
                       </p>
                     </div>

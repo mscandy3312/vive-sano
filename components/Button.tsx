@@ -37,11 +37,11 @@ export const Button: React.FC<ButtonProps> = ({
     primary:
       'bg-[#E76100] text-white hover:bg-[#cf5600] shadow-md hover:shadow-xl border border-transparent',
     secondary:
-      'bg-[var(--primary-light)] text-[var(--primary-dark)] hover:bg-[#d5e5da] border border-transparent shadow-sm',
+      'bg-white text-[#4DA92C] hover:bg-[#d5e5da] border border-transparent shadow-sm',
     gold:
       'bg-[var(--secondary)] text-white hover:bg-[#b58b4b] shadow-md hover:shadow-xl border border-transparent',
     outline:
-      'bg-transparent text-[var(--primary-dark)] border-2 border-[var(--primary-dark)] hover:bg-[var(--primary-dark)] hover:text-white',
+      'bg-transparent text-[var(--primary-dark)] border-2 border-[var(--primary-dark)] hover:bg-[#CF5600] hover:text-white',
   };
 
   const sizeStyles = {

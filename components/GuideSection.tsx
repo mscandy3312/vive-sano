@@ -23,26 +23,26 @@ export const GuideSection: React.FC = () => {
               {eyebrow}
             </span>
 
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[var(--primary-dark)] leading-tight">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-white leading-tight">
               {headline}
             </h2>
 
-            <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+            <p className="text-sm sm:text-base text-white leading-relaxed">
               {subheadline}
             </p>
 
             <div className="p-6 rounded-2xl bg-[var(--background-soft)] border border-[var(--border)] space-y-4">
-              <h3 className="font-serif text-xl font-bold text-[var(--primary-dark)]">
+              <h3 className="font-serif text-xl font-bold text-white">
                 {title}
               </h3>
-              <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+              <p className="text-xs sm:text-sm text-white leading-relaxed">
                 {description}
               </p>
 
               <ul className="space-y-3 pt-2">
                 {features.map((feat, idx) => (
                   <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-[var(--text)]">
-                    <span className="w-5 h-5 rounded-full bg-[var(--primary-light)] text-[var(--primary-dark)] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                    <span className="w-5 h-5 rounded-full bg-white text-[#4DA92C] flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
                       ✓
                     </span>
                     <span>{feat}</span>

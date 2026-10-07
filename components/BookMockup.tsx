@@ -38,7 +38,7 @@ export const BookMockup: React.FC<BookMockupProps> = ({
 
         {/* Header Badge */}
         <div className="space-y-1.5 relative z-10">
-          <span className="inline-block text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-white/15 text-emerald-100 backdrop-blur-xs">
+          <span className="inline-block text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-transparent/15 text-emerald-100 backdrop-blur-xs">
             {badge}
           </span>
           <h4 className="font-serif text-base sm:text-lg font-bold tracking-tight text-amber-100 leading-snug">

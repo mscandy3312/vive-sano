@@ -8,13 +8,13 @@ export const AboutGloria: React.FC = () => {
   const { eyebrow, title, copy, quote, signatureText, imageSrc, imageAlt, name, role } = contentData.aboutGloria;
 
   return (
-    <Section id="conoce-vive-sano" className="py-16 sm:py-24 bg-white border-b border-[#D5E8DC]">
+    <Section id="conoce-vive-sano" className="py-16 sm:py-24 bg-transparent border-b border-[#D5E8DC]">
       <Container size="lg">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           {/* REAL PHOTOGRAPHY FRAME */}
           <div className="lg:col-span-5 relative">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#D5E8DC] bg-[#F0F9ED] aspect-[4/5]">
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#D5E8DC] bg-transparent aspect-[4/5]">
               <Image
                 src={imageSrc}
                 alt={imageAlt}
@@ -37,25 +37,25 @@ export const AboutGloria: React.FC = () => {
 
           {/* GLORIA BIO CONTENT */}
           <div className="lg:col-span-7 space-y-6 text-left">
-            <span className="inline-block text-xs font-extrabold tracking-widest text-[#4DA92C] uppercase bg-[#F0F9ED] px-4 py-1.5 rounded-full border border-[#B8D8C2]">
+            <span className="inline-block text-xs font-extrabold tracking-widest text-[#4DA92C] uppercase bg-transparent px-4 py-1.5 rounded-full border border-[#B8D8C2]">
               {eyebrow}
             </span>
 
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#123C32] leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
               "{title}"
             </h2>
 
-            <div className="space-y-4 text-sm sm:text-base text-[#4A6B60] leading-relaxed">
-              <p className="text-base sm:text-lg text-[#123C32] font-medium leading-relaxed">
+            <div className="space-y-4 text-sm sm:text-base text-white leading-relaxed">
+              <p className="text-base sm:text-lg text-white font-medium leading-relaxed">
                 "{copy}"
               </p>
             </div>
 
-            <blockquote className="p-4 sm:p-5 rounded-2xl bg-[#FAF8F1] border-l-4 border-[#4DA92C] font-serif italic text-sm sm:text-base text-[#123C32] leading-relaxed">
+            <blockquote className="p-4 sm:p-5 rounded-2xl bg-transparent border-l-4 border-[#4DA92C] font-serif italic text-sm sm:text-base text-white leading-relaxed">
               "{quote}"
             </blockquote>
 
-            <p className="text-xs font-extrabold text-[#123C32] uppercase tracking-wider">
+            <p className="text-xs font-extrabold text-white uppercase tracking-wider">
               {signatureText}
             </p>
           </div>

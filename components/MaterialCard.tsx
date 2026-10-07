@@ -154,8 +154,8 @@ export const MaterialCard: React.FC<MaterialCardProps> = ({ material, onPreviewC
             
             {/* Modal Body (Iframe) */}
             <div className="flex-1 w-full bg-gray-100 relative">
-              <iframe 
-                src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+              <img 
+                src={imageSrc}
                 className="w-full h-full border-0 absolute inset-0"
                 title={`PDF: ${title}`}
               />

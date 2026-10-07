@@ -14,10 +14,10 @@ export const BenefitsSection: React.FC = () => {
           <span className="text-xs sm:text-sm font-bold tracking-widest text-[var(--primary)] uppercase bg-[var(--primary-light)] px-3.5 py-1 rounded-full border border-[var(--border)]">
             {eyebrow}
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--primary-dark)] leading-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
             {headline}
           </h2>
-          <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+          <p className="text-sm sm:text-base text-white leading-relaxed">
             {subheadline}
           </p>
         </div>
@@ -39,7 +39,7 @@ export const BenefitsSection: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[var(--primary-dark)]/70 via-transparent to-transparent" />
 
-                <div className="absolute top-3 left-3 w-10 h-10 rounded-2xl bg-white/90 backdrop-blur-md text-[var(--primary-dark)] flex items-center justify-center font-bold shadow-md">
+                <div className="absolute top-3 left-3 w-10 h-10 rounded-2xl bg-transparent/90 backdrop-blur-md text-white flex items-center justify-center font-bold shadow-md">
                   <svg
                     className="w-5 h-5"
                     fill="none"
@@ -59,11 +59,11 @@ export const BenefitsSection: React.FC = () => {
 
               {/* Card Body Content */}
               <div className="p-6 space-y-3">
-                <h3 className="font-serif text-xl font-bold text-[var(--primary-dark)] group-hover:text-[var(--primary)] transition-colors">
+                <h3 className="font-serif text-xl font-bold text-white group-hover:text-[var(--primary)] transition-colors">
                   {card.title}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                <p className="text-xs sm:text-sm text-white leading-relaxed">
                   {card.description}
                 </p>
               </div>

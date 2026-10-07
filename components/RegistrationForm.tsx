@@ -103,21 +103,21 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
   };
 
   return (
-    <div className="w-full bg-white p-6 sm:p-8 rounded-3xl border border-[#D5E8DC] shadow-xl">
+    <div className="w-full bg-transparent p-6 sm:p-8 rounded-3xl border border-[#D5E8DC] shadow-xl">
       {status === 'success' ? (
         <div className="text-center space-y-4 py-8" role="alert" aria-live="polite">
-          <div className="w-16 h-16 bg-[#F0F9ED] text-[#4DA92C] rounded-full flex items-center justify-center mx-auto text-3xl mb-4 border border-[#B8D8C2]">
+          <div className="w-16 h-16 bg-transparent text-[#4DA92C] rounded-full flex items-center justify-center mx-auto text-3xl mb-4 border border-[#B8D8C2]">
             ✓
           </div>
-          <h3 className="font-serif text-2xl font-bold text-[#123C32]">¡Registro exitoso!</h3>
-          <p className="text-sm text-[#4A6B60]">
+          <h3 className="font-serif text-2xl font-bold text-white">¡Registro exitoso!</h3>
+          <p className="text-sm text-white">
             Hemos recibido tus datos correctamente. Revisa tu correo electrónico para continuar.
           </p>
         </div>
       ) : (
         <form className="space-y-5" onSubmit={handleSubmit} noValidate>
           {/* Informational Text */}
-          <div className="text-xs text-[#4A6B60] bg-[#F0F9ED] p-4 rounded-xl border border-[#B8D8C2] mb-6 leading-relaxed">
+          <div className="text-xs text-white bg-transparent p-4 rounded-xl border border-[#B8D8C2] mb-6 leading-relaxed">
             <p>
               Para proporcionar acceso al curso digital Método SANA y sus materiales complementarios, recopilamos tu nombre completo y correo electrónico. También pueden tratarse datos técnicos de acceso, como dirección IP, tipo de navegador y dispositivo, conforme a lo establecido en nuestro aviso de privacidad.
             </p>
@@ -135,7 +135,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
 
           {/* Full Name */}
           <div className="space-y-1.5">
-            <label htmlFor="reg-name" className="block text-xs font-bold text-[#123C32]">
+            <label htmlFor="reg-name" className="block text-xs font-bold text-white">
               {formNameLabel} <span className="text-red-500" aria-label="obligatorio">*</span>
             </label>
             <input
@@ -148,13 +148,13 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
               placeholder={formNamePlaceholder}
               disabled={status === 'loading'}
               aria-required="true"
-              className="w-full px-4 py-3 rounded-xl border border-[#D5E8DC] text-sm focus:outline-none focus:ring-2 focus:ring-[#0078BF] bg-[#FAF8F1] transition-colors disabled:opacity-50"
+              className="w-full px-4 py-3 rounded-xl border border-[#D5E8DC] text-sm focus:outline-none focus:ring-2 focus:ring-[#0078BF] bg-transparent transition-colors disabled:opacity-50"
             />
           </div>
 
           {/* Email */}
           <div className="space-y-1.5">
-            <label htmlFor="reg-email" className="block text-xs font-bold text-[#123C32]">
+            <label htmlFor="reg-email" className="block text-xs font-bold text-white">
               {formEmailLabel} <span className="text-red-500" aria-label="obligatorio">*</span>
             </label>
             <input
@@ -167,7 +167,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
               placeholder={formEmailPlaceholder}
               disabled={status === 'loading'}
               aria-required="true"
-              className="w-full px-4 py-3 rounded-xl border border-[#D5E8DC] text-sm focus:outline-none focus:ring-2 focus:ring-[#0078BF] bg-[#FAF8F1] transition-colors disabled:opacity-50"
+              className="w-full px-4 py-3 rounded-xl border border-[#D5E8DC] text-sm focus:outline-none focus:ring-2 focus:ring-[#0078BF] bg-transparent transition-colors disabled:opacity-50"
             />
           </div>
 
@@ -198,7 +198,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
                 aria-required="true"
                 className="mt-1 w-4 h-4 rounded border-[#D5E8DC] text-[#0078BF] focus:ring-[#0078BF] cursor-pointer"
               />
-              <span className="text-xs text-[#4A6B60] leading-snug group-hover:text-[#123C32] transition-colors">
+              <span className="text-xs text-white leading-snug group-hover:text-white transition-colors">
                 He leído el <Link href="/privacidad" target="_blank" className="text-[#0078BF] hover:underline font-semibold">aviso de privacidad</Link> y conozco el tratamiento de mis datos personales para gestionar mi registro y acceso al curso Método SANA. <span className="text-red-500">*</span>
               </span>
             </label>
@@ -212,7 +212,7 @@ export const RegistrationForm: React.FC<RegistrationFormProps> = ({
                 disabled={status === 'loading'}
                 className="mt-1 w-4 h-4 rounded border-[#D5E8DC] text-[#0078BF] focus:ring-[#0078BF] cursor-pointer"
               />
-              <span className="text-xs text-[#4A6B60] leading-snug group-hover:text-[#123C32] transition-colors">
+              <span className="text-xs text-white leading-snug group-hover:text-white transition-colors">
                 Deseo recibir por correo electrónico contenido educativo, novedades y promociones de Vive Sano. (Opcional)
               </span>
             </label>

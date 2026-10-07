@@ -4,16 +4,16 @@ import Section from './Section';
 
 export const SneakPeekSection: React.FC = () => {
   return (
-    <Section id="sneak-peek" className="py-16 sm:py-24 bg-white border-y border-[#D5E8DC]">
+    <Section id="sneak-peek" className="py-16 sm:py-24 bg-transparent border-y border-[#D5E8DC]">
       <Container size="lg">
         <div className="max-w-3xl mx-auto text-center space-y-6">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-[#EBF5FC] border border-[#B3DAF2] text-[#0078BF] text-xs font-extrabold uppercase tracking-wider shadow-2xs">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-transparent border border-[#B3DAF2] text-[#0078BF] text-xs font-extrabold uppercase tracking-wider shadow-2xs">
             Un vistazo al interior
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-[#123C32] tracking-tight">
+          <h2 className="font-serif text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Descubre de qué trata el Método SANA
           </h2>
-          <p className="text-sm sm:text-base text-[#4A6B60] leading-relaxed">
+          <p className="text-sm sm:text-base text-white leading-relaxed">
             Mira este video corto y conoce cómo puedes empezar a mejorar tu digestión desde hoy mismo, escuchando las señales de tu cuerpo.
           </p>
 

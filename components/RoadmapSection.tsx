@@ -13,10 +13,10 @@ export const RoadmapSection: React.FC = () => {
           <span className="text-xs sm:text-sm font-bold tracking-widest text-[var(--primary)] uppercase bg-[var(--primary-light)] px-3.5 py-1 rounded-full border border-[var(--border)]">
             {eyebrow}
           </span>
-          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--primary-dark)] leading-tight">
+          <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
             {headline}
           </h2>
-          <p className="text-sm sm:text-base text-[var(--text-muted)] leading-relaxed">
+          <p className="text-sm sm:text-base text-white leading-relaxed">
             {subheadline}
           </p>
         </div>
@@ -37,19 +37,19 @@ export const RoadmapSection: React.FC = () => {
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between border-b border-[var(--border)] pb-3">
-                    <span className="font-serif text-3xl font-extrabold text-[var(--primary-dark)] group-hover:text-[var(--primary)] transition-colors">
+                    <span className="font-serif text-3xl font-extrabold text-white group-hover:text-[var(--primary)] transition-colors">
                       {step.phase}
                     </span>
-                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[var(--primary-light)] text-[var(--primary-dark)]">
+                    <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white text-[#4DA92C]">
                       Fase {idx + 1}
                     </span>
                   </div>
 
-                  <h3 className="font-serif text-xl font-bold text-[var(--primary-dark)]">
+                  <h3 className="font-serif text-xl font-bold text-white">
                     {step.title}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-[var(--text-muted)] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-white leading-relaxed">
                     {step.description}
                   </p>
                 </div>

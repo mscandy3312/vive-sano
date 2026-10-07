@@ -77,7 +77,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
   const { hero, finalCta } = contentData;
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F1] text-[#123C32] font-sans antialiased selection:bg-[#B8D8C2] selection:text-[#123C32]">
+    <div className="min-h-screen flex flex-col bg-transparent text-white font-sans antialiased selection:bg-[#B8D8C2] selection:text-white">
 
       {/* JSON-LD Structured Data for SEO */}
       <script
@@ -136,29 +136,29 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
           {/* LEFT COLUMN: HERO COPY */}
           <div className="lg:col-span-7 space-y-6 text-left">
             <div className="space-y-4">
-              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F0F9ED] border border-[#B8D8C2] text-[#4DA92C] text-xs font-extrabold uppercase tracking-wider shadow-2xs">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-transparent border border-[#B8D8C2] text-[#4DA92C] text-xs font-extrabold uppercase tracking-wider shadow-2xs">
                 <span>{hero.eyebrow}</span>
               </span>
 
-              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#123C32] leading-[1.14] tracking-tight">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-[1.14] tracking-tight">
                 {hero.title}
               </h1>
 
               {/* EXACT PROMISE */}
-              <div className="p-4 rounded-2xl bg-white border-l-4 border-[#4DA92C] shadow-xs">
-                <p className="text-base sm:text-lg font-bold text-[#123C32] leading-snug">
+              <div className="p-4 rounded-2xl bg-transparent border-l-4 border-[#4DA92C] shadow-xs">
+                <p className="text-base sm:text-lg font-bold text-white leading-snug">
                   "{hero.promise}"
                 </p>
               </div>
 
               {/* EXACT SUPPORTING TEXT */}
-              <p className="text-xs sm:text-sm md:text-base text-[#4A6B60] leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-base text-white leading-relaxed">
                 "{hero.subheadline}"
               </p>
             </div>
 
             {/* HIGHLIGHT BULLETS */}
-            <div className="space-y-2.5 pt-2 text-xs sm:text-sm text-[#123C32]">
+            <div className="space-y-2.5 pt-2 text-xs sm:text-sm text-white">
               {hero.highlights.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-3 font-semibold">
                   <span className="w-5 h-5 rounded-full bg-[#4DA92C] text-white font-bold text-xs flex items-center justify-center shrink-0">
@@ -180,7 +180,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
 
               <a
                 href={hero.secondaryCtaHref}
-                className="py-4 px-6 rounded-2xl bg-white hover:bg-[#F0F9ED] text-[#123C32] font-bold text-xs sm:text-sm uppercase tracking-wider transition-colors border border-[#D5E8DC] text-center shadow-xs"
+                className="py-4 px-6 rounded-2xl bg-transparent hover:bg-transparent text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-colors border border-[#D5E8DC] text-center shadow-xs"
               >
                 {hero.secondaryCtaText}
               </a>
@@ -190,7 +190,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
 
           {/* RIGHT COLUMN: HERO VISUAL PRESENTATION CARD */}
           <div className="lg:col-span-5">
-            <div className="bg-white p-6 sm:p-8 rounded-3xl border-2 border-[#D5E8DC] shadow-2xl space-y-6 text-center relative overflow-hidden">
+            <div className="bg-transparent p-6 sm:p-8 rounded-3xl border-2 border-[#D5E8DC] shadow-2xl space-y-6 text-center relative overflow-hidden">
               <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#4DA92C] via-[#0078BF] to-[#E76100]"></div>
               
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-[#D5E8DC]">
@@ -211,8 +211,8 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
               </div>
 
               <div className="space-y-2 pt-2 border-t border-[#D5E8DC]">
-                <span className="text-xs font-bold text-[#4A6B60] uppercase tracking-wider">Inversión Única</span>
-                <div className="font-serif text-3xl sm:text-4xl font-extrabold text-[#123C32]">
+                <span className="text-xs font-bold text-white uppercase tracking-wider">Inversión Única</span>
+                <div className="font-serif text-3xl sm:text-4xl font-extrabold text-white">
                   {hero.priceText}
                 </div>
                 <p className="text-xs text-[#4DA92C] font-semibold">Acceso inmediato • Sin suscripción</p>
@@ -263,7 +263,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 13. FINAL CTA BANNER */}
       <section className="relative py-16 sm:py-24 bg-[#123C32] text-white px-4 sm:px-6 text-center overflow-hidden">
         <div className="relative max-w-3xl mx-auto space-y-6">
-          <span className="inline-block px-4 py-1 rounded-full bg-white/10 text-[#4DA92C] text-xs font-extrabold uppercase tracking-wider border border-white/20">
+          <span className="inline-block px-4 py-1 rounded-full bg-transparent/10 text-[#4DA92C] text-xs font-extrabold uppercase tracking-wider border border-white/20">
             🌿 MÉTODO SANA — $497 MXN
           </span>
           
@@ -319,22 +319,22 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-[#D5E8DC] cursor-default"
+            className="bg-transparent rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl border border-[#D5E8DC] cursor-default"
           >
             <div className="flex items-center justify-between border-b border-[#D5E8DC] pb-3">
-              <h3 className="font-serif text-lg font-bold text-[#123C32]">
+              <h3 className="font-serif text-lg font-bold text-white">
                 Aviso de Privacidad
               </h3>
               <button
                 onClick={closePrivacyModal}
-                className="text-[#4A6B60] hover:text-[#123C32] text-xl font-bold p-1 cursor-pointer focus:outline-none"
+                className="text-white hover:text-white text-xl font-bold p-1 cursor-pointer focus:outline-none"
                 aria-label="Cerrar ventana emergente"
               >
                 ✕
               </button>
             </div>
 
-            <div className="text-xs text-[#4A6B60] space-y-2.5 leading-relaxed max-h-60 overflow-y-auto">
+            <div className="text-xs text-white space-y-2.5 leading-relaxed max-h-60 overflow-y-auto">
               <p>
                 Sus datos personales son recabados con el único propósito de proporcionar acceso al <em>Método SANA</em> y enviarle información relevante sobre bienestar y hábitos saludables.
               </p>

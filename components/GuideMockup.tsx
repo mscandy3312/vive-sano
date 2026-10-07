@@ -18,7 +18,7 @@ export const GuideMockup: React.FC = () => {
           
           {/* Book Header */}
           <div className="relative z-10 space-y-2">
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/10 text-emerald-200 text-[10px] uppercase font-bold tracking-widest backdrop-blur-sm">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-transparent/10 text-emerald-200 text-[10px] uppercase font-bold tracking-widest backdrop-blur-sm">
               <span>EBOOK EXCLUSIVO</span>
             </div>
             <p className="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-amber-100 leading-tight">
@@ -52,7 +52,7 @@ export const GuideMockup: React.FC = () => {
         </div>
 
         {/* Secondary Internal Page Sheet Mockup */}
-        <div className="absolute top-4 -right-4 sm:-right-8 w-56 sm:w-64 aspect-[3/4] bg-white rounded-r-xl rounded-l-sm shadow-lg border border-[var(--border)] -z-10 transform rotate-6 p-4 flex flex-col justify-between">
+        <div className="absolute top-4 -right-4 sm:-right-8 w-56 sm:w-64 aspect-[3/4] bg-transparent rounded-r-xl rounded-l-sm shadow-lg border border-[var(--border)] -z-10 transform rotate-6 p-4 flex flex-col justify-between">
           <div className="space-y-2">
             <div className="h-3 bg-[var(--primary-light)] rounded w-3/4" />
             <div className="h-2 bg-[var(--background-soft)] rounded w-full" />
@@ -71,7 +71,7 @@ export const GuideMockup: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-[9px] text-center text-[var(--text-muted)] font-mono">
+          <div className="text-[9px] text-center text-white font-mono">
             Tablas & Recetas Prácticas
           </div>
         </div>
