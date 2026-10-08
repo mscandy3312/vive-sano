@@ -48,8 +48,8 @@ export const FAQ: React.FC = () => {
                     {item.question}
                   </span>
                   <span
-                    className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0 transition-transform duration-300 ${
-                    isOpen ? 'rotate-180 bg-[#4DA92C] text-white' : 'bg-transparent text-[#4DA92C]'
+                    className={`w-8 h-8 rounded-full flex items-center justify-center font-extrabold text-lg shrink-0 transition-transform duration-300 ${
+                    isOpen ? 'rotate-180 bg-[#4DA92C] text-white' : 'bg-transparent text-[#4DA92C] border border-[#4DA92C]'
                     }`}
                   >
                     ↓
