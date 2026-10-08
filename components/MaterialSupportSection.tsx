@@ -29,8 +29,8 @@ export const MaterialSupportSection: React.FC = () => {
           </p>
         </div>
 
-        {/* MATERIALS GRID: Desktop 4 cols, Tablet 2 cols, Mobile 1 col */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+        {/* MATERIALS GRID: Desktop 2 cols, Tablet 2 cols, Mobile 1 col */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-stretch max-w-5xl mx-auto">
           {materials.map((material) => (
             <MaterialCard
               key={material.id}
