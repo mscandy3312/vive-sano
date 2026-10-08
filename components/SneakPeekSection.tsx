@@ -22,7 +22,7 @@ export const SneakPeekSection: React.FC = () => {
               preload="metadata"
               poster="/images/hero-lifestyle.jpg"
             >
-              <source src="/materiales/vive-sano.mp4" type="video/mp4" />
+              <source src="/materiales/vive-sano-final.mp4" type="video/mp4" />
               Tu navegador no soporta la reproducción de videos.
             </video>
           </div>
