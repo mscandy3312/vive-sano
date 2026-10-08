@@ -201,9 +201,9 @@ export const contentData = {
     imageSrc: '/materiales/dieta.jpeg',
     imageAlt: 'Fotografía de dieta y bienestar Vive Sano',
     highlights: [
-      '✓ Acceso digital e inmediato al curso',
-      '✓ Incluye los Semáforos Digestivos y material de apoyo',
-      '✓ Aprendizaje a tu propio ritmo sin presiones',
+      'Acceso digital e inmediato al curso',
+      'Incluye los Semáforos Digestivos y material de apoyo',
+      'Aprendizaje a tu propio ritmo sin presiones',
     ],
   },
 

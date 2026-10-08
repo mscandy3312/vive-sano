@@ -161,8 +161,8 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
             <div className="space-y-2.5 pt-2 text-xs sm:text-sm text-white">
               {hero.highlights.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-3 font-semibold">
-                  <span className="w-5 h-5 rounded-full bg-[#4DA92C] text-transparent font-bold text-xs flex items-center justify-center shrink-0 border-2 border-[#4DA92C]">
-                    
+                  <span className="w-5 h-5 rounded-full bg-[#4DA92C] text-white font-bold text-xs flex items-center justify-center shrink-0">
+                    ✓
                   </span>
                   <span>{item}</span>
                 </div>
