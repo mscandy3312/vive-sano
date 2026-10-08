@@ -12,8 +12,8 @@ export const ProblemSection: React.FC = () => {
       <Container size="lg">
         {/* SECTION HEADER */}
         <div className="max-w-3xl mx-auto text-center space-y-3 mb-12 sm:mb-16">
-          <span className="inline-block text-xs font-extrabold tracking-widest text-[#E76100] uppercase bg-[#FFF4EC] px-4 py-1.5 rounded-full border border-[#FFD8BE] shadow-2xs">
-            {eyebrow}
+          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-transparent border border-[#B8D8C2] text-[#4DA92C] text-xs font-extrabold uppercase tracking-wider shadow-2xs">
+            <span>{eyebrow}</span>
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
             {title}
