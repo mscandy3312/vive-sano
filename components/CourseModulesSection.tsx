@@ -38,7 +38,7 @@ export const CourseModulesSection: React.FC = () => {
                   >
                     {mod.badgeLabel}
                   </span>
-                  <span className="text-2xl">📚</span>
+                  <span className="text-2xl">{mod.icon}</span>
                 </div>
 
                 <h3 className="font-serif font-bold text-xl text-white group-hover:text-[#4DA92C] transition-colors">

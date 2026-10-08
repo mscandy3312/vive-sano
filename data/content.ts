@@ -44,6 +44,7 @@ export interface CourseModuleItem {
   title: string;
   description: string;
   colorAccent: string;
+  icon: string;
   bottomText?: string;
 }
 
@@ -288,6 +289,7 @@ export const contentData = {
         title: 'Bienvenida',
         description: 'Conoce mi historia y cómo aprovechar el curso desde el primer día.',
         colorAccent: '#4DA92C',
+        icon: '👋',
         bottomText: 'Contenido en video',
       },
       {
@@ -296,6 +298,7 @@ export const contentData = {
         title: 'Salud Digestiva',
         description: 'Entiende qué pasa en tu cuerpo cuando comes y aprende a reconocer las 8 señales de una digestión lenta.',
         colorAccent: '#0078BF',
+        icon: '🌿',
         bottomText: 'Contenido en video + material de apoyo',
       },
       {
@@ -304,6 +307,7 @@ export const contentData = {
         title: 'Alimentación',
         description: 'Descubre qué alimentos te están inflamando, cuáles te ayudan y cómo influyen en tus gases, reflujo, estreñimiento y somnolencia.',
         colorAccent: '#E76100',
+        icon: '🍎',
         bottomText: 'Contenido en video + material de apoyo',
       },
     ] as CourseModuleItem[],
