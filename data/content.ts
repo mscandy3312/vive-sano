@@ -162,7 +162,7 @@ export const contentData = {
 
   // Centralized Images
   images: {
-    logo: '/materiales/logo-transparente.png',
+    logo: '/materiales/logo-final.png',
     logoAlt: 'Logo oficial de Vive Sano por Gloria Molina',
     hero: '/images/hero-lifestyle.jpg',
     heroAlt: 'Fotografía de bienestar y nutrición consciente Vive Sano',
