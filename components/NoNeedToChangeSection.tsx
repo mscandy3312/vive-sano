@@ -7,7 +7,7 @@ export const NoNeedToChangeSection: React.FC = () => {
   const { eyebrow, title, text, ctaText, ctaHref } = contentData.noNeedToChange;
 
   return (
-    <Section className="py-16 sm:py-24 bg-[#123C32] text-white relative overflow-hidden">
+    <Section className="py-16 sm:py-24 bg-[#1E4D2B] text-white relative overflow-hidden">
       <Container size="md">
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <span className="inline-block text-xs font-extrabold tracking-widest text-[#4DA92C] uppercase bg-transparent/10 px-4 py-1.5 rounded-full border border-white/20">
@@ -16,8 +16,8 @@ export const NoNeedToChangeSection: React.FC = () => {
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
             {title}
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-[#B8D8C2] leading-relaxed">
-            "{text}"
+          <p className="text-base sm:text-lg md:text-xl text-white leading-relaxed">
+            {text}
           </p>
           <div className="pt-4">
             <a

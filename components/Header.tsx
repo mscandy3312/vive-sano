@@ -64,7 +64,7 @@ export const Header: React.FC = () => {
           {[...Array(4)].map((_, i) => (
             <div key={i} className="flex items-center space-x-8 px-4 text-xs font-semibold tracking-wide whitespace-nowrap">
               <span className="flex items-center gap-1.5"><span className="text-[#4DA92C]">✓</span> Acceso digital e inmediato al curso</span>
-              <span className="flex items-center gap-1.5"><span className="text-[#4DA92C]">✓</span> Incluye las Herramientas de Apoyo descargables</span>
+              <span className="flex items-center gap-1.5"><span className="text-[#4DA92C]">✓</span> Incluye los Semáforos Digestivos y material de apoyo</span>
               <span className="flex items-center gap-1.5"><span className="text-[#4DA92C]">✓</span> Aprendizaje a tu propio ritmo sin presiones</span>
             </div>
           ))}

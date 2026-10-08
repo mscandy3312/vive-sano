@@ -139,7 +139,7 @@ export default function PagoPage() {
                   </h3>
                   <p>1. Hotmart procesa tu pago de forma encriptada.</p>
                   <p>2. Recibes un correo instantáneo con tu acceso al curso.</p>
-                  <p>3. Descargas los 4 Materiales de Apoyo en formato PDF.</p>
+                  <p>3. Accedes a los 4 Materiales de Apoyo.</p>
                 </div>
               </div>
             </div>

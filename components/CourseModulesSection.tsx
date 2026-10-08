@@ -11,14 +11,14 @@ export const CourseModulesSection: React.FC = () => {
       <Container size="lg">
         {/* HEADER */}
         <div className="max-w-3xl mx-auto text-center space-y-3.5 mb-14">
-          <span className="inline-block text-xs font-extrabold tracking-widest text-[#0078BF] uppercase bg-transparent px-4 py-1.5 rounded-full border border-[#B3DAF2]">
+          <span className="inline-block text-xs font-extrabold tracking-widest text-[#4DA92C] uppercase bg-transparent px-4 py-1.5 rounded-full border border-[#B3DAF2]">
             {eyebrow}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
             {title}
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed max-w-2xl mx-auto">
-            "{subtitle}"
+            {subtitle}
           </p>
         </div>
 
@@ -46,12 +46,12 @@ export const CourseModulesSection: React.FC = () => {
                 </h3>
 
                 <p className="text-xs sm:text-sm text-white leading-relaxed">
-                  "{mod.description}"
+                  {mod.description}
                 </p>
               </div>
 
-              <div className="pt-6 mt-6 border-t border-[#D5E8DC]/60 flex items-center text-xs font-bold" style={{ color: mod.colorAccent }}>
-                <span>Contenido en video + PDF</span>
+              <div className="pt-6 mt-6 border-t border-[#D5E8DC]/60 flex items-center text-xs font-bold text-white">
+                <span>{(mod as any).bottomText}</span>
               </div>
             </div>
           ))}

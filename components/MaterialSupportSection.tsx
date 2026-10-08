@@ -15,11 +15,8 @@ export const MaterialSupportSection: React.FC = () => {
         {/* SECTION HEADER */}
         <div className="max-w-3xl mx-auto text-center space-y-3.5 mb-12 sm:mb-16">
           <div className="flex items-center justify-center gap-2">
-            <span className="inline-block text-xs font-extrabold tracking-widest text-[#0078BF] uppercase bg-transparent px-4 py-1.5 rounded-full border border-[#B3DAF2] shadow-2xs">
+            <span className="inline-block text-xs font-extrabold tracking-widest text-[#4DA92C] uppercase bg-transparent px-4 py-1.5 rounded-full border border-[#B8D8C2] shadow-2xs">
               {eyebrow}
-            </span>
-            <span className="inline-block text-xs font-bold tracking-wider text-[#4DA92C] uppercase bg-transparent px-3 py-1 rounded-full border border-[#B8D8C2]">
-              📄 PDF Interactivos
             </span>
           </div>
 
@@ -28,7 +25,7 @@ export const MaterialSupportSection: React.FC = () => {
           </h2>
 
           <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed max-w-2xl mx-auto">
-            "{subtitle}"
+            {subtitle}
           </p>
         </div>
 
@@ -45,11 +42,11 @@ export const MaterialSupportSection: React.FC = () => {
 
         {/* INCLUDED NOTE & ASSURANCE */}
         <div className="mt-12 text-center text-xs sm:text-sm text-white font-medium bg-transparent p-5 rounded-2xl max-w-xl mx-auto border border-[#D5E8DC] shadow-xs space-y-1">
-          <p className="font-bold text-white flex items-center justify-center gap-2">
-            <span className="text-[#4DA92C] text-base">✓</span> Descarga o consulta directa desde cualquier dispositivo
+          <p className="font-bold text-white text-base">
+            Consulta tus materiales desde cualquier dispositivo
           </p>
           <p className="text-white">
-            Todos los materiales están incluidos en formato PDF de alta calidad con tu inscripción de <strong className="text-[#4DA92C] font-extrabold">497,00 MXN</strong> al Método SANA.
+            Todos los materiales están incluidos dentro del curso con tu inscripción de <strong className="text-white font-bold">497 MXN</strong> al Método SANA.
           </p>
         </div>
       </Container>

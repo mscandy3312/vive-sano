@@ -28,9 +28,9 @@ export const IncludesSection: React.FC = () => {
               </div>
 
               <div className="p-4 rounded-2xl bg-transparent border border-[#D5E8DC] text-center space-y-1">
-                <span className="text-xs font-bold text-white uppercase tracking-wider">Inversión Única</span>
+                <span className="text-xs font-bold text-white uppercase tracking-wider">PRECIO DE LANZAMIENTO</span>
                 <p className="font-serif text-3xl font-extrabold text-white">{priceText}</p>
-                <p className="text-xs text-[#4DA92C] font-semibold">Incluye Curso completo + Materiales PDF</p>
+                <p className="text-xs text-white font-semibold">Incluye curso completo + material de apoyo</p>
               </div>
             </div>
           </div>
@@ -45,7 +45,7 @@ export const IncludesSection: React.FC = () => {
                 {title}
               </h2>
               <p className="text-sm sm:text-base text-white leading-relaxed">
-                "{subtitle}"
+                {subtitle}
               </p>
             </div>
 

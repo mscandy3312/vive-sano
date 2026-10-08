@@ -27,11 +27,7 @@ export const MaterialCard: React.FC<MaterialCardProps> = ({ material, onPreviewC
   } = material;
 
   const handleCardClick = () => {
-    if (pdfUrl) {
-      setIsModalOpen(true);
-    } else if (onPreviewClick) {
-      onPreviewClick(imageSrc);
-    }
+    setIsModalOpen(true);
   };
 
   return (
@@ -42,13 +38,13 @@ export const MaterialCard: React.FC<MaterialCardProps> = ({ material, onPreviewC
         style={{ borderTopColor: primaryColor, borderTopWidth: '4px' }}
       >
       {/* CARD IMAGE CONTAINER */}
-      <div className="relative aspect-[4/3] bg-[#FAF8F1] overflow-hidden border-b border-[#D5E8DC]/60">
+      <div className="relative aspect-[3/4] bg-[#FAF8F1] overflow-hidden border-b border-[#D5E8DC]/60 flex items-center justify-center p-2">
         <Image
           src={imageSrc}
           alt={imageAlt}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-          className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+          className="object-contain p-2 group-hover:scale-105 transition-transform duration-500"
         />
 
 
@@ -65,30 +61,17 @@ export const MaterialCard: React.FC<MaterialCardProps> = ({ material, onPreviewC
           </p>
         </div>
 
-        {/* PDF ACTION BUTTONS */}
+        {/* ACTION BUTTONS */}
         <div className="pt-3 border-t border-[#D5E8DC]/60 space-y-2">
-          {pdfUrl && isAvailable ? (
-            <div className="grid grid-cols-1 gap-2">
-              <button
-                onClick={(e) => { e.stopPropagation(); setIsModalOpen(true); }}
-                className="w-full py-2.5 px-3 rounded-xl bg-[#E76100] hover:bg-[#cf5600] text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs hover:shadow-md cursor-pointer text-center"
-                title={`Ver ${title}`}
-              >
-                <span>👁️ VER PDF</span>
-              </button>
-            </div>
-          ) : (
-            <div className="flex items-center justify-between text-xs font-semibold text-[#4A6B60] bg-[#FAF8F1] py-2 px-3 rounded-xl border border-[#D5E8DC]">
-              <span>PDF en la plataforma</span>
-              <span className="text-[#E76100]">🔒 Incluido</span>
-            </div>
-          )}
+          <div className="flex items-center justify-center text-xs font-semibold text-[#4A6B60] bg-[#FAF8F1] py-2 px-3 rounded-xl border border-[#D5E8DC]">
+            <span>Dentro del curso 🔒 Incluido</span>
+          </div>
         </div>
       </div>
     </div>
 
       {/* PDF MODAL */}
-      {isModalOpen && pdfUrl && (
+      {isModalOpen && (
         <div 
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-6" 
           onClick={(e) => { e.stopPropagation(); setIsModalOpen(false); }}
@@ -116,7 +99,7 @@ export const MaterialCard: React.FC<MaterialCardProps> = ({ material, onPreviewC
               <img 
                 src={imageSrc}
                 className="w-full h-full border-0 absolute inset-0"
-                title={`PDF: ${title}`}
+                title={title}
               />
             </div>
           </div>

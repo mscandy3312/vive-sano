@@ -44,14 +44,10 @@ export const ProblemCard: React.FC<ProblemCardProps> = ({ card }) => {
         </h3>
 
         <p className="text-xs sm:text-sm text-[#4A6B60] leading-relaxed">
-          "{description}"
+          {description}
         </p>
       </div>
 
-      <div className="pt-2 flex items-center gap-1.5 text-xs font-semibold" style={{ color: colorAccent }}>
-        <span>Observar señal</span>
-        <span className="group-hover:translate-x-1 transition-transform">→</span>
-      </div>
     </div>
   );
 };

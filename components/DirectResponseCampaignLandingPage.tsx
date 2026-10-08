@@ -147,13 +147,13 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
               {/* EXACT PROMISE */}
               <div className="p-4 rounded-2xl bg-transparent border-l-4 border-[#4DA92C] shadow-xs">
                 <p className="text-base sm:text-lg font-bold text-white leading-snug">
-                  "{hero.promise}"
+                  {hero.promise}
                 </p>
               </div>
 
               {/* EXACT SUPPORTING TEXT */}
               <p className="text-xs sm:text-sm md:text-base text-white leading-relaxed">
-                "{hero.subheadline}"
+                {hero.subheadline}
               </p>
             </div>
 
@@ -161,8 +161,8 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
             <div className="space-y-2.5 pt-2 text-xs sm:text-sm text-white">
               {hero.highlights.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-3 font-semibold">
-                  <span className="w-5 h-5 rounded-full bg-[#4DA92C] text-white font-bold text-xs flex items-center justify-center shrink-0">
-                    ✓
+                  <span className="w-5 h-5 rounded-full bg-[#4DA92C] text-transparent font-bold text-xs flex items-center justify-center shrink-0 border-2 border-[#4DA92C]">
+                    
                   </span>
                   <span>{item}</span>
                 </div>
@@ -191,7 +191,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
           {/* RIGHT COLUMN: HERO VISUAL PRESENTATION CARD */}
           <div className="lg:col-span-5">
             <div className="bg-transparent p-6 sm:p-8 rounded-3xl border-2 border-[#D5E8DC] shadow-2xl space-y-6 text-center relative overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-[#4DA92C] via-[#0078BF] to-[#E76100]"></div>
+              <div className="absolute top-0 left-0 right-0 h-2 bg-[#E76100]"></div>
               
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border border-[#D5E8DC]">
                 <Image
@@ -211,11 +211,12 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
               </div>
 
               <div className="space-y-2 pt-2 border-t border-[#D5E8DC]">
-                <span className="text-xs font-bold text-white uppercase tracking-wider">Inversión Única</span>
+                <span className="text-xs font-bold text-white uppercase tracking-wider">PRECIO DE LANZAMIENTO</span>
                 <div className="font-serif text-3xl sm:text-4xl font-extrabold text-white">
                   {hero.priceText}
                 </div>
-                <p className="text-xs text-[#4DA92C] font-semibold">Acceso inmediato • Sin suscripción</p>
+                <p className="text-xs text-white font-semibold">Acceso inmediato • Sin suscripción</p>
+                <p className="text-xs text-white font-semibold mt-1">Bono incluido: audio de relajación y respiración digestiva</p>
               </div>
 
               <a
@@ -261,18 +262,18 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       <FAQ />
 
       {/* 13. FINAL CTA BANNER */}
-      <section className="relative py-16 sm:py-24 bg-[#123C32] text-white px-4 sm:px-6 text-center overflow-hidden">
+      <section className="relative py-16 sm:py-24 bg-[#1E4D2B] text-white px-4 sm:px-6 text-center overflow-hidden">
         <div className="relative max-w-3xl mx-auto space-y-6">
           <span className="inline-block px-4 py-1 rounded-full bg-transparent/10 text-[#4DA92C] text-xs font-extrabold uppercase tracking-wider border border-white/20">
-            🌿 MÉTODO SANA — $497 MXN
+            MÉTODO SANA — 497 MXN
           </span>
           
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
             Empieza hoy a cuidar tu digestión sin presiones
           </h2>
           
-          <p className="text-sm sm:text-base text-[#B8D8C2] max-w-xl mx-auto leading-relaxed">
-            "{finalCta.copy}"
+          <p className="text-sm sm:text-base text-white max-w-xl mx-auto leading-relaxed">
+            {finalCta.copy}
           </p>
 
           <div className="pt-4">
@@ -280,12 +281,12 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
               href="/pago"
               className="py-4 px-10 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm sm:text-base transition-all duration-300 shadow-2xl uppercase tracking-wider inline-flex items-center gap-2 transform hover:-translate-y-0.5 cursor-pointer"
             >
-              <span>QUIERO EMPEZAR ($497 MXN) →</span>
+              <span>QUIERO EMPEZAR (497 MXN) →</span>
             </a>
           </div>
 
-          <p className="text-xs text-[#B8D8C2]/80">
-            Acceso Digital Inmediato • Formato PDF
+          <p className="text-xs text-[#B8D8C2]/80 text-white">
+            Acceso inmediato • Precio de lanzamiento
           </p>
         </div>
       </section>

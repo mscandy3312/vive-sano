@@ -44,6 +44,7 @@ export interface CourseModuleItem {
   title: string;
   description: string;
   colorAccent: string;
+  bottomText?: string;
 }
 
 export interface ModuleItem {
@@ -146,7 +147,7 @@ export const contentData = {
     priceText: '497 MXN',
     ctaText: 'QUIERO EMPEZAR',
     copyright: '© 2026 Vive Sano — Gloria Molina. Todos los derechos reservados.',
-    disclaimer: 'Este material tiene fines educativos y de bienestar general. No sustituye la valoración, diagnóstico ni tratamiento de un profesional de la salud.',
+    disclaimer: 'El contenido de esta página y del curso tiene un carácter estrictamente educativo y de bienestar general. No sustituye la valoración, diagnóstico ni tratamiento de un profesional de la salud. Los resultados pueden variar en cada persona. Si tus síntomas son intensos o persistentes, consulta a un profesional de la salud.',
   },
 
   // Official Palette Colors
@@ -278,7 +279,7 @@ export const contentData = {
   // Sección "¿Qué encontrarás en el Método SANA?" (Contenido del Curso)
   courseModules: {
     eyebrow: 'CONTENIDO DEL CURSO',
-    title: '¿Qué encontrarás en el Método SANA?',
+    title: '¿Qué encontrarás en\nel Método SANA?',
     subtitle: 'Todo lo que necesitas para entender tu digestión y empezar a sentirte mejor.',
     modules: [
       {
@@ -287,6 +288,7 @@ export const contentData = {
         title: 'Bienvenida',
         description: 'Conoce mi historia y cómo aprovechar el curso desde el primer día.',
         colorAccent: '#4DA92C',
+        bottomText: 'Contenido en video',
       },
       {
         id: 'mod-2',
@@ -294,6 +296,7 @@ export const contentData = {
         title: 'Salud Digestiva',
         description: 'Entiende qué pasa en tu cuerpo cuando comes y aprende a reconocer las 8 señales de una digestión lenta.',
         colorAccent: '#0078BF',
+        bottomText: 'Contenido en video + material de apoyo',
       },
       {
         id: 'mod-3',
@@ -301,6 +304,7 @@ export const contentData = {
         title: 'Alimentación',
         description: 'Descubre qué alimentos te están inflamando, cuáles te ayudan y cómo influyen en tus gases, reflujo, estreñimiento y somnolencia.',
         colorAccent: '#E76100',
+        bottomText: 'Contenido en video + material de apoyo',
       },
     ] as CourseModuleItem[],
   },
@@ -311,7 +315,7 @@ export const contentData = {
     eyebrow: 'LO QUE INCLUYE',
     title: 'Todo lo que recibes con\nel Método SANA',
     subtitle: 'Un curso para entender tu digestión y empezar a sentirte mejor, paso a paso.',
-    imageSrc: '/images/hero-lifestyle.jpg',
+    imageSrc: '/materiales/dieta.jpeg',
     imageAlt: 'Presentación del Método SANA en dispositivos digitales',
     list: [
       '3 módulos con más de 60 videos.',
@@ -319,7 +323,7 @@ export const contentData = {
       'Diario Digestivo.',
       '8 Semáforos Digestivos, uno para cada señal.',
       '1 Semáforo FODMAP.',
-      'Guía FODMAP Descubre por qué te inflamas.',
+      'Guía FODMAP: Descubre por qué te inflamas.',
       'Acceso inmediato desde tu celular o computadora.',
       'Todo por 497 MXN.',
     ],
@@ -340,7 +344,7 @@ export const contentData = {
         description: 'Registra lo que comes y cómo te sientes para entender tu propio patrón.',
         primaryColor: '#4DA92C',
         badgeLabel: 'Registro Diario',
-        imageSrc: '/images/materiales/diario-digestivo-cover.jpg',
+        imageSrc: '/images/diario-digestivo-cover.jpeg',
         imageAlt: 'Mockup del Diario Digestivo Vive Sano',
         isAvailable: true,
         pdfUrl: '/materiales/diario digestivo.pdf',
@@ -416,9 +420,8 @@ export const contentData = {
     imageAlt: 'Fotografía oficial de Gloria Molina — Fundadora de Vive Sano',
   },
 
-  // Oferta Principal
   offer: {
-    eyebrow: 'OFERTA PRINCIPAL',
+    eyebrow: 'PRECIO DE LANZAMIENTO',
     headline: 'Método SANA',
     promise: 'Desinflama tu cuerpo y recupera tu energía paso a paso, sin dietas extremas ni rutinas imposibles.',
     priceText: '497 MXN',
@@ -430,7 +433,7 @@ export const contentData = {
       'Diario Digestivo',
       '8 Semáforos Digestivos, uno para cada señal',
       '1 Semáforo FODMAP',
-      'Guía FODMAP Descubre por qué te inflamas',
+      'Guía FODMAP: Descubre por qué te inflamas',
       'Acceso inmediato desde tu celular o computadora',
     ],
     guaranteeText: 'Acceso seguro e inmediato tras completar tu inscripción.',
@@ -474,7 +477,7 @@ export const contentData = {
       {
         id: 'faq5',
         question: '¿Cuánto tiempo tengo acceso?',
-        answer: 'Tienes acceso a todo el curso para avanzar a tu propio ritmo, sin presiones.',
+        answer: 'Tienes acceso de por vida mientras el curso esté disponible en la plataforma, para avanzar a tu propio ritmo.',
       },
       {
         id: 'faq6',
@@ -620,7 +623,7 @@ export const contentData = {
     currentPrice: '497 MXN',
     installments: 'Pago único • Sin mensualidades',
     offerText: 'Precio especial de lanzamiento',
-    includedList: ['Curso Práctico', '4 Materiales PDF', 'Acceso Inmediato'],
+    includedList: ['Curso Práctico', '4 Materiales de Apoyo', 'Acceso Inmediato'],
     ctaText: 'QUIERO EMPEZAR',
     guaranteeNotice: 'Acceso inmediato y seguro',
     guarantee: 'Acceso inmediato y seguro',
@@ -642,7 +645,7 @@ export const contentData = {
     title: 'Confianza y Educación',
     items: [
       { icon: '🌿', text: 'Método SANA' },
-      { icon: '📄', text: 'PDF Descargable' },
+      { icon: '📄', text: 'Material de Apoyo' },
     ] as TrustItem[],
   },
 
@@ -670,8 +673,8 @@ export const contentData = {
       },
       {
         number: '02',
-        title: 'Descarga los Materiales',
-        description: 'Accede a tus materiales PDF.',
+        title: 'Accede a los Materiales',
+        description: 'Accede a tus materiales de apoyo.',
       },
     ],
   },
@@ -686,20 +689,19 @@ export const contentData = {
     currentPriceText: '497 MXN',
     installmentsNote: 'Pago único de 497 MXN',
     ctaButtonText: 'QUIERO EMPEZAR EN HOTMART',
-    items: ['Curso Práctico Método SANA', 'Materiales PDF Descargables', 'Acceso Digital Inmediato'],
+    items: ['Curso Práctico Método SANA', 'Materiales de Apoyo', 'Acceso Digital Inmediato'],
     securityItems: [
       'Acceso inmediato a la plataforma digital',
-      'Materiales descargables en formato PDF',
+      'Materiales de apoyo incluidos',
       'Pago encriptado con certificado SSL vía Hotmart',
     ],
   },
 
-  // Footer Config
   footer: {
     brandName: 'VIVE SANO',
-    tagline: 'Educación y conciencia para tu bienestar digestivo cotidiano.',
+    tagline: 'Una experiencia educativa de Vive Sano para entender tu digestión y empezar a sentirte mejor.',
     copyright: '© 2026 Vive Sano — Gloria Molina. Todos los derechos reservados.',
-    disclaimer: 'Este material tiene fines educativos y de bienestar general. No sustituye la valoración, diagnóstico ni tratamiento de un profesional de la salud.',
+    disclaimer: 'El contenido de esta página y del curso tiene un carácter estrictamente educativo y de bienestar general. No sustituye la valoración, diagnóstico ni tratamiento de un profesional de la salud. Los resultados pueden variar en cada persona. Si tus síntomas son intensos o persistentes, consulta a un profesional de la salud.',
     contactEmail: 'gloria@vive-sano.mx',
     links: [
       { label: 'Inicio', href: '#inicio' },

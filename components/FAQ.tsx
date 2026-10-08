@@ -17,14 +17,14 @@ export const FAQ: React.FC = () => {
     <Section id="faq" className="py-16 sm:py-24 bg-transparent border-b border-[#D5E8DC]">
       <Container size="md">
         <div className="text-center space-y-3.5 mb-12 sm:mb-16">
-          <span className="inline-block text-xs font-extrabold tracking-widest text-[#0078BF] uppercase bg-transparent px-4 py-1.5 rounded-full border border-[#B3DAF2]">
+          <span className="inline-block text-xs font-extrabold tracking-widest text-[#4DA92C] uppercase bg-transparent px-4 py-1.5 rounded-full border border-[#B8D8C2]">
             {eyebrow}
           </span>
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">
             {title}
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed max-w-xl mx-auto">
-            "{subtitle}"
+            {subtitle}
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export const FAQ: React.FC = () => {
                   </span>
                   <span
                     className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm shrink-0 transition-transform duration-300 ${
-                      isOpen ? 'rotate-180 bg-[#123C32] text-white' : 'bg-transparent text-[#4DA92C]'
+                    isOpen ? 'rotate-180 bg-[#4DA92C] text-white' : 'bg-transparent text-[#4DA92C]'
                     }`}
                   >
                     ↓
@@ -62,7 +62,7 @@ export const FAQ: React.FC = () => {
                     role="region"
                     className="px-5 pb-6 sm:px-6 sm:pb-6 text-xs sm:text-sm text-white leading-relaxed border-t border-[#D5E8DC]/60 pt-4 animate-fadeIn"
                   >
-                    "{item.answer}"
+                    {item.answer}
                   </div>
                 )}
               </div>

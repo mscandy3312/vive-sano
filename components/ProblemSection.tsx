@@ -19,7 +19,7 @@ export const ProblemSection: React.FC = () => {
             {title}
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed max-w-2xl mx-auto">
-            "{subtitle}"
+            {subtitle}
           </p>
         </div>
 

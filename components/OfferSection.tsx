@@ -13,7 +13,7 @@ export const OfferSection: React.FC = () => {
           
           {/* TOP HIGHLIGHT BADGE */}
           <div className="absolute top-0 left-0 right-0 bg-[#4DA92C] text-white py-2 px-4 text-xs font-bold uppercase tracking-widest">
-            {eyebrow} · ACCESO INMEDIATO Y DIGITAL
+            PRECIO DE LANZAMIENTO · ACCESO INMEDIATO
           </div>
 
           <div className="pt-4 space-y-4 max-w-2xl mx-auto">
@@ -24,20 +24,20 @@ export const OfferSection: React.FC = () => {
               {headline}
             </h2>
             <p className="text-sm sm:text-base md:text-lg text-white leading-relaxed italic">
-              "{promise}"
+              {promise}
             </p>
           </div>
 
           {/* PRICE DISPLAY */}
           <div className="py-6 bg-transparent rounded-2xl border border-[#B8D8C2] max-w-md mx-auto space-y-2">
             <span className="text-xs font-bold text-white uppercase tracking-wider">
-              Precio Oficial Único
+              PRECIO DE LANZAMIENTO
             </span>
             <div className="font-serif text-4xl sm:text-5xl font-extrabold text-white">
               {priceText}
             </div>
-            <p className="text-xs font-semibold text-[#4DA92C]">
-              Sin mensualidades • Acceso ilimitado
+            <p className="text-xs font-semibold text-white">
+              Sin mensualidades • Acceso de por vida
             </p>
           </div>
 

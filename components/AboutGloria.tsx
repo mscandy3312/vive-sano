@@ -42,17 +42,17 @@ export const AboutGloria: React.FC = () => {
             </span>
 
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
-              "{title}"
+              {title}
             </h2>
 
             <div className="space-y-4 text-sm sm:text-base text-white leading-relaxed">
               <p className="text-base sm:text-lg text-white font-medium leading-relaxed">
-                "{copy}"
+                {copy}
               </p>
             </div>
 
-            <blockquote className="p-4 sm:p-5 rounded-2xl bg-transparent border-l-4 border-[#4DA92C] font-serif italic text-sm sm:text-base text-white leading-relaxed">
-              "{quote}"
+            <blockquote className="p-4 sm:p-5 rounded-2xl bg-transparent font-serif italic text-sm sm:text-base text-white leading-relaxed">
+              {quote}
             </blockquote>
 
             <p className="text-xs font-extrabold text-white uppercase tracking-wider">
