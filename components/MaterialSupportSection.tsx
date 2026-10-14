@@ -46,7 +46,7 @@ export const MaterialSupportSection: React.FC = () => {
             Consulta tus materiales desde cualquier dispositivo
           </p>
           <p className="text-white">
-            Todos los materiales están incluidos dentro del curso con tu inscripción de <strong className="text-white font-bold">497 MXN</strong> al Método SANA.
+            Todos los materiales están incluidos dentro del curso con tu inscripción de <strong className="text-white font-bold">576.52 MXN</strong> al Método SANA.
           </p>
         </div>
       </Container>

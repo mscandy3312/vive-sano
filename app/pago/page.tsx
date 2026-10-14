@@ -65,7 +65,7 @@ export default function PagoPage() {
                     </h2>
                     <div className="flex items-baseline gap-2">
                       <span className="font-serif font-bold text-3xl text-[#123C32]">
-                        497,00 MXN
+                        576.52 MXN
                       </span>
                     </div>
                   </div>
@@ -97,7 +97,7 @@ export default function PagoPage() {
                     href={hotmartUrl}
                     className="w-full py-4 px-6 rounded-2xl bg-[#4DA92C] hover:bg-[#3e8b23] text-white font-extrabold text-base text-center block transition-all shadow-xl hover:shadow-2xl cursor-pointer uppercase tracking-wider"
                   >
-                    QUIERO EMPEZAR EN HOTMART (497,00 MXN) →
+                    QUIERO EMPEZAR EN HOTMART (576.52 MXN) →
                   </a>
                   <p className="text-[11px] text-center text-[#4A6B60]">
                     Al hacer clic serás redirigido de forma segura a la pasarela de pago oficial de Hotmart.

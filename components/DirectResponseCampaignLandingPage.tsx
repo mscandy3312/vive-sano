@@ -98,7 +98,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
             },
             'offers': {
               '@type': 'Offer',
-              'price': '497.00',
+              'price': '576.52',
               'priceCurrency': 'MXN',
               'availability': 'https://schema.org/InStock',
             },
@@ -121,7 +121,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
           </div>
 
           <div className="hidden md:flex items-center gap-4 text-white/90">
-            <span className="text-[11px] text-[#B8D8C2]">Curso Práctico Digital — $497 MXN</span>
+            <span className="text-[11px] text-[#B8D8C2]">Curso Práctico Digital — $576.52 MXN</span>
           </div>
         </div>
       </div>
@@ -255,7 +255,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       {/* 10. CONOCE A LA FUNDADORA (GLORIA MOLINA) */}
       <AboutGloria />
 
-      {/* 11. OFERTA COMERCIAL MÉTODO SANA ($497 MXN) */}
+      {/* 11. OFERTA COMERCIAL MÉTODO SANA ($576.52 MXN) */}
       <OfferSection />
 
       {/* 12. PREGUNTAS FRECUENTES (FAQ ACORDEÓN) */}
@@ -265,7 +265,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
       <section className="relative py-16 sm:py-24 bg-[#1E4D2B] text-white px-4 sm:px-6 text-center overflow-hidden">
         <div className="relative max-w-3xl mx-auto space-y-6">
           <span className="inline-block px-4 py-1 rounded-full bg-transparent/10 text-[#4DA92C] text-xs font-extrabold uppercase tracking-wider border border-white/20">
-            MÉTODO SANA — 497 MXN
+            MÉTODO SANA — 576.52 MXN
           </span>
           
           <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight">
@@ -281,7 +281,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
               href="/pago"
               className="py-4 px-10 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm sm:text-base transition-all duration-300 shadow-2xl uppercase tracking-wider inline-flex items-center gap-2 transform hover:-translate-y-0.5 cursor-pointer"
             >
-              <span>QUIERO EMPEZAR (497 MXN) →</span>
+              <span>QUIERO EMPEZAR (576.52 MXN) →</span>
             </a>
           </div>
 
@@ -299,7 +299,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
         <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#123C32]/95 backdrop-blur-md border-t border-white/20 p-3 flex items-center justify-between sm:hidden animate-slideUp">
           <div className="text-left text-white px-2">
             <p className="text-xs font-bold">Método SANA</p>
-            <p className="text-[10px] text-[#4DA92C] font-semibold">$497 MXN • Digital</p>
+            <p className="text-[10px] text-[#4DA92C] font-semibold">$576.52 MXN • Digital</p>
           </div>
           <a
             href="/pago"
