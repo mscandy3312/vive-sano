@@ -16,7 +16,7 @@ export const siteConfig = {
   whatsappDefaultMessage: encodeURIComponent('Hola Gloria, tengo una pregunta sobre el programa Vive Sano.'),
 
   // External checkout and product access links
-  hotmartCheckoutUrl: process.env.NEXT_PUBLIC_HOTMART_CHECKOUT_URL || '#',
+  hotmartCheckoutUrl: process.env.NEXT_PUBLIC_HOTMART_CHECKOUT_URL || 'https://pay.hotmart.com',
   productAccessUrl: process.env.NEXT_PUBLIC_PRODUCT_ACCESS_URL || '#',
 
   // Analytics & Pixel placeholders (Inactive in Phase 1)

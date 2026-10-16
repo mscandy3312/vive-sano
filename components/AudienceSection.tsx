@@ -2,6 +2,7 @@ import React from 'react';
 import Container from './Container';
 import Section from './Section';
 import { contentData } from '@/data/content';
+import { siteConfig } from '@/lib/config';
 
 export const AudienceSection: React.FC = () => {
   const { eyebrow, title, subtitle, items } = contentData.audience;
@@ -60,7 +61,7 @@ export const AudienceSection: React.FC = () => {
           {/* BOTTOM CTA */}
           <div className="text-center pt-4">
             <a
-              href="#oferta"
+              href={siteConfig.hotmartCheckoutUrl}
               className="py-4 px-10 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl inline-flex items-center gap-2 transform hover:-translate-y-0.5 cursor-pointer"
             >
               <span>QUIERO EMPEZAR →</span>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Container from './Container';
 import Button from './Button';
 import { contentData } from '@/data/content';
+import { siteConfig } from '@/lib/config';
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -107,7 +108,7 @@ export const Header: React.FC = () => {
 
           {/* DESKTOP CTA */}
           <div className="hidden md:block">
-            <Button href={ctaHref} size="sm" variant="primary">
+            <Button href={siteConfig.hotmartCheckoutUrl} size="sm" variant="primary">
               {ctaText}
             </Button>
           </div>
@@ -180,7 +181,7 @@ export const Header: React.FC = () => {
           </nav>
           <div className="pt-2">
             <Button
-              href={ctaHref}
+              href={siteConfig.hotmartCheckoutUrl}
               size="md"
               variant="primary"
               fullWidth

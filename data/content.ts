@@ -184,7 +184,7 @@ export const contentData = {
       { label: 'Preguntas Frecuentes', href: '/#faq' },
     ] as NavItem[],
     ctaText: 'QUIERO EMPEZAR',
-    ctaHref: '/#oferta',
+    ctaHref: process.env.NEXT_PUBLIC_HOTMART_CHECKOUT_URL || 'https://pay.hotmart.com',
   },
 
   // Hero Principal (Método SANA)
@@ -196,7 +196,7 @@ export const contentData = {
     subheadline: 'Un curso práctico para entender las señales de tu digestión, saber qué alimentos te inflaman y cuáles te ayudan, y aprender a escuchar a tu cuerpo con los Semáforos Digestivos.',
     priceText: '576.52 MXN',
     primaryCtaText: 'QUIERO EMPEZAR',
-    primaryCtaHref: '#oferta',
+    primaryCtaHref: process.env.NEXT_PUBLIC_HOTMART_CHECKOUT_URL || 'https://pay.hotmart.com',
     secondaryCtaText: 'CONOCER EL MÉTODO',
     secondaryCtaHref: '#problema',
     imageSrc: '/materiales/dieta.jpeg',
@@ -274,7 +274,7 @@ export const contentData = {
     title: 'No necesitas cambiarlo todo de un día para otro.',
     text: 'Con el Método SANA aprendes a reconocer lo que le pasa a tu digestión y qué alimentos te ayudan, para que hagas cambios pequeños que sí puedas sostener.',
     ctaText: 'QUIERO EMPEZAR →',
-    ctaHref: '#oferta',
+    ctaHref: process.env.NEXT_PUBLIC_HOTMART_CHECKOUT_URL || 'https://pay.hotmart.com',
   },
 
   // Sección "¿Qué encontrarás en el Método SANA?" (Contenido del Curso)
@@ -333,7 +333,7 @@ export const contentData = {
     ],
     priceText: '576.52 MXN',
     ctaText: 'QUIERO EMPEZAR →',
-    ctaHref: '#oferta',
+    ctaHref: process.env.NEXT_PUBLIC_HOTMART_CHECKOUT_URL || 'https://pay.hotmart.com',
   },
 
   // Sección "Una mirada al interior" (Material de Apoyo)
@@ -349,20 +349,20 @@ export const contentData = {
         primaryColor: '#4DA92C',
         badgeLabel: 'Registro Diario',
         imageSrc: '/materiales/Diario Digestivo.png',
-        imageAlt: 'Mockup del Diario Digestivo Vive Sano',
+        imageAlt: 'Portada del Diario Digestivo Vive Sano',
         isAvailable: true,
         pdfUrl: '/materiales/diario digestivo.pdf',
         downloadFilename: 'diario-digestivo.pdf',
       },
       {
         id: 'm2',
-        title: '8 Semáforos Digestivos',
+        title: 'Semáforos de tu Cuerpo (Señales digestivas)',
         description: 'Uno para cada señal, para que identifiques en qué color está tu cuerpo.',
         primaryColor: '#4DA92C',
         accentColor: '#E76100',
         badgeLabel: 'Semáforos Digestivos',
         imageSrc: '/materiales/señales digestivas.png',
-        imageAlt: 'Portada real de Semáforos de tu cuerpo — Señales digestivas',
+        imageAlt: 'Portada real de Semáforos de tu Cuerpo (Señales digestivas)',
         isSemaforoMulti: true,
         pdfUrl: '/materiales/semaforos-de-tu-cuerpo.pdf',
         downloadFilename: 'semaforos-de-tu-cuerpo.pdf',
@@ -383,13 +383,13 @@ export const contentData = {
       },
       {
         id: 'm4',
-        title: 'Guía FODMAP: Descubre por qué te inflamas',
+        title: "Guía FODMAP 'Descubre por qué te inflamas'",
         description: 'Conoce qué alimentos le dan descanso a tu digestión, cuáles conviene limitar y un ejercicio para revisar tus combinaciones.',
         primaryColor: '#0078BF',
         accentColor: '#E76100',
         badgeLabel: 'Guía Práctica FODMAP',
         imageSrc: '/materiales/guia porque te imflamas.png',
-        imageAlt: 'Portada real de Guía FODMAP',
+        imageAlt: "Portada real de Guía FODMAP 'Descubre por qué te inflamas'",
         isAvailable: true,
       },
     ] as MaterialSupportItem[],
@@ -612,7 +612,7 @@ export const contentData = {
     title: 'Empieza hoy tu\nMétodo SANA',
     subtitle: 'Desinflama tu cuerpo y recupera tu energía paso a paso.',
     buttonText: 'QUIERO EMPEZAR',
-    buttonHref: '#oferta',
+    buttonHref: process.env.NEXT_PUBLIC_HOTMART_CHECKOUT_URL || 'https://pay.hotmart.com',
   },
 
   pricing: {

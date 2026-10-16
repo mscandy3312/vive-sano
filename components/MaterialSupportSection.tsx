@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React from 'react';
 import Container from './Container';
 import Section from './Section';
 import MaterialCard from './MaterialCard';
@@ -7,7 +6,14 @@ import { contentData } from '@/data/content';
 
 export const MaterialSupportSection: React.FC = () => {
   const { eyebrow, title, subtitle, materials } = contentData.materialSupport;
-  const [activeImage, setActiveImage] = useState<string | null>(null);
+
+  // Strict order guarantee
+  const orderedMaterials = [
+    materials.find((m) => m.id === 'm1') || materials[0],
+    materials.find((m) => m.id === 'm2') || materials[1],
+    materials.find((m) => m.id === 'm3') || materials[2],
+    materials.find((m) => m.id === 'm4') || materials[3],
+  ].filter(Boolean);
 
   return (
     <Section id="materiales" className="py-16 sm:py-24 bg-transparent border-y border-[#D5E8DC]">
@@ -29,13 +35,16 @@ export const MaterialSupportSection: React.FC = () => {
           </p>
         </div>
 
-        {/* MATERIALS GRID: Desktop 2 cols, Tablet 2 cols, Mobile 1 col */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-stretch max-w-5xl mx-auto">
-          {materials.map((material) => (
+        {/* MATERIALS LAYOUT:
+            - Desktop: 4 portadas en una sola línea horizontal (Grid de 4 columnas), todas del mismo tamaño.
+            - Mobile: Apiladas una debajo de la otra en una sola columna.
+            - Sin modales, sin lightboxes, sin tooltips al hover.
+        */}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-stretch w-full">
+          {orderedMaterials.map((material) => (
             <MaterialCard
               key={material.id}
               material={material}
-              onPreviewClick={(src) => setActiveImage(src)}
             />
           ))}
         </div>
@@ -50,27 +59,6 @@ export const MaterialSupportSection: React.FC = () => {
           </p>
         </div>
       </Container>
-
-      {/* LIGHTBOX MODAL FOR IMAGE PREVIEW */}
-      {activeImage && (
-        <div
-          onClick={() => setActiveImage(null)}
-          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-4 cursor-pointer animate-fadeIn"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Ampliación del material de apoyo"
-        >
-          <div className="relative max-w-3xl w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-white/20 bg-black">
-            <Image
-              src={activeImage}
-              alt="Vista detallada del material de apoyo"
-              fill
-              sizes="100vw"
-              className="object-contain"
-            />
-          </div>
-        </div>
-      )}
     </Section>
   );
 };

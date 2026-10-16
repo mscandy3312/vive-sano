@@ -4,6 +4,7 @@ import Container from './Container';
 import Section from './Section';
 import Button from './Button';
 import { contentData } from '@/data/content';
+import { siteConfig } from '@/lib/config';
 
 export const Hero: React.FC = () => {
   const {
@@ -35,16 +36,19 @@ export const Hero: React.FC = () => {
 
             {/* HEADLINE PRINCIPAL */}
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-[1.15]">
-              {headline}
+              <span className="block">Empieza hoy tu</span>
+              <span className="block">Método SANA</span>
             </h1>
 
             {/* SUBHEADLINE */}
-            <div className="bg-white border-l-4 border-[#4DA92C] p-4 text-left shadow-lg max-w-2xl mx-auto lg:mx-0 mb-4"><p className="text-[#1E4D2B] font-medium text-base sm:text-lg">{promise}</p></div>
-<p className="text-base sm:text-lg md:text-xl text-white max-w-2xl mx-auto lg:mx-0 leading-relaxed">{subheadline}</p>
+            <div className="py-2 text-left max-w-2xl mx-auto lg:mx-0 mb-4">
+              <p className="text-white font-medium text-base sm:text-lg leading-snug">{promise}</p>
+            </div>
+            <p className="text-base sm:text-lg md:text-xl text-white max-w-2xl mx-auto lg:mx-0 leading-relaxed">{subheadline}</p>
 
             {/* CALL TO ACTION BUTTONS */}
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <Button href={primaryCtaHref} size="lg" variant="primary" className="w-full sm:w-auto">
+              <Button href={siteConfig.hotmartCheckoutUrl} size="lg" variant="primary" className="w-full sm:w-auto">
                 {primaryCtaText}
               </Button>
 

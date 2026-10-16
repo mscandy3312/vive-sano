@@ -1,6 +1,7 @@
 import React from 'react';
 import Container from './Container';
 import Section from './Section';
+import { siteConfig } from '@/lib/config';
 
 export const SneakPeekSection: React.FC = () => {
   return (
@@ -30,7 +31,7 @@ export const SneakPeekSection: React.FC = () => {
           <div className="pt-8 space-y-3">
             <p className="text-white text-sm font-bold">Da el primer paso y comienza hoy.</p>
             <a
-              href="#oferta"
+              href={siteConfig.hotmartCheckoutUrl}
               className="inline-flex items-center justify-center py-4 px-10 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm sm:text-base uppercase tracking-wider transition-all shadow-xl"
             >
               QUIERO EMPEZAR

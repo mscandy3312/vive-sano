@@ -2,6 +2,7 @@ import React from 'react';
 import Container from './Container';
 import Section from './Section';
 import { contentData } from '@/data/content';
+import { siteConfig } from '@/lib/config';
 
 export const OfferSection: React.FC = () => {
   const { eyebrow, headline, promise, priceText, ctaText, includedItems, guaranteeText } = contentData.offer;
@@ -59,7 +60,7 @@ export const OfferSection: React.FC = () => {
           {/* PRIMARY CTA BUTTON */}
           <div className="pt-4 max-w-md mx-auto space-y-3">
             <a
-              href="/pago"
+              href={siteConfig.hotmartCheckoutUrl}
               className="w-full py-4 px-8 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-base sm:text-lg uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 cursor-pointer transform hover:-translate-y-0.5"
             >
               <span>{ctaText} →</span>

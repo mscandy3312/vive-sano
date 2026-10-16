@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { contentData } from '@/data/content';
+import { siteConfig } from '@/lib/config';
 import Header from './Header';
 import ProblemSection from './ProblemSection';
 import NoNeedToChangeSection from './NoNeedToChangeSection';
@@ -141,11 +142,12 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
               </span>
 
               <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-[1.14] tracking-tight">
-                {hero.title}
+                <span className="block">Empieza hoy tu</span>
+                <span className="block">Método SANA</span>
               </h1>
 
               {/* EXACT PROMISE */}
-              <div className="p-4 rounded-2xl bg-transparent border-l-4 border-[#4DA92C] shadow-xs">
+              <div className="py-2">
                 <p className="text-base sm:text-lg font-bold text-white leading-snug">
                   {hero.promise}
                 </p>
@@ -172,7 +174,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
             {/* HERO CTAS & PRICE DISPLAY */}
             <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <a
-                href={hero.primaryCtaHref}
+                href={siteConfig.hotmartCheckoutUrl}
                 className="py-4 px-8 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm sm:text-base uppercase tracking-wider transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2 cursor-pointer transform hover:-translate-y-0.5"
               >
                 <span>{hero.primaryCtaText} ({hero.priceText}) →</span>
@@ -220,7 +222,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
               </div>
 
               <a
-                href="#oferta"
+                href={siteConfig.hotmartCheckoutUrl}
                 className="w-full py-3.5 px-6 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm uppercase tracking-wider transition-all shadow-md block text-center cursor-pointer"
               >
                 QUIERO EMPEZAR
@@ -278,7 +280,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
 
           <div className="pt-4">
             <a
-              href="/pago"
+              href={siteConfig.hotmartCheckoutUrl}
               className="py-4 px-10 rounded-2xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-sm sm:text-base transition-all duration-300 shadow-2xl uppercase tracking-wider inline-flex items-center gap-2 transform hover:-translate-y-0.5 cursor-pointer"
             >
               <span>QUIERO EMPEZAR (576.52 MXN) →</span>
@@ -302,7 +304,7 @@ export const DirectResponseCampaignLandingPage: React.FC<DirectResponseCampaignL
             <p className="text-[10px] text-[#4DA92C] font-semibold">$576.52 MXN • Digital</p>
           </div>
           <a
-            href="/pago"
+            href={siteConfig.hotmartCheckoutUrl}
             className="py-2.5 px-4 rounded-xl bg-[#E76100] hover:bg-[#cf5600] text-white font-extrabold text-xs uppercase tracking-wider shadow-lg cursor-pointer"
           >
             <span>EMPEZAR →</span>
